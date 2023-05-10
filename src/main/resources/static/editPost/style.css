@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.title {
+	width:80%; border: none; outline: none; font-size: 40px; padding: 20px;
+}
+.tags{
+	width:80%; border: none; outline: none; font-size: 20px; padding: 20px; padding-top: 0px;
+}
+.bottomArea{
+	width: 100%;display: flex; justify-content: center;
+}
+.buttonArea{
+	display: flex; justify-content: center; margin: 20px; width: 50%; padding: 20px; box-shadow:  0px 0px 6px 0px rgb(206, 206, 206);
+}
+.backArea{
+	width: 30%;
+}
+.backBtn{
+	width: 100px; font-size: 15px; background-color: #00ff0000; border: none; padding: 5px;
+}
+.saveArea{
+	width: 70%;display: flex;justify-content: flex-end;
+}
+.tmprysaveBtn{
+	width: 100px; font-size: 15px; padding-left : 5px; padding-right: 5px; background-color: #00ff0000; border: none; color: #00a9ff;
+}
+.saveBtn{
+	width: 100px; font-size: 15px; margin-left: 20px; padding-left : 5px; padding-right: 5px; border: none; border-radius: 5px; background-color: #00a9ff; color: white;
+}
+
