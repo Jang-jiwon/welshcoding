@@ -52,3 +52,11 @@
 .toastui-editor-defaultUI-toolbar button {
     border: none !important;
 }
+
+body{
+	margin: 0px;
+	width: 100%;
+        height: 100%;
+}
+
+

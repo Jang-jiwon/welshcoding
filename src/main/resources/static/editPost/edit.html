@@ -29,23 +29,33 @@ https://curryyou.tistory.com/475
 
 </head>
 <body>
-	<input class="title" type="text"  placeholder="제목 입력">
-	<input class="tags" type="text"  placeholder="태그입력부분 - 미완성">
-	<div id="editor" ></div>
-	<div class="bottomArea" >
-		<div class="buttonArea" >
-			<div class="backArea" style="width: 30%;">
-				<button class="backBtn"  onclick="location.href='/body1/body.html'"><strong>← 나가기</strong></button>
-			</div>
-			<div class="saveArea" >
-				<button class="tmprysaveBtn" ><strong>임시저장</strong></button>
-				<button class="saveBtn" ><strong>출간하기</strong></button>
+	
+	<div style="position:relative; width: 100%;">
+		<input class="title" type="text"  placeholder="제목 입력">
+		<input class="tags" type="text"  placeholder="태그입력부분 - 미완성">
+		<div id="editor" ></div>
+		<div class="bottomArea" >
+			<div class="buttonArea" >
+				<div class="backArea" style="width: 30%;">
+					<button class="backBtn"  onclick="location.href='/body1/body.html'"><strong>← 나가기</strong></button>
+				</div>
+				<div class="saveArea" >
+					<button class="tmprysaveBtn" ><strong>임시저장</strong></button>
+					<button class="saveBtn" onclick="location.href='/editPost/save.html'"><strong>출간하기</strong></button>
+				</div>
 			</div>
 		</div>
+		
 	</div>
+	
 	
 </body>
 <script >
+
+function save(){
+// 	alert("저장");
+}
+
 const Editor = toastui.Editor;
 
 const editor = new Editor({
