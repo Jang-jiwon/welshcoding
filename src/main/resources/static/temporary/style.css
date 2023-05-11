@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
+
+
+body{
+/* font-family: 'Noto Sans KR'; */
+font-family: 'IBM Plex Sans KR';
+width: 98%;
+align-items: center;
+}
+
+div.wholebody{
+    /* background-color: brown; */
+    width: 100%; 
+    height: 300px;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+
+div.mainbody{
+    /* background-color: aquamarine; */
+    width: 50%; 
+    height: 100%;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+
+}
+div.subbody{
+    /* background-color: blue; */
+    width: 100%; 
+    height: 100%;
+    
+}
+div.mainbody_head,div.mainbody_social,div.slide_menu{
+    /* background-color: yellowgreen; */
+    width: 100%; 
+}
+div.mainbody_head{
+    display: flex;
+    align-items: center;
+/*     height: 65%; */
+}
+div.mainbody_social{
+    /* background-color: white !important; */
+    height: 25%;
+}
+/* div.slide_menu{
+    height: 10%;
+} */
+.socialIcon{
+    width: 33px; 
+    height: 33px; 
+    margin: 5px;
+    opacity: 0.5;
+}
+.socialIcon:hover{
+    opacity: 1;
+}
+
+
+/*---------------------------------------------------------------------------------------*/
+
+ul,
+li {
+  margin: 0;
+  padding: 3px;
+  list-style: none;
+}
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  margin: 0 auto;
+/*   background-color: #999; */
+  display: contents;
+  
+}
+.tab-container {
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+.tab-container__item {
+  cursor: pointer;
+  width: 130px;
+  text-align: center;
+}
+.tab-container__item:hover {
+  background-color: #20c997;
+  transition: background-color 0.4s ease-in-out;
+}
+.tab-container__item:hover .tab-container__item--title {
+  color: #fff;
+  transition: color 0.4s ease-in-out;
+}
+.tab-container__item.active {
+  border-bottom: 2px solid #20c997;
+}
+.tab-container__item.active .tab-container__item--title {
+  color: #20c997;
+}
+.tab-container__item.active:hover {
+  background-color: #20c997;
+  transition: background-color 0.4s ease-in-out;
+}
+.tab-container__item.active:hover .tab-container__item--title {
+  color: #fff;
+  transition: color 0.4s ease-in-out;
+}
+.tab-container__item--title {
+  display: inline-block;
+  color: #999;
+  font-weight: 700;
+  text-decoration: none;
+  margin: 15px;
+}
+.content-container {
+  padding: 10px;
+  width: 100%;
+/*   background-color: yellow; */
+  display: flex;
+  justify-content: center;
+}
+.content-container__content {
+  display: none;
+  width: 50%;
+/*   background-color: violet; */
+  
+  
+}
+.content-container__content.target {
+  display: block;
+}
+
+.hr1{
+opacity: 0.5;
+}
+
+/* #tab1{ */
+/*     width: 100%; */
+/* } */
+
+
+
+a.taglist{
+	text-decoration: none;
+	margin-top: 10px;
+}
+a:link {
+  color : #212529;
+}
+a:visited {
+  color : #212529;
+}
+a:hover {
+  color : #212529;
+}
+a:active {
+  color : #212529
+}
+
+img.mainImg{
+	width:100px; 
+	height: 100px; 
+	object-fit: cover;
+	border-radius: 50%; 
+	margin: 25px;
+}
+
+div.taglistdiv{
+	width: 25%; 
+	height: 0px; 
+/* 	background-color: red;  */
+	position: relative; 
+	left: -30%;
+}
+
+div.searchArea{
+	width: 100%; 
+	display: flex; 
+	justify-content: flex-end;
+}
+
+
+fieldset.search{
+	display: flex; width: 23%; height: 20px; align-items: center; padding: 5px; border-color: rgb(156, 156, 156);opacity: 0.5;
+}
+
+button.tagBtn{
+	border-radius: 35%; 
+	padding: 7px; 
+	padding-left:12px ; 
+	padding-right:12px; 
+	border: none; 
+	color: #12b886; 
+	margin-right: 10px; 
+	background-color: #f8f9fa;
+}
+
+div.postArea{
+	padding-bottom : 50px;
+}
+
+
+
+p.postDay{
+	margin: 0px;
+	margin-top: 10px;
+	font-size: 13px;
+	color: #868e96;
+}
+
+p.postCont{
+	margin: 7px;
+	margin-bottom: 20px;
+}
+
+h1.postH1{
+	margin: 5px;
+}
+h1.titleH1{
+	margin: 5px;
+	font-size: 50px;
+	padding-bottom : 100px;
+	
+	
+	
+}
