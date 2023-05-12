@@ -51,10 +51,11 @@ READ ME ! ! !
 /* ====== 2. MAIN CSS ====== */
 
 .mainframe{
-    margin-top:5rem;
+    /*margin-top:5rem;*/
     /* margin-left: auto; */
     /* margin-right: auto; */
     width: 768px;
+    padding-top: 5rem;
     padding-bottom: 5rem;
     align-content: center;
     /* font-family: 'Pretendard-Regular'; */
