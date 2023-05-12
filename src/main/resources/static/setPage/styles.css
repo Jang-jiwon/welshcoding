@@ -1,0 +1,615 @@
+
+/*
+
+READ ME ! ! !
+
+===== INDEX =====
+
+1. FONT LIST
+2. MAIN CSS
+    2-1. COLOR LIST
+    2-2. 공통 적용 부분
+3. 프로필 메인 영역
+    3-1. 프로필 메인 영역 
+    3-2. 프로필 메인 영역 버튼
+4. 프로필 디테일 영역
+    4-1. 공통 적용 부분
+    4-2. 벨로그 제목 영역
+    4-3. 소셜 정보 영역
+    4-4. 이메일 주소 영역
+    4-5. 이메일 수신 설정 영역
+    4-6. 회원 탈퇴 영역
+
+    버튼 및 이미지 (기타 영역들)
+
+참고해주시길 바랍니다 ㅎㅅㅎ
+
+-이은호- 
+
+*/
+
+/* ====== 1. FONT LIST ====== */
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}   
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
+
+ /* *********************************************************************** */
+
+/* ====== 2. MAIN CSS ====== */
+
+.mainframe{
+    margin-top:5rem;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    width: 768px;
+    padding-bottom: 5rem;
+    align-content: center;
+    /* font-family: 'Pretendard-Regular'; */
+    /* font-family: 'SUITE-Regular'; */
+    font-family: 'IBM Plex Sans KR';
+ }
+/* _ 2-1. COLOR LIST _ */
+ :root {
+    /* 주로 사용하는 색상만 정리해서 분류했습니다 ! */
+
+    --border-main: #F1F3F5;
+    --edit-border: #dee2e6;
+    --background: #FFFFFF;
+    --text-white: #FFFFFF;
+    --text-main: #495057;
+    --text-des: #868E96;
+    --text-h: #212529;
+    --main-color: #12B886;
+ }
+
+ /* _ 2-2. 공통 적용 부분 _ */
+ .edit-button{
+    /* 수정 버튼 UI 통일 */
+    outline: none;
+    padding: 0px;
+    border: none;
+    display: inline;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--main-color);
+    text-decoration: underline;
+    background: none;
+    cursor: pointer;
+}
+
+.save-button{
+    /* 저장 버튼 UI 통일 */
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: var(--main-color);
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
+
+}
+
+ /* *********************************************************************** */
+
+/* ====== 3. 프로필 메인 영역 ====== */
+
+#profile-image{
+    object-fit: cover;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    display: block;
+    margin-bottom: 1.25rem;
+}
+
+.Profile-main {
+    display: flex;
+    flex-direction: row;
+    height: 13.75rem;
+}
+
+.thumbnail-area {
+    padding-right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.thumbnail-area button + button {
+    margin-top: 0.5rem;
+    margin-left: 0px;
+}
+
+.info-area{
+    flex: 1 1 0%;
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--border-main);
+}
+
+/* _ 3-1. 프로필 메인 영역 텍스트 _ */
+
+.info-area h2{
+    font-size: 2.25rem;
+    margin: 0px;
+    line-height: 1.5;
+    color: var(--text-h);
+    font-weight: bold;
+}
+
+.info-area p{
+    font-size: 1rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    color: var(--text-des);
+}
+
+.edit_mainForm input + input {
+    margin-top: 1rem;
+}
+
+.textArea {
+    display: block;
+    border: 1px solid var(--border-main);
+    background: var(--background);
+    padding: 0.5rem;
+    color: var(--text-main);
+    font-size: 1rem;
+    line-height: 1rem;
+    outline: none;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.edit_mainForm .button-wrapper {
+    display: flex;
+    margin-top: 1.5rem;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+#displayName {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* _ 3-2. 프로필 메인 영역 버튼 _ */
+
+#UPB {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer !important;
+    outline: none;
+    border: none;
+    background: var(--main-color);
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+#RMB{
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+    color: var(--main-color);
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+/* *********************************************************************** */
+
+/* ====== 4. 프로필 디테일 영역 ====== */
+
+/* ----- 4-1. 공통 적용 부분 ------ */
+
+.p_dt{
+    /* 각 카테고리 별 세로 간격 설정 */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.wrapper{
+    display: flex;
+}
+
+.title-wrapper{
+    width: 9.5rem;
+    flex-shrink: 0;
+}
+
+.block-set {
+    flex: 1 1 0%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.edit-wrapper {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+
+.pd + .pd{
+    /* 카테고리 별 구분선 */
+    border-top: 1px solid var(--border-main);
+}
+
+/*  _ 공통 적용 부분 (텍스트) _  */
+
+.description {
+    margin-top: 0.875rem;
+    color: var(--text-des);
+    font-size: 0.875rem;
+}
+
+.contents{
+    flex: 1 1 0%;
+    font-size: 1rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+.Profile-detail h3{
+    line-height: 1.5;
+    color: var(--text-h);
+    margin: 0px;
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+/* *********************************************************************** */
+
+/* ------ 4-2. 벨로그 제목 영역 (velog-titleset) ------ */
+
+.Profile-detail{
+    margin-top: 4rem;
+}
+
+/* _ 벨로그 제목 영역 텍스트 _  */
+
+.edit_vNameForm {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.edit_vNameForm input {
+    flex: 1 1 0%;
+    margin-right: 1rem;
+}
+
+.vName_editBox {
+    display: block;
+    border: 1px solid var(--border-main);
+    background: var(--background);
+    padding: 0.5rem;
+    color: var(--text-main);
+    font-size: 1rem;
+    line-height: 1rem;
+    outline: none;
+    border-radius: 4px;
+}
+
+
+/* *********************************************************************** */
+
+/* ------ 4-3. 소셜 정보 영역 (.social-infoset) ------ */
+
+.edit_SnsForm{
+    width: 25rem;
+}
+
+.sns_textSet {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.edit_SnsForm li + li {
+    margin-top: 1rem;
+}
+
+.sns_editBox {
+    display: block;
+    border: 1px solid var(--edit-border);
+    background: var(--background);
+    padding: 0.5rem;
+    color: var(--text-main);
+    font-size: 1rem;
+    line-height: 1rem;
+    outline: none;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.facebookBox {
+    flex: 1 1 0%;
+    display: flex;
+    border: 1px solid var(--edit-border);
+    background: var(--background);
+    padding: 0.5rem;
+    color: var(--text-main);
+    font-size: 1rem;
+    line-height: 1rem;
+    outline: none;
+    border-radius: 4px;
+    height: 2.25rem;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.facebookBox span {
+    color: var(--text-des);
+    margin-right: 0.25rem;
+}
+
+.facebookBox input {
+    padding: 0px;
+    border: 0px;
+    outline: none;
+    font-size: 1rem;
+    line-height: 1;
+    flex: 1 1 0%;
+    width: 100%;
+    background: transparent;
+    color: var(--text-h);
+}
+
+.edit_SnsForm .button-wrapper {
+    margin-top: 1.5rem;
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+/* _ 소셜 정보 영역 텍스트 / 버튼 _ */
+
+.social-info-textlist {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.social-info-textlist li {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.social-info-textlist li svg {
+    width: 1rem;
+    height: 1rem;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+.social-info-textlist li span {
+    font-size: 1rem;
+}
+
+/* *********************************************************************** */
+
+/* ------ 4-4. 이메일 주소 영역 (.email-area) ------ */
+
+/* _ 이메일 주소 영역 텍스트 / 버튼 _ */
+
+.email-area .title-wrapper h3 {
+    line-height: 1.5;
+    color: var(--text-h);
+    margin: 0px;
+    font-size: 1.125rem;
+}
+
+/* *********************************************************************** */
+
+/* ------ 4-5. 이메일 수신 설정 영역 (.em-rcv-area) ------ */
+
+/* _ 이메일 수신 설정 텍스트 / 버튼 _ */
+
+.rcv-ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.rcv-ul li {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.rcv-ul li span {
+    width: 14rem;
+}
+
+.toggleSwitch {
+    width: 2.875rem;
+    height: 1.5rem;
+    margin: 5px;
+    display: block;
+    position: relative;
+    border-radius: 30px;
+    background-color:rgb(134, 142, 150);
+    /* box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%); */
+    cursor: pointer;
+  }
+  
+  .toggleSwitch .toggleButton {
+    width: 1.25rem;
+    height: 1.25rem;
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: var(--background);
+  }
+  
+  .toggleSwitch.active {
+    background: #20c997;
+  }
+  
+  .toggleSwitch.active .toggleButton {
+    left: calc(100% - 50%);
+    background: #fff !important;
+  }
+  
+  .toggleSwitch, .toggleButton {
+    transition: all 0.125s ease-in;
+  }
+
+/* *********************************************************************** */
+
+/* ------ 4-6. 회원 탈퇴 영역 (.em-rcv-area) ------ */
+
+/* _ 회원 탈퇴 영역 텍스트 / 버튼 _ */
+
+.del-button {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: #ff6b6b;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+
+/* ========================================= 번외 ========================================= */
+
+
+/* 회원 탈퇴 창을 예쁘게 만들고 싶어서 ㅎㅎ */
+
+.deleteAcFrame{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+
+    /* width: 100%;
+    height: 100%; */
+    /* z-index: 60;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center; */
+}
+
+.alertFrame {
+    width: 25rem;
+    border-radius: 4px;
+    background: var(--bg-element1);
+    padding: 2rem 1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 12px 0px;
+    animation: 0.4s ease-in-out 0s 1 normal forwards running cptskd;
+}
+
+.aF_textFrame h3{
+        margin: 0px;
+        font-size: 1.5rem;
+        color: var(--text1);
+        line-height: 1.5;
+        font-weight: bold;
+}
+
+.aF_textFrame .message{
+    line-height: 1.5;
+    font-size: 1rem;
+    color: var(--text2);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+}
+.aF_textFrame .button-area {
+    margin-top: 2rem;
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+}
+
+.cancel_b {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+    color: var(--main-color);
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+.ok_b {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: var(--main-color);
+    color: var(--text-white);
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+
