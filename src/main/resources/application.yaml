@@ -15,6 +15,7 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
         show_sql: true
         format_sql: true
         
