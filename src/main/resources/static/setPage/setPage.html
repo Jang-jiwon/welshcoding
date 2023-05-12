@@ -244,7 +244,9 @@
   </section>
 </main>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   <script>
+    // ===================== 헤더 추가 =====================
     $(function() {
       $("#header").load("/header/header.html");
     });
@@ -255,10 +257,8 @@
       item.addEventListener("click", tabHandler);
     });
   </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   <script>
-    // 이미지 업로드, 삭제 기능
+    // ===================== 프로필 이미지 업로드, 삭제 기능 =====================
     window.addEventListener('DOMContentLoaded', (event) => {
       const uploadButton = document.getElementById('UPB');
       const removeButton = document.getElementById('RMB');
@@ -288,7 +288,7 @@
       });
     });
 
-    // info-area 수정 기능 (메인 프로필)
+    // ===================== info-area 수정 기능 (메인 프로필) =====================
     document.getElementById('editButton_Mp').addEventListener('click', function () {
       // 디폴트값 숨기고, 숨겨진 수정 폼 보이게 하기
       document.querySelector('#defInfo').style.display = 'none';
@@ -324,7 +324,7 @@
       document.querySelector('#defInfo_editForm').style.display = 'none';
     });
 
-    // 벨로그 제목 수정 기능 (동일한 기능이므로 주석 생략할게요~~)
+    // ===================== 벨로그 정보 수정 기능 (위와 같은 기능이니 주석 패스할게요~) =====================
       document.getElementById('editButton_vN').addEventListener('click', function () {
         document.querySelector('#vPageName').style.display = 'none';
         document.querySelector('#vPageName_editForm').style.display = 'block';
@@ -346,7 +346,7 @@
 
     });
 
-    // 소셜 정보 수정 기능
+    // ===================== 소셜 정보 수정 기능 =====================
       document.getElementById('editButton_sns').addEventListener('click', function () {
         document.querySelector('#snsInfo').style.display = 'none';
         document.querySelector('#snsInfo_e').style.display = 'block';      
@@ -396,9 +396,7 @@
 
     });
 
-
-
-    // 회원 탈퇴 경고창
+    // 회원 탈퇴 경고창 (못 생긴 거)
 
     // window.addEventListener('DOMContentLoaded', (event) => {
     //   const confirmDeleteAccount = document.getElementById('deleteAccount');
@@ -412,7 +410,7 @@
     //   });
     // });
 
-    // 이쁜 회원탈퇴 창
+    // ===================== 회원 탈퇴 경고창 (더 이쁜거로 만듦)  =====================
     window.addEventListener('DOMContentLoaded', (event) => {
       const deleteAccountButton = document.getElementById('deleteAccount');
       const deleteAcFrame = document.querySelector('.deleteAcFrame');
@@ -435,9 +433,6 @@
       });
     });
 
-  </script>
-  
-  <script>
     // ===================== 토글 스위치 기능 =====================
     const toggleList = document.querySelectorAll(".toggleSwitch");
 
@@ -447,22 +442,4 @@
       }
     });
   </script>
-  
-  <script>
-    // ===================== 헤더 기능 =====================
-
-    $(function () {
-      $("#header").load("/header/header.html");
-    });
-
-    const tabItem = document.querySelectorAll(".tab-container__item");
-    const tabContent = document.querySelectorAll(".content-container__content");
-
-    tabItem.forEach((item) => {
-      item.addEventListener("click", tabHandler);
-    });
-
-  </script>
-  
-  
   </html>

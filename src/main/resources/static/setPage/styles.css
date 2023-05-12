@@ -529,6 +529,10 @@ READ ME ! ! !
     padding: 0px 1.25rem;
     height: 2rem;
     font-size: 1rem;
+    transition: color .15s ease-in-out,
+    background-color .15s ease-in-out,
+    border-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
 }
 
 
@@ -560,7 +564,7 @@ READ ME ! ! !
 .alertFrame {
     width: 25rem;
     border-radius: 4px;
-    background: var(--bg-element1);
+    background: #ffffff;
     padding: 2rem 1.5rem;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 12px 0px;
     animation: 0.4s ease-in-out 0s 1 normal forwards running cptskd;
@@ -569,7 +573,7 @@ READ ME ! ! !
 .aF_textFrame h3{
         margin: 0px;
         font-size: 1.5rem;
-        color: var(--text1);
+        color: var(--text-h);
         line-height: 1.5;
         font-weight: bold;
 }
@@ -577,7 +581,7 @@ READ ME ! ! !
 .aF_textFrame .message{
     line-height: 1.5;
     font-size: 1rem;
-    color: var(--text2);
+    color: var(--text-main);
     margin-top: 1rem;
     margin-bottom: 1rem;
     white-space: pre-wrap;
@@ -624,5 +628,6 @@ READ ME ! ! !
     height: 2rem;
     font-size: 1rem;
 }
+
 
 
