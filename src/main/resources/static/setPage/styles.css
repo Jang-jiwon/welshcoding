@@ -201,7 +201,7 @@ READ ME ! ! !
     -webkit-box-pack: center;
     justify-content: center;
     font-weight: bold;
-    cursor: pointer !important;
+    cursor: pointer ;
     outline: none;
     border: none;
     background: var(--main-color);
@@ -280,7 +280,7 @@ READ ME ! ! !
 }
 
 .contents{
-    flex: 1 1 0%;
+    flex: 1 1 0% ;
     font-size: 1rem;
     color: var(--text-main);
     line-height: 1.5;
@@ -304,18 +304,18 @@ READ ME ! ! !
 
 /* _ 벨로그 제목 영역 텍스트 _  */
 
-.edit_vNameForm {
+.vName_editForm {
     display: flex;
     -webkit-box-align: center;
     align-items: center;
 }
 
-.edit_vNameForm input {
-    flex: 1 1 0%;
+.vName_editForm input {
+    flex: 1 1 0% ;
     margin-right: 1rem;
 }
 
-.vName_editBox {
+.vPageNameT_e {
     display: block;
     border: 1px solid var(--border-main);
     background: var(--background);
@@ -332,6 +332,10 @@ READ ME ! ! !
 
 /* ------ 4-3. 소셜 정보 영역 (.social-infoset) ------ */
 
+.social-info-textlist li + li {
+    margin-top: 0.5rem;
+}
+
 .edit_SnsForm{
     width: 25rem;
 }
@@ -345,6 +349,14 @@ READ ME ! ! !
     margin-top: 1rem;
 }
 
+.snsBox{
+    display: flex;
+}
+
+.icons{
+    width: 20px;
+    margin-right: 10px;
+}
 .sns_editBox {
     display: block;
     border: 1px solid var(--edit-border);
