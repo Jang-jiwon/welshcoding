@@ -219,3 +219,9 @@ p.postCont{
 h1.postH1{
 	margin: 5px;
 }
+
+#btn-show-form {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
