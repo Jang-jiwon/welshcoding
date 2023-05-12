@@ -1,13 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+@charset "UTF-8";
 
-<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
+*{
+	font-family: 'IBM Plex Sans KR' !important;
+}
+
+form{
+	width: 100%; 
+	height: 80%;
+	display: flex;
+    justify-content: center;    
+    align-items: center;
+    background-color: white;
+    box-shadow:  0px 0px 3px 0px rgb(206, 206, 206);
+}
+
+
+body,html{
+	width: 100%;
+	height: 98%;
+	
+	margin: 8px 0px 0px 0px ;
+	background-color: #f8f9fa;
+}
+
+.loginbody{
+	width: 100%;
+	height:95%;
+	display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+.aa1818{
+	width:100%; 
+	display: flex; 
+	justify-content: center;  
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.loginArea{
+	width: 40%;
+	height:90%;
+	padding: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.inputArea{
+	margin:15px 0px 15px 5px;
+	padding:10px 0px 10px 5px;
+	font-size:20px;
+	border: none; 
+	outline: none; 
+	width: 95%;
+	text-align: center; 
+	box-shadow:  0px 0px 3px 0px rgb(206, 206, 206);
+	text-align: inherit;
+}
+
+.loginBtn,.joinBtn{
+	padding:10px 0px 10px 0px;
+	font-size:20px;
+	border: none; 
+	outline: none; 
+	width: 49%; 
+	height:auto;
+	text-align: center; 
+	margin: 0px 5px 0px 5px;
+	box-shadow:  0px 0px 3px 0px rgb(206, 206, 206);
+}
+.loginBtn{
+	background-color: #12b886;
+	color: white;
+	font-weight: bold;
+}
+.joinBtn{
+	color: #12b886;
+	background-color: white;
+	font-weight: bold;
+}
+
+
+/* ============================================================================================== */
+
 div.main_header{
     /* background-color: aquamarine; */
     height: 45px;
@@ -168,57 +245,3 @@ a.leftA{
 	text-decoration:none;
     align-items: center;
 }
-
-</style>
-
-<body>
-
-    <div class="main_header" >
-        <div class="header_left" >
-	        <a class ="leftA" href="/body1/body.html">
-	        	<div class="header_left_icon">
-	                <img class="icon_black" src="/header/imgs/icon_black.png">
-	            </div>
-	            <button class="velog_name">Z_ON</button>
-	        </a>
-            
-        </div>
-        <div class="header_right" >
-            <div class="header_menu" ><!--style="background-color: brown;"-->
-                <!-- <p>dd</p> -->
-                <div class="dropdown">
-                    <button class="dropbtn"> 
-                      <img class="header_right_icon" src="/header/imgs/me_profile.png" >
-                      <p class="dropbtnArrow" >▼</p>
-                    </button>
-                    <div class="dropdown-content">
-                      <a href="#">내 벨로그</a>
-                      <a href="/temporary/temporary.html">임시글</a>
-                      <a href="#">설정</a>
-                      <a href="#">로그아웃</a>
-                    </div>
-                  </div>
-            </div>
-            <div class="header_newWriting" ><!--style="background-color: aqua; "-->
-                <!-- <p>dd</p> -->
-                <button class="header_newWriting_btn" onclick="location.href='/editPost/edit.html'">새 글 작성</button>
-            </div>
-            <div class="header_search"  id="header_search"><!--style="background-color: blueviolet;"-->
-                <!-- <p>dd</p> -->
-                <a class="searchA" href="/search/search.html"><img class="header_right_searchIcon"  src="/header/imgs/search.png" ></a>
-                
-            </div>
-            <div class="header_light" ><!--style="background-color: cadetblue;"-->
-                <!-- 혹시모를 밝기 버튼 영역 -->
-            </div>
-        </div>
-    </div>
-
- </body>
-
-<script>
-
-
-</script>
-
-</html>
