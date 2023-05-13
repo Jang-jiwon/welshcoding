@@ -6,7 +6,10 @@ div.seriesdiv{
     flex-wrap: wrap;
 }
 div.serieslist{
-	width: 50%;
+	width: 46%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 3rem;
 }
 div.listdiv{
     display: flex;
@@ -22,7 +25,7 @@ div.serieslistdiv{
 
 img.seriesimg{
 	width: 100%;
-    height: 400px;
+    height: 200px;
 }
 h4.titleh4tag{
 	font-size: 1rem;
