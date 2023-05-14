@@ -50,10 +50,9 @@ READ ME ! ! !
 
 /* ====== 2. MAIN CSS ====== */
 
-/* 헤더 부분 동일하게 만들기 위해 다른 페이지와 margin 동일하게 설정*/
+/* 헤더 부분 동일하게 만들기 위해 다른 페이지와 margin 동일하게 설정 */
 body{
     margin: 8px;
-
 }
 
 .mainframe{
