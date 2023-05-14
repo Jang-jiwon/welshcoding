@@ -230,3 +230,24 @@ h1.titleH1{
 	
 	
 }
+.postArea section {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    font-size: 0.875rem;
+}
+.postArea section .time {
+    color: var(--text3);
+    
+}
+.postArea section .remove {
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--text1);
+    outline: none;
+    border: none;
+    background: none;
+    font-size: inherit;
+    padding: 0px;
+    text-align: right;
+}
