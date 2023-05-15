@@ -16,14 +16,19 @@
 
 <body>
 
-            <div class="text-center">
-                <h1>소개</h1>
-                <img id="anyimg" src="./imgs/yeondu.jpg" alt="anyimg" class="yeondu_img mx-auto" style="width: 400px; height: 400px;"/>
-                <p id="anytext" class="my-paragraph" style="font-size: 16px;">소개가 작성되지 않았습니다.</p>
-                <button id="btn-show-form" class="btn btn-primary">글 작성하기</button>
-                <div id="form-container"></div>
-                <!-- 동적 폼 생성 -->
+			<div class="introback">
+				<div class="text-center" style="text-align: center; width: 100%;">
+	                <h1>소개</h1>
+	                <img id="anyimg" src="/introduce/imgs/yeondu.jpg" alt="anyimg" class="yeondu_img mx-auto" style="width: 400px; height: 400px;"/>
+	                <p id="anytext" class="my-paragraph" style="font-size: 16px;text-align: center;">소개가 작성되지 않았습니다.</p>
+	                <button id="btn-show-form" class="btn btn-primary">글 작성하기</button>
+	                <div id="form-container"></div>
+	                <!-- 동적 폼 생성 -->
+	            </div>
             </div>
+			
+            
+            
 </body>
 
 </html>
@@ -41,12 +46,13 @@
         text.style.display="none";
         // 폼을 동적으로 추가하기
         const form = document.createElement("form");
+        form.id="introform";
         form.method = "POST";
         form.action = "/post";
         form.innerHTML =
             `
-				<textarea name="content" class="form-control autosize" placeholder="당신은 어떤사람인가요? 당신에 대해서 알려주세요."></textarea>
-				<button class="btn btn-primary" type="submit">저장하기</button>
+				<textarea id="intro" name="content" class="form-control autosize" placeholder="당신은 어떤사람인가요? 당신에 대해서 알려주세요."></textarea>
+				<button id="introSaveBtn" class="btn btn-primary" type="submit">저장하기</button>
 			`;
         formContainer.appendChild(form);
         autosize(document.querySelector('textarea'));

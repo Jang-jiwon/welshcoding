@@ -106,13 +106,11 @@
             
           </article>
           <article id="tab2" class="content-container__content">
-          	<div id="qwe"></div>
-            <h1>시리즈</h1>
+          	<div id="series"></div>
             
           </article>
           <article id="tab3" class="content-container__content">
-            <
-              
+              <div id="introduce"></div>
           </article>
           
         </section>
@@ -126,6 +124,8 @@
 	//외부 html 붙히기
 	$(function() {
 	  $("#header").load("/header/header.html");
+	  $("#series").load("/kdy/series.html");
+	  $("#introduce").load("/introduce/body.html");
 	});
 	const tabItem = document.querySelectorAll(".tab-container__item");
 	const tabContent = document.querySelectorAll(".content-container__content");
