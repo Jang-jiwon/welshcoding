@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
 /*부트스트랩 라이브러리추가*/
-@import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css');
+/* @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'); */
 
 body{
 /* font-family: 'Noto Sans KR'; */
@@ -219,5 +219,44 @@ p.postCont{
 
 h1.postH1{
 	margin: 5px;
+}
+
+/* ------------- */
+.introback{
+	width:100%;
+	height:100%;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+.text-center{
+	align-content: center;
+}
+
+#btn-show-form , #introSaveBtn{
+	border: none;
+	background-color: #12b886;
+	color: white;
+	font-size: 1.125rem;
+	font-weight: bold;
+	width: 20%;
+	padding: 3px 7px 3px 7px;
+	border-radius: 5px;
+}
+#introSaveBtn{
+	margin-top: 20px;
+}
+#introform{
+    display: grid;
+    width: 100%;
+    justify-items: center;
+    height: 100%;
+}
+
+#intro{
+	width: 70%;
+    height: 100px;
+    resize: none;
+    outline: none;
 }
 
