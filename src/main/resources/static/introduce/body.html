@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,148 +15,21 @@
 </head>
 
 <body>
-<div id="header"></div>
-<br><br><br>
-<div class="wholebody">
-    <div class="mainbody">
-        <div class="subbody">
-            <div class="mainbody_head">
-                <img class="mainImg" src="/header/imgs/me_profile.png" >
-                <div>
-                    <h3>지원</h3>
-                    <p>hello world..</p>
-                </div>
-            </div>
-            <hr class="hr1">
-            <div class="mainbody_social">
-                <img class="socialIcon" src="./imgs/githubIcon.png" >
-                <img class="socialIcon" src="./imgs/emailIcon.png" >
-            </div>
-        </div>
-    </div>
-</div>
 
-
-<div class="container">
-    <ul class="tab-container">
-        <li class="tab-container__item active" data-tab="tab1">
-            <a class="tab-container__item--title" href="#">글</a>
-        </li>
-        <li class="tab-container__item" data-tab="tab2">
-            <a class="tab-container__item--title" href="#">시리즈</a>
-        </li>
-        <li class="tab-container__item" data-tab="tab3">
-            <a class="tab-container__item--title" href="#">소개</a>
-        </li>
-
-    </ul>
-    <section class="content-container" >
-        <article id="tab1" class="content-container__content target">
-            <div class="taglistdiv" >
-                <!-- 태그목록 -->
-                <p style="padding: 3px; margin: 5px;">태그 목록</p>
-                <hr style="margin: 5px;">
-                <ul>
-                    <li><a class="taglist" href="#">전체보기</a> (3)</li>
-                    <li><a class="taglist" href="#">응애</a> (3)</li>
-                    <li><a class="taglist" href="#">조건문</a> (1)</li>
-                </ul>
-            </div>
-            <div class="searchArea" >
-                <!-- 검색창 -->
-                <fieldset class="search">
-                    <img src="/header/imgs/search.png" style="width: 8%; margin: 3px; opacity: 0.5;">
-                    <input type="text" placeholder="검색어를 입력하세요." style="border: none; outline: none; width: 80%; text-align: center; margin: 1px;">
-                </fieldset>
-            </div>
-
-            <!-- 테스트 컨텐츠 -->
-            <div class="postArea" >
-                <h1 class="postH1">[JAVA] 조건문</h1>
-                <p class="postCont">
-                    특정 조건을 충족할 경우에만 실행하는 구문이다.if문if~else문if~else if~ else 문switch 문if문은 주어진 조건이 참일 경우에만 코드를 실행한다.사용법예시\>> 0위의 코드에서 만약 num이 0이 아니라면 3번째 줄은 실행 되지 않는다. if문의
-                </p>
-                <div class="tags">
-                    <button class="tagBtn" >응애</button>
-                    <button class="tagBtn" >조건문</button>
-                </div>
-                <p class="postDay">2023년 1월 26일 · 0개의 댓글 · ♥0</p>
-            </div>
-            <div class="postArea" >
-                <h1 class="postH1">[JAVA] 조건문</h1>
-                <p>
-                    특정 조건을 충족할 경우에만 실행하는 구문이다.if문if~else문if~else if~ else 문switch 문if문은 주어진 조건이 참일 경우에만 코드를 실행한다.사용법예시\>> 0위의 코드에서 만약 num이 0이 아니라면 3번째 줄은 실행 되지 않는다. if문의
-                </p>
-                <div class="tags">
-                    <button class="tagBtn" >조건문</button>
-                </div>
-                <p class="postDay">2023년 1월 26일 · 0개의 댓글 · ♥0</p>
-            </div>
-            <div class="postArea" >
-                <h1 class="postH1">[JAVA] 조건문</h1>
-                <p>
-                    특정 조건을 충족할 경우에만 실행하는 구문이다.if문if~else문if~else if~ else 문switch 문if문은 주어진 조건이 참일 경우에만 코드를 실행한다.사용법예시\>> 0위의 코드에서 만약 num이 0이 아니라면 3번째 줄은 실행 되지 않는다. if문의
-                </p>
-                <div class="tags">
-                    <button class="tagBtn" >응애</button>
-                    <button class="tagBtn" >조건문</button>
-                </div>
-                <p class="postDay">2023년 1월 26일 · 0개의 댓글 · ♥0</p>
-            </div>
-
-
-        </article>
-        <article id="tab2" class="content-container__content">
-            <h1>시리즈</h1>
-
-
-        </article>
-        <article id="tab3" class="content-container__content ">
             <div class="text-center">
                 <h1>소개</h1>
                 <img id="anyimg" src="./imgs/yeondu.jpg" alt="anyimg" class="yeondu_img mx-auto" style="width: 400px; height: 400px;"/>
-                <p id="anytext">소개가 작성되지 않았습니다.</p>
+                <p id="anytext" class="my-paragraph" style="font-size: 16px;">소개가 작성되지 않았습니다.</p>
                 <button id="btn-show-form" class="btn btn-primary">글 작성하기</button>
                 <div id="form-container"></div>
                 <!-- 동적 폼 생성 -->
-<!--                커밋이확인중-->
             </div>
-        </article>
-
-
-    </section>
-</div>
-
 </body>
 
 </html>
 
 <script>
-    //외부 html 붙히기
-    $(function() {
-        $("#header").load("/header/header.html");
-    });
-    const tabItem = document.querySelectorAll(".tab-container__item");
-    const tabContent = document.querySelectorAll(".content-container__content");
-
-    tabItem.forEach((item) => {
-        item.addEventListener("click", tabHandler);
-    });
-
-    //tab메뉴
-    function tabHandler(item) {
-        const tabTarget = item.currentTarget;
-        const target = tabTarget.dataset.tab;
-        tabItem.forEach((title) => {
-            title.classList.remove("active");
-        });
-        tabContent.forEach((target) => {
-            target.classList.remove("target");
-        });
-        document.querySelector("#" + target).classList.add("target");
-        tabTarget.classList.add("active");
-    }
-
+    //tab3
     const btnShowForm = document.getElementById("btn-show-form");
     const formContainer = document.getElementById("form-container");
     const img = document.getElementById("anyimg");
@@ -203,7 +76,6 @@
             textarea.readOnly = false;
         }
     });
-
 </script>
 
 

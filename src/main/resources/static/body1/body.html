@@ -111,7 +111,7 @@
             
           </article>
           <article id="tab3" class="content-container__content">
-            <h1>소개</h1>
+            <
               
           </article>
           
@@ -148,22 +148,5 @@
 	tabTarget.classList.add("active");
 	}
 
-    const btnShowForm = document.getElementById("btn-show-form");
-    const formContainer = document.getElementById("form-container");
 
-
-    btnShowForm.addEventListener("click", () => {
-        btnShowForm.style.display = "none";
-
-        // 폼을 동적으로 추가하기
-        const form = document.createElement("form");
-        form.method = "POST";
-        form.action = "/post";
-        form.innerHTML = `
-				<textarea name="content" class="form-control autosize" placeholder="당신은 어떤사람인가요? 당신에 대해서 알려주세요."></textarea>
-				<button class="btn btn-primary" type="submit">저장하기</button>
-			`;
-        formContainer.appendChild(form);
-        autosize(document.querySelector('textarea'));
-    });
 </script>
