@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
@@ -25,7 +26,7 @@ public class Introduce {
 	private Long introduceId;
 	private String content;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "MEMBERID")
 	private Member member;
 	
