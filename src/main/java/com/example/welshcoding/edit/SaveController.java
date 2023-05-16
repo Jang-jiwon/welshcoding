@@ -42,7 +42,7 @@ public class SaveController {
 	}
 	
 	@PostMapping("/save-data")
-	public String saveData(@RequestParam("gridData") String gridData  ,@RequestParam("gridtitle") String gridtitle) throws IllegalAccessException {
+	public String saveData(@RequestParam("gridData") String gridData  ,@RequestParam("gridtitle") String gridtitle,@RequestParam("tag") String tagList) throws IllegalAccessException {
 	    /* ... */log.info("save-data Controller");
 		System.out.println("===================================\n"+gridData +", "+gridtitle); // 잘넘어옴
 		Member member = new Member();
@@ -50,9 +50,16 @@ public class SaveController {
 		
 		testMemberService.join(member);
 		
-		Series series = new Series();
-		series.setSeriesName("testsd");
-		testSService.save(series);
+		String[] tags = tagList.split(",");
+		
+		Series[] serieses = new Series[tags.length];
+		for(int i=0; i<tags.length;i++) {
+			serieses[i] = new Series();
+			serieses[i].setSeriesName(tags[i]);
+			System.out.println("=========tags : "+tags[i]+"==========");
+			testSService.save(serieses[i]);
+		}
+		
 		
 		Board board = new Board();
 		board.setBoardTitle(gridtitle);
