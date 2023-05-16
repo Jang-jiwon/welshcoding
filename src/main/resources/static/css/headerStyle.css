@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link  type="text/css" href = "/body1/style.css" rel="stylesheet" >
-</head>
-
-<style>
+@charset "UTF-8";
 div.main_header{
-    /* background-color: aquamarine; */
-    height: 45px;
+    height: 45px !important ;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,57 +158,3 @@ a.leftA{
 	text-decoration:none;
     align-items: center;
 }
-
-</style>
-
-<body>
-
-    <div class="main_header" >
-        <div class="header_left" >
-	        <a class ="leftA" href="/body1/body.html">
-	        	<div class="header_left_icon">
-	                <img class="icon_black" src="/header/imgs/icon_black.png">
-	            </div>
-	            <button class="velog_name">Z_ON</button>
-	        </a>
-            
-        </div>
-        <div class="header_right" >
-            <div class="header_menu" ><!--style="background-color: brown;"-->
-                <!-- <p>dd</p> -->
-                <div class="dropdown">
-                    <button class="dropbtn"> 
-                      <img class="header_right_icon" src="/header/imgs/me_profile.png" >
-                      <p class="dropbtnArrow" >▼</p>
-                    </button>
-                    <div class="dropdown-content">
-                      <a href="#">내 벨로그</a>
-                      <a href="/temporary/temporary.html">임시글</a>
-                      <a href="/setPage/setPage.html">설정</a>
-                      <a href="#">로그아웃</a>
-                    </div>
-                  </div>
-            </div>
-            <div class="header_newWriting" ><!--style="background-color: aqua; "-->
-                <!-- <p>dd</p> -->
-                <button class="header_newWriting_btn" onclick="location.href='/editPost/edit.html'">새 글 작성</button>
-            </div>
-            <div class="header_search"  id="header_search"><!--style="background-color: blueviolet;"-->
-                <!-- <p>dd</p> -->
-                <a class="searchA" href="/search/search.html"><img class="header_right_searchIcon"  src="/header/imgs/search.png" ></a>
-                
-            </div>
-            <div class="header_light" ><!--style="background-color: cadetblue;"-->
-                <!-- 혹시모를 밝기 버튼 영역 -->
-            </div>
-        </div>
-    </div>
-
- </body>
-
-<script>
-
-
-</script>
-
-</html>

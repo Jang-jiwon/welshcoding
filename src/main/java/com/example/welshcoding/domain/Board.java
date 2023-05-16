@@ -3,6 +3,7 @@ package com.example.welshcoding.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,11 +33,11 @@ public class Board {
 	private String boardLike;
 	private String thumbnailPath;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "SERIESID")
 	private Series series;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MEMBERID")
 	private Member member;
 	

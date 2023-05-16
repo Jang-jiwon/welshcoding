@@ -60,5 +60,4 @@ public class Member {
 		this.temporaries.add(temporary);
 	}
 	
-	
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="/save-data" method="POST" id="myForm"> 
+	<input type="hidden" name="gridtitle"  id="title"/>
+    <input type="hidden" name="gridData"  id="myInput"/>
+</form>
+</body>
+<script >
+
+    
+var gridData = sessionStorage.getItem("editcont");
+var boardTitle = sessionStorage.getItem("boardTitle");
+
+var inputElement = document.getElementById('myInput');
+inputElement.value = gridData;
+var titleElement = document.getElementById('title');
+titleElement.value = boardTitle;
+
+var form = document.getElementById('myForm');
+form.submit();
+
+
+
+</script>
+</html>

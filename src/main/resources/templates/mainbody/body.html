@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
+
+     <link th:href="@{/css/headerStyle.css}" rel="stylesheet">
+     <link th:href="@{/css/mainbody.css}" rel="stylesheet">
+
+
+</head>
+
+<body>
+   <div id="header" th:replace="fragments/header :: header" ></div>
+   <br><br><br>
+   <div class="wholebody">
+        <div class="mainbody">
+            <div class="subbody">
+                <div class="mainbody_head">
+                    <img class="mainImg" src="/header/imgs/me_profile.png" >
+                    <div>
+                        <h3>지원adsd</h3>
+                        <p>hello world..</p>
+                    </div>
+                </div>
+                <hr class="hr1">
+                <div class="mainbody_social">
+                    <img class="socialIcon" src="./imgs/githubIcon.png" >
+                    <img class="socialIcon" src="./imgs/emailIcon.png" >
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="container">
+        <ul class="tab-container">
+          <li class="tab-container__item active" data-tab="tab1">
+            <a class="tab-container__item--title" href="#">글</a>
+          </li>
+          <li class="tab-container__item" data-tab="tab2">
+            <a class="tab-container__item--title" href="#">시리즈</a>
+          </li>
+          <li class="tab-container__item" data-tab="tab3">
+            <a class="tab-container__item--title" href="#">소개</a>
+          </li>
+          
+        </ul>
+        <section class="content-container" >
+          <article id="tab1" class="content-container__content target">
+          	<div class="taglistdiv" >
+          	<!-- 태그목록 -->
+	          	<p style="padding: 3px; margin: 5px;">태그 목록</p>
+	          	<hr style="margin: 5px;">
+	          	<ul>
+	          		<li><a class="taglist" href="#">전체보기</a> (3)</li>
+	          		<li><a class="taglist" href="#">응애</a> (3)</li>
+	          		<li><a class="taglist" href="#">조건문</a> (1)</li>
+	          	</ul>
+          	</div>
+            <div class="searchArea" >
+            	<!-- 검색창 -->
+	            <fieldset class="search">
+	                <img src="/header/imgs/search.png" style="width: 8%; margin: 3px; opacity: 0.5;">
+	                <input type="text" placeholder="검색어를 입력하세요." style="border: none; outline: none; width: 80%; text-align: center; margin: 1px;">
+	            </fieldset>
+	        </div>
+	        
+	        <!-- 테스트 컨텐츠 -->
+	        <div th:each="board: ${boards}" class="postArea" >
+	        	<h1 th:text="${board.boardTitle}" class="postH1"></h1>
+	            <p class="postCont" th:text="${board.boardCont}">
+	              
+	            </p>
+	            <div class="tags">
+	            	<button class="tagBtn" >응애</button>
+	            	<button class="tagBtn" >조건문</button>
+	            </div>
+	            <p class="postDay" th:text="${board.boardDate}"></p>
+	        </div>
+	        
+	        
+            
+          </article>
+          <article id="tab2" class="content-container__content">
+          	<div id="series" ></div>
+            
+          </article>
+          <article id="tab3" class="content-container__content">
+              <div id="introduce"></div>
+          </article>
+          
+        </section>
+      </div>
+   
+</body>
+
+</html>
+
+<script>
+	//외부 html 붙히기
+	$(function() {
+	  $("#series").load("/kdy/series.html");
+	  $("#introduce").load("/introduce/body.html");
+	});
+	const tabItem = document.querySelectorAll(".tab-container__item");
+	const tabContent = document.querySelectorAll(".content-container__content");
+	
+	tabItem.forEach((item) => {
+	item.addEventListener("click", tabHandler);
+	});
+
+  	//tab메뉴
+	function tabHandler(item) {
+	const tabTarget = item.currentTarget;
+	const target = tabTarget.dataset.tab;
+	tabItem.forEach((title) => {
+	    title.classList.remove("active");
+	});
+	tabContent.forEach((target) => {
+	    target.classList.remove("target");
+	});
+	document.querySelector("#" + target).classList.add("target");
+	tabTarget.classList.add("active");
+	}
+
+
+</script>
