@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/save_style.css}" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+	<div class="backgrd" >
+		<div class="subback">
+			<div class="leftbody">
+				<p ><strong>포스트 미리보기</strong></p>
+				<div class="inputImg">
+					<div class="subinputImg">
+						<div class="a18">
+							<div class="imgIconArea" >
+								<img src="/editPost/imgs/imgIcon.png" class="imgIcon">
+							</div>
+							<button class="upBtn"><strong>썸네일 업로드</strong></button>
+						</div>
+						
+					</div>
+				</div>
+				<div class="inputArea" >
+					<textarea class="introduction"  placeholder="소개 입력"></textarea>
+				</div>
+				
+			</div>
+			<div class='v-line'></div>
+			<div class="rightbody">
+				<div class="rightsub">
+					<p style="padding:8px 0px 8px 0px; "><strong>시리즈 설정</strong></p>
+					<button class="addBtn" id="addBtn" onclick="add()"><strong>시리즈에 추가하기</strong></button>
+					<div id="addedlist" class="addedlist"></div>
+					<div class="bottomArea">
+						<button class="xBtn" onclick="history.back()" ><strong>취소</strong></button>
+						<button class="saveBtn" onclick="save()"><strong>출간하기</strong></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+</body>
+<script>
+var n=0;
+function add(){
+	sessionStorage.setItem("tagNum",n);
+	n= n+1;
+	var tb1=`<button id="tag`+ sessionStorage.getItem("tagNum") +`" style="background-color: #00ff0000; border: none; outline: none;" onclick="del(`+ String(n) +`)">test</button>`;
+	$("#addedlist").append(tb1);
+	sessionStorage.setItem("tagNum",n);
+}
+
+function del(btnid){
+// 	alert("tag"+btnid);
+	$(".tag"+btnid).remove();
+}
+
+
+function save(){
+// 	alert(sessionStorage.getItem("boardTitle"));
+	location.href='/controller';
+}
+</script>
+</html>

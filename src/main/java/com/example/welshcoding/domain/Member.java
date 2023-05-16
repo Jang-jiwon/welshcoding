@@ -61,7 +61,13 @@ public class Member {
 		this.temporaries.add(temporary);
 	}
 	
+<<<<<<< HEAD
+=======
+//<<<<<<< Updated upstream
+//=======
+>>>>>>> a8a6357fa6c5a45f4b5cb7bb0b175d888d7a5162
 	@OneToOne(mappedBy = "member")
 	private Introduce introduce;
 	
+//>>>>>>> Stashed changes
 }
