@@ -31,8 +31,8 @@
 			<div class="rightbody">
 				<div class="rightsub">
 					<p style="padding:8px 0px 8px 0px; "><strong>시리즈 설정</strong></p>
-					<button class="addBtn" id="addBtn" onclick="add()"><strong>시리즈에 추가하기</strong></button>
-					<div id="addedlist" class="addedlist"></div>
+					<button class="addBtn" id="addBtn" onclick="showPopup()"><strong>시리즈에 추가하기</strong></button>
+					<div id="serieslist" class="serieslist"></div>
 					<div class="bottomArea">
 						<button class="xBtn" onclick="history.back()" ><strong>취소</strong></button>
 						<button class="saveBtn" onclick="save()"><strong>출간하기</strong></button>
@@ -45,10 +45,19 @@
 
 </body>
 <script>
-// alert(sessionStorage.getItem("tagList"));
+function showPopup() { 
+	window.open("openSeriesPopup", "a", "width=400, height=300, left=550, top=200"); 
+}
+
 
 function save(){
+	alert(getCookie("selSeries"));
 	location.href='/controller';
 }
+
+var getCookie = function(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+};
 </script>
 </html>

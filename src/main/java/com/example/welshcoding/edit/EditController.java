@@ -14,4 +14,9 @@ public class EditController {
 		log.info("edit Controller");
 		return "edit/edit";	// home.html 로 찾아간다.
 	}
+	
+	@RequestMapping("openSeriesPopup")
+	public String Popup() {
+		return "edit/addSeriesPopup";	// home.html 로 찾아간다.
+	}
 }

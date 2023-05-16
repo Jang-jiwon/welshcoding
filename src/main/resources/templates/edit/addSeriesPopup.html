@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<title>Insert title here</title>
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
+
+*{
+font-family: 'IBM Plex Sans KR';
+}
+#inpputSeries{
+width: 100%;
+font-size: 15px;
+padding: 0px;
+outline: none;
+height: 30px;
+border-radius: 0px;
+border: 1px solid; 
+text-align: center;
+border-color: #a7a7a7;
+}
+</style>
+</head>
+<body>
+<input type="text" id="inpputSeries" class="inpputSeries" onkeypress="handleKeyPress(event)" placeholder="추가하고 싶은 시리즈를 입력해주세요"/>
+<div style=" width:80%;">
+	<ul id="seriesUl" style=" width:100%;   "></ul>
+</div>
+
+
+</body>
+<script>
+	var snum = sessionStorage.getItem("seriesNum") || 0;
+	
+     function handleKeyPress(event) {
+        if (event.keyCode === 13) { // 13은 엔터 키의 keyCode입니다.
+          var input = document.getElementById("inpputSeries");
+          addSeriesList(input.value);
+          input.value = ""; 
+          
+        }
+      }
+     
+     function addSeriesList(series){
+    	 var mycss=` font-size: 15px; margin: 10px 0px 0px 0px; padding: 5px; border: none; border-radius: 5px; background-color: #12b886; color: white;`;
+    	 var tb1 = `<li class="seriesLi" style="list-style:none; display: grid;" ><button id="selSeriBtn${snum}" style="${mycss}" onclick="addSeri(${snum})">${series}</button></li>`;
+    	  $("#seriesUl").append(tb1);
+    	  snum++;
+    	  sessionStorage.setItem("seriesNum",snum);
+     }
+     function addSeri(seriId){
+    	 var seri = document.getElementById("selSeriBtn"+seriId.toString());
+//     	 alert(seri.innerText);
+		setCookie("selSeries", seri.innerText, 1);
+//     	 sessionStorage.setItem("selSeries",seri.innerText);
+    	 this.close();
+
+     }
+     var setCookie = function(name, value, exp) {
+         var date = new Date();
+         date.setTime(date.getTime() + exp*24*60*60*1000);
+         document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+     };
+    </script>
+</html>
