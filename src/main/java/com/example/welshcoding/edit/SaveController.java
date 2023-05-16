@@ -50,25 +50,31 @@ public class SaveController {
 		
 		testMemberService.join(member);
 		
-		String[] tags = tagList.split(",");
-		
-		Series[] serieses = new Series[tags.length];
-		for(int i=0; i<tags.length;i++) {
-			serieses[i] = new Series();
-			serieses[i].setSeriesName(tags[i]);
-			System.out.println("=========tags : "+tags[i]+"==========");
-			testSService.save(serieses[i]);
-		}
-		
 		
 		Board board = new Board();
 		board.setBoardTitle(gridtitle);
 		board.setBoardCont(gridData);
 		board.setBoardDate("2023.05.01");
 		board.setBoardLike("3");
-		board.setBoardTag("java");
+		board.setBoardTag(tagList);
 		board.setSeries(new Series());
 		board.setThumbnailPath("test");
+		
+		
+//		String[] tags = tagList.split(",");
+		
+		// 시리즈 저장
+//		Series[] serieses = new Series[tags.length];
+//		for(int i=0; i<tags.length;i++) {
+//			serieses[i] = new Series();
+//			serieses[i].setSeriesName(tags[i]);
+//			serieses[i].addBoard(board);
+//			System.out.println("=========tags : "+tags[i]+"==========");
+//			testSService.save(serieses[i]);
+//		}
+		
+		
+		
 		
 		System.out.println("===========saveData==============");
 		boardService.insertData(board);

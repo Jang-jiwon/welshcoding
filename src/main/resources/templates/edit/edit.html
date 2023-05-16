@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 <link th:href="@{/css/edit_style.css}" rel="stylesheet">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <style >
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
 
@@ -34,12 +34,13 @@ https://curryyou.tistory.com/475
 	
 	<div style="position:relative; width: 100%;" >
 		<input class="title" type="text"  placeholder="제목 입력" id="boardTitle">
-		<input class="tags" type="text"  placeholder="태그입력부분 - 미완성" id="boardTag">
+		<button class="addTagBtn" id="addTagBtn" onclick="add()"><strong>태그 추가하기</strong></button>
+		<div id="addedlist" class="addedlist"></div>
 		<div id="editor" ></div>
 		<div class="bottomArea" >
 			<div class="buttonArea" >
 				<div class="backArea" style="width: 30%;">
-					<button class="backBtn"  onclick="location.href='/body1/body.html'" ><strong>← 나가기</strong></button>
+					<button class="backBtn"  onclick="location.href='/mainBoard'" ><strong>← 나가기</strong></button>
 				</div>
 				<div class="saveArea" >
 					<button class="tmprysaveBtn" ><strong>임시저장</strong></button>
@@ -53,28 +54,52 @@ https://curryyou.tistory.com/475
 	
 </body>
 <script >
+var n = sessionStorage.getItem("tagNum") || 0;
+var tagList = [];
+
+function add() {
+  var name = prompt("추가할 시리즈를 입력해주세요");
+
+  if (name == null) {
+    return;
+  } else {
+    tagList.push(name);
+  }
+  var tb1 = `<button id="tag${n}" value="${name}" style="background-color: #00ff0000; border: none; outline: none;" onclick="del(${n})">${name} ×</button>`;
+  $("#addedlist").append(tb1);
+  n++; // n 값을 증가시킴
+  sessionStorage.setItem("tagNum", n); // 업데이트된 n 값을 sessionStorage에 저장
+}
+
+function del(btnid) {
+  var tagname = $("#tag" + btnid).val();
+  $("#tag" + btnid).remove();
+  var index = tagList.indexOf(tagname);
+  if (index !== -1) {
+    tagList.splice(index, 1);
+  }
+}
 	
-	function save(){
-	// 	alert("저장");
+	
+const Editor = toastui.Editor;
+
+const editor = new Editor({
+	  el: document.querySelector('#editor'),
+	  height: '500px',
+	  initialEditType: 'markdown',
+	  previewStyle: 'vertical'
+	});
+	//previewStyle: 'tab' //편집중인 컨텐츠의 모습을 미리 볼 수 있는 프리뷰 형태 변환
+	
+	
+saveHtml = function(){
+		sessionStorage.setItem("tagList", tagList);
+		sessionStorage.setItem("tagNum", 0);
+		var inputElement = document.getElementById('boardTitle');
+		sessionStorage.setItem("editcont", editor.getMarkdown());
+		sessionStorage.setItem("boardTitle", inputElement.value);
+		location.href='/save';
 	}
-	
-	const Editor = toastui.Editor;
-	
-	const editor = new Editor({
-		  el: document.querySelector('#editor'),
-		  height: '500px',
-		  initialEditType: 'markdown',
-		  previewStyle: 'vertical'
-		});
-		//previewStyle: 'tab' //편집중인 컨텐츠의 모습을 미리 볼 수 있는 프리뷰 형태 변환
-		
-		
-		saveHtml = function(){
-				var inputElement = document.getElementById('boardTitle');
-				sessionStorage.setItem("editcont", editor.getMarkdown());
-				sessionStorage.setItem("boardTitle", inputElement.value);
-				location.href='/save';
-			}
 
 
 	

@@ -77,9 +77,8 @@
 	              
 	            </p>
 	            <div class="tags">
-	            	<button class="tagBtn" >응애</button>
-	            	<button class="tagBtn" >조건문</button>
-	            </div>
+				    <button class="tagBtn" th:each="tag : ${#strings.arraySplit(board.boardTag, ',')}" th:text="${tag}"></button>
+				</div>
 	            <p class="postDay" th:text="${board.boardDate}"></p>
 	        </div>
 	        

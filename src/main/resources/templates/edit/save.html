@@ -45,38 +45,10 @@
 
 </body>
 <script>
-var n = sessionStorage.getItem("tagNum") || 0;
-var tagList = [];
-
-function add() {
-  var name = prompt("추가할 시리즈를 입력해주세요");
-
-  if (name == null) {
-    return;
-  } else {
-    tagList.push(name);
-  }
-  var tb1 = `<button id="tag${n}" value="${name}" style="background-color: #00ff0000; border: none; outline: none;" onclick="del(${n})">${name} ×</button>`;
-  $("#addedlist").append(tb1);
-  n++; // n 값을 증가시킴
-  sessionStorage.setItem("tagNum", n); // 업데이트된 n 값을 sessionStorage에 저장
-}
-
-function del(btnid) {
-  var tagname = $("#tag" + btnid).val();
-  $("#tag" + btnid).remove();
-  var index = tagList.indexOf(tagname);
-  if (index !== -1) {
-    tagList.splice(index, 1);
-  }
-}
-
+// alert(sessionStorage.getItem("tagList"));
 
 function save(){
-// 	alert(sessionStorage.getItem("boardTitle"));
 	location.href='/controller';
-	 sessionStorage.setItem("tagList", tagList);
-	 sessionStorage.setItem("tagNum", 0);
 }
 </script>
 </html>
