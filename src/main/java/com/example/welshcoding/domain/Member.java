@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
@@ -60,4 +61,10 @@ public class Member {
 		this.temporaries.add(temporary);
 	}
 	
+//<<<<<<< Updated upstream
+//=======
+	@OneToOne(mappedBy = "member")
+	private Introduce introduce;
+	
+//>>>>>>> Stashed changes
 }
