@@ -9,6 +9,7 @@
 	<input type="hidden" name="gridtitle"  id="title"/>
     <input type="hidden" name="gridData"  id="myInput"/>
     <input type="hidden" name="tag"  id="tag"/>
+    <input type="hidden" name="selSeries"  id="selSeries"/>
 </form>
 </body>
 <script >
@@ -17,6 +18,8 @@
 var gridData = sessionStorage.getItem("editcont");
 var boardTitle = sessionStorage.getItem("boardTitle");
 var tagList = sessionStorage.getItem("tagList");
+var selSeries = sessionStorage.getItem("selSeries");
+
 
 // alert(tagList);
 
@@ -26,6 +29,8 @@ var titleElement2 = document.getElementById('title');
 titleElement2.value = boardTitle;
 var titleElement3 = document.getElementById('tag');
 titleElement3.value = tagList;
+var titleElement4 = document.getElementById('selSeries');
+titleElement4.value = selSeries;
 
 var form = document.getElementById('myForm');
 form.submit();
