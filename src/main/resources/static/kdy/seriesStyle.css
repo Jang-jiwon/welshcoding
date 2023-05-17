@@ -12,7 +12,7 @@ div.serieslist{
     padding-top: 3rem;
 }
 div.listdiv{
-    display: -webkit-inline-box;
+    display: flex;
     flex-wrap: wrap;
 }
 
