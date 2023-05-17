@@ -63,4 +63,14 @@ public class Member {
 	
 	@OneToOne(mappedBy = "member")
 	private Introduce introduce;
+	
+	/*멤버가 가지고 있는 시리즈 출력을 위해 추가 - kdy*/
+	@OneToMany(mappedBy = "member")
+	private List<Series> serieses = new ArrayList<>();
+	
+	public void addSeries(Series series) {
+		series.setMember(this);
+		this.serieses.add(series);
+	}
+	
 }

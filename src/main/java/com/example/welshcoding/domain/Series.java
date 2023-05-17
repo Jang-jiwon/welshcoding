@@ -3,10 +3,13 @@ package com.example.welshcoding.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -25,12 +28,11 @@ public class Series {
 	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SERIESID_GENERATOR")
 	private Long seriesId;
 	private String seriesName;
+	/*시리즈 생성일, 마지막 수정일 컬럼 추가*/
+	private String createDate;
+	private String updateDate;
 	
-	@OneToMany(mappedBy = "series")
-	private List<Board> boards = new ArrayList<>();
-	
-	public void addBoard(Board board) {
-		board.setSeries(this);
-		this.boards.add(board);
-	}
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "MEMBERID")
+	private Member member;
 }
