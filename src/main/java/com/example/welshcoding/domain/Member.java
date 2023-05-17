@@ -36,6 +36,7 @@ public class Member {
 	private String userPhone;
 	@Embedded
 	private Sns sns;
+	private String tags;
 	
 	@OneToMany(mappedBy = "member")
 	private List<Board> boards = new ArrayList<>();
