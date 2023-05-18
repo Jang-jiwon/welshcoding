@@ -73,7 +73,7 @@
 	        <!-- 테스트 컨텐츠 -->
 	        <div th:each="board: ${boards}" class="postArea" >
 	        	<h1 th:text="${board.boardTitle}" class="postH1" th:onclick="|myFunction('${board.boardId}')|"></h1>
-	            <p class="postCont" th:text="${board.boardCont}">
+	            <p class="postCont" th:text="${board.boardIntro}">
 	              
 	            </p>
 	            <div class="tags">

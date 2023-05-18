@@ -9,7 +9,9 @@ import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Member;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TestMemberService {
@@ -38,14 +40,18 @@ public class TestMemberService {
 		if (findmem.getTags()==null) {		//기존 태그가 비어잇을경우
 			newtags = tagList;
 		}else {								//기존 태그가 있을경우
-			String[] newtagsArray = tagList.split(",");//11,22
+			String[] newtagsArray = tagList.split(",");//11
 			for(int i=0;i<newtagsArray.length;i++) {
-				if(!findmem.getTags().contains(newtagsArray[i])) {//11
+				if(!findmem.getTags().contains(newtagsArray[i])) {//11,22
+					
 					if(newtags == "") {
 						newtags += newtagsArray[i];
 					}else {
 						newtags += ","+newtagsArray[i];
 					}
+					
+				}else {
+					log.info("8118newtagsArray");
 				}
 				
 			}
