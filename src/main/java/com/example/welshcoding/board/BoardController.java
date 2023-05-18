@@ -1,5 +1,6 @@
 package com.example.welshcoding.board;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Member;
+import com.example.welshcoding.domain.SeriesListDTO;
 import com.example.welshcoding.edit.TestMemberService;
+import com.example.welshcoding.series.SeriesService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,9 +26,10 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	private final BoardService boardService;
 	private final TestMemberService testMemberService;
+	private final SeriesService seriesService;
 	
 	@GetMapping("/mainBoard/{memberId}")
-	public String list(@PathVariable Long memberId,Model model ,HttpSession session) {
+	public String list(@PathVariable Long memberId,Model model ,HttpSession session) throws ParseException {
 		log.info("1818memberId : "+memberId);
 		
 		
@@ -39,6 +43,18 @@ public class BoardController {
 		
 		
 		String tags = testMemberService.findTags(memberId);
+		
+		/********* kdy - series 부분 *********/
+		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(memberId);
+		
+		if(seriesList.size() == 0) {
+			model.addAttribute("seriesSize", false);
+		} else {
+			model.addAttribute("seriesSize", true);
+		}
+		
+		model.addAttribute("seriesList", seriesList);
+		/********* ------------------- *********/
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("tags", tags);

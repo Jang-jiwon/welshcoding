@@ -10,7 +10,7 @@
 
      <link th:href="@{/css/headerStyle.css}" rel="stylesheet">
      <link th:href="@{/css/mainbody.css}" rel="stylesheet">
-
+	 <link rel="stylesheet" type="text/css" href="/kdy/seriesStyle.css">
 
 </head>
 
@@ -86,7 +86,7 @@
             
           </article>
           <article id="tab2" class="content-container__content">
-          	<div id="series" ></div>
+          	<div th:replace="series/series :: series"></div>
             
           </article>
           <article id="tab3" class="content-container__content">

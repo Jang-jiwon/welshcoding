@@ -3,7 +3,7 @@
 	<link rel="stylesheet" type="text/css" href="/kdy/seriesStyle.css">
 </head>
 <body>
-<div th:if="${seriesSize}" class="listdiv">
+<div th:if="${seriesSize}" class="listdiv" th:fragment="series">
 	<div class="serieslist" th:each="series : ${seriesList}">
 		<a class="seriesatag" href="/kdy/seriesDetail.html" th:href="@{|/kdy/series/${memberId}/${series.seriesId}|}">
 			<div class="serieslistdiv">
@@ -20,7 +20,7 @@
 		</div>
 	</div>
 </div>
-<div th:if="${!seriesSize}" class="empty">
+<div th:if="${!seriesSize}" class="empty"  th:fragment="series">
 	<img src="/kdy/imgs/noSeires.png" alt="list is empty">
 	<div class="message">시리즈가 없습니다.</div>
 </div>
