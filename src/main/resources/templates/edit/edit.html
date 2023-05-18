@@ -95,11 +95,15 @@ const editor = new Editor({
 	
 	
 saveHtml = function(){
+		var titleInput = document.getElementById('boardTitle').value;
+		if(titleInput.trim() === ''){
+			alert("제목을 입력해주세요!!");
+			return;
+		}
 		sessionStorage.setItem("tagList", tagList);
-// 		alert(tagList);
 		sessionStorage.setItem("tagNum", 0);
 		var inputElement = document.getElementById('boardTitle');
-		sessionStorage.setItem("editcont", editor.getMarkdown());
+		sessionStorage.setItem("editcont", editor.getHTML());
 // 		sessionStorage.setItem("postintro", editor.getValue());
 		sessionStorage.setItem("boardTitle", inputElement.value);
 		location.href='/save';

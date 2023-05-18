@@ -31,18 +31,15 @@ public class BoardController {
 	@GetMapping("/mainBoard/{memberId}")
 	public String list(@PathVariable Long memberId,Model model ,HttpSession session) throws ParseException {
 		log.info("1818memberId : "+memberId);
-		
-		
-//		Member member = (Member)session.getAttribute("member");
-//		long testmemberid = member.getMemberId();
-		
-		
-		List<Board> boards = boardService.findBoards(memberId);
-		log.info("Board Controller");
-		System.out.println("================sdadadsadsdadad");//boards.get(0).getBoardTitle()+
-		
-		
-		String tags = testMemberService.findTags(memberId);
+		try {
+			List<Board> boards = boardService.findBoards(memberId);
+			String tags = testMemberService.findTags(memberId);
+			model.addAttribute("boards", boards);
+			model.addAttribute("tags", tags);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.info("18181818818");
+		}
 		
 		/********* kdy - series 부분 *********/
 		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(memberId);
@@ -56,8 +53,7 @@ public class BoardController {
 		model.addAttribute("seriesList", seriesList);
 		/********* ------------------- *********/
 		
-		model.addAttribute("boards", boards);
-		model.addAttribute("tags", tags);
+		
 		return "mainbody/body";
 	}
 	
@@ -77,7 +73,9 @@ public class BoardController {
 		if(taglist != null) {
 			String[] tagsArray = taglist.split(",");
 			for(int i=0;i<tagsArray.length;i++) {
-				tags.add(tagsArray[i]);
+				if(tagsArray[i]!="") {
+					tags.add(tagsArray[i]);
+				}
 			}
 		}
 		
@@ -92,6 +90,16 @@ public class BoardController {
 		model.addAttribute("memberId", testmemberid);
 		model.addAttribute("seriesList", seriesList);
 		/********* ------------------- *********/
+		
+		
+		/*----------------- 게시물 소개글 들어가는 부분 --------------------*/
+		for(int i=0;i<boards.size();i++) {
+			String cont = boards.get(i).getBoardCont();
+			cont  = cont.replaceAll("<.*?>", "");
+			cont = cont.substring(0, Math.min(cont.length(), 300));
+			boards.get(i).setBoardIntro(cont+"....");
+		}
+		/*-----------------------------------------------------------*/
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("tags", tags);

@@ -48,8 +48,6 @@ public class SaveController {
 	@PostMapping("/save-data")
 	public String saveData(@RequestParam("gridData") String gridData  ,@RequestParam("gridtitle") String gridtitle,
 			@RequestParam("tag") String tagList ,@RequestParam("selSeries") String selSeries ,HttpSession session) throws IllegalAccessException {
-//		System.out.println("!!!!!!!!!!!!!!"+postintro+"!!!!!!!!!!!!!!"); //입력받은거 텍스트만 받아서 나중에 소개로 쓸거임
-		
 		// 현재 로컬 시간 받기
         LocalDateTime localDateTime = LocalDateTime.now();
 		// 원하는 형식으로 시간 표시
@@ -59,7 +57,6 @@ public class SaveController {
 		
 		
 	    /* ... */log.info("save-data Controller");
-		System.out.println("===================================\n"+gridData +", "+gridtitle); // 잘넘어옴
 //		Member member = new Member();
 //		member.setUserEmail("test");
 		Member member = (Member)session.getAttribute("member");

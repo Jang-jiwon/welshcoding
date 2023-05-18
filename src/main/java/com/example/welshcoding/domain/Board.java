@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -30,10 +31,12 @@ public class Board {
 	private String boardTitle;
 	private String boardTag;
 	private String boardDate;
-	@Column(length = 500)
+//	@Column(length = 500)
+	@Lob
 	private String boardCont;
 	private String boardLike;
 	private String thumbnailPath;
+	private String boardIntro;
 	
 	@ManyToOne //(cascade = CascadeType.ALL)
 	@JoinColumn(name = "SERIESID")
