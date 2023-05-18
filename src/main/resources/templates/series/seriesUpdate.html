@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href = "/body1/style.css">
+    <link rel="stylesheet" type="text/css" href = "/kdy/seriesStyle.css">
+
+
+</head>
+
+<body>
+   <div id="header"></div>
+   <br><br><br>
+	<div class="seriesdetail">
+		<div class="">
+			<label>시리즈</label>
+			<h1 contenteditable="false" th:text="${seriesName}">spring-boot 교육과정</h1>
+			<div class="line"></div>
+			
+			<section>
+				<div class="applydiv">
+					<button class="btn-applydiv">적용</button>
+				</div>
+				<div class="div-updatelist">
+					<div class="frame-droppable" id="container">
+					
+						<div draggable="true" class="draglist" th:each="board : ${boardList}">
+							<div class="draglist2">
+								<h2>
+									<span class="number" th:text="|${boardStat.count}.|">1.</span>
+									<span th:text="${board.boardTitle}">Day57 2023.04.13(목)</span>
+								</h2>
+								<section>
+									<img th:src="${board.thumbnailPath}" alt="post-thumbnail">
+									<div class="post-info">
+										<p th:text="${board.boardCont}"></p>
+										<div class="date" th:text="${board.boardDate}">2023년 4월 13일</div>
+									</div>
+								</section>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</section>
+			
+		</div>
+	</div>
+
+</body>
+
+</html>
+
+<script th:inline="javascript">
+	//외부 html 붙히기
+	$(function() {
+	  $("#header").load("/header/header.html");
+	});
+    
+    /* 오름 차순 내림 차순 버튼 이벤트 리스너*/
+    var btnsort = $(".sortbtn");
+    btnsort.click(function() {
+    	var svg = $(".sortbtn svg");
+    	var span = $(".sortbtn span");
+    	if(svg.hasClass("rotate")){
+	    	svg.removeClass("rotate");
+	    	span.text("오름차순");
+    	} else {
+	    	svg.addClass("rotate");
+	    	span.text("내림차순");
+    	}
+    	
+    });
+    //드래그
+    const container = document.querySelector('#container');
+	let draggedItem = null;
+
+	// 드래그 시작 시
+	container.addEventListener('dragstart', function(e) {
+		draggedItem = e.target;
+		e.dataTransfer.setData('text', '');
+	});
+
+	// 드래그 중
+	container.addEventListener('dragover', function(e) {
+		e.preventDefault();
+	});
+
+	// 드롭 시
+	container.addEventListener('drop', function(e) {
+		const dropTarget = e.target;
+		if (dropTarget.classList.contains('draglist2')) {
+			e.preventDefault();
+			container.insertBefore(draggedItem, dropTarget);
+		}
+	});
+	
+    /* 적용 버튼 눌렀을 때*/
+    var btnupdate = $(".applydiv button");
+    btnupdate.click(function() {
+    	location.href="/kdy/series/[[${memberId}]]/[[${seriesId}]]";
+    });
+    
+</script>

@@ -41,7 +41,7 @@ public class Series {
 	@OneToMany(mappedBy = "series")
 	private List<Board> boards = new ArrayList<>();
 	
-	public void addSeries(Board board) {
+	public void addBoard(Board board) {
 		board.setSeries(this);
 		this.boards.add(board);
 	}
