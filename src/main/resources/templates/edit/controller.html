@@ -10,6 +10,7 @@
     <input type="hidden" name="gridData"  id="myInput"/>
     <input type="hidden" name="tag"  id="tag"/>
     <input type="hidden" name="selSeries"  id="selSeries"/>
+    <input type="hidden" name="postintro"  id="postintro"/>
 </form>
 </body>
 <script >
@@ -19,6 +20,13 @@ var gridData = sessionStorage.getItem("editcont");
 var boardTitle = sessionStorage.getItem("boardTitle");
 var tagList = sessionStorage.getItem("tagList");
 var selSeries = sessionStorage.getItem("selSeries");
+// var postintro = sessionStorage.getItem("postintro");
+
+sessionStorage.removeItem("editcont");
+sessionStorage.removeItem("boardTitle");
+sessionStorage.removeItem("tagList");
+sessionStorage.removeItem("selSeries");
+// sessionStorage.removeItem("postintro");
 
 
 // alert(tagList);
@@ -31,6 +39,8 @@ var titleElement3 = document.getElementById('tag');
 titleElement3.value = tagList;
 var titleElement4 = document.getElementById('selSeries');
 titleElement4.value = selSeries;
+// var titleElement5 = document.getElementById('postintro');
+// titleElement5.value = postintro;
 
 var form = document.getElementById('myForm');
 form.submit();

@@ -96,9 +96,11 @@ const editor = new Editor({
 	
 saveHtml = function(){
 		sessionStorage.setItem("tagList", tagList);
+// 		alert(tagList);
 		sessionStorage.setItem("tagNum", 0);
 		var inputElement = document.getElementById('boardTitle');
 		sessionStorage.setItem("editcont", editor.getMarkdown());
+// 		sessionStorage.setItem("postintro", editor.getValue());
 		sessionStorage.setItem("boardTitle", inputElement.value);
 		location.href='/save';
 	}

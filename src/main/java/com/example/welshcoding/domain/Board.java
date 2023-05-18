@@ -33,11 +33,11 @@ public class Board {
 	private String boardLike;
 	private String thumbnailPath;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne //(cascade = CascadeType.ALL)
 	@JoinColumn(name = "SERIESID")
 	private Series series;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne //(cascade = CascadeType.ALL)
 	@JoinColumn(name = "MEMBERID")
 	private Member member;
 	

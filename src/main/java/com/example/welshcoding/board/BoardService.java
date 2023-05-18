@@ -15,14 +15,18 @@ public class BoardService {
 	private final BoardRepository boardRepository;
 	
 	
-	public List<Board> findBoards() {
-		return boardRepository.findAll();
+	public List<Board> findBoards(long testmemberid) {
+		return boardRepository.findAll(testmemberid);
 	}
 	
 	@Transactional
 	public void insertData(Board board)throws IllegalAccessException {
 		System.out.println("===========insertData==============");
 		boardRepository.save(board);
+	}
+	
+	public Board findOne(long postId , long memberId) {
+		return boardRepository.findOne(postId,memberId);
 	}
 	
 }

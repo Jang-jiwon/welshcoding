@@ -57,9 +57,9 @@
 	          	<p style="padding: 3px; margin: 5px;">태그 목록</p>
 	          	<hr style="margin: 5px;">
 	          	<ul>
-	          		<li ><a class="taglist" href="#">전체보기</a> (3)</li>
-	          		<li><a class="taglist" href="#" >응애</a> (3)</li>
-	          		<li><a class="taglist" href="#">조건문</a> (1)</li>
+	          		<li ><button id="tagall" class="tagall"   style="background-color: #00ff0000; border: none;" onclick="showall()">전체보기</button> </li>
+	          		<li th:each="tag : ${tags}">
+	          		<button id="taglist" class="taglist"  th:text="${tag}" style="background-color: #00ff0000; border: none;" ></button> </li>
 	          	</ul>
           	</div>
             <div class="searchArea" >
@@ -72,7 +72,7 @@
 	        
 	        <!-- 테스트 컨텐츠 -->
 	        <div th:each="board: ${boards}" class="postArea" >
-	        	<h1 th:text="${board.boardTitle}" class="postH1"></h1>
+	        	<h1 th:text="${board.boardTitle}" class="postH1" th:onclick="|myFunction('${board.boardId}')|"></h1>
 	            <p class="postCont" th:text="${board.boardCont}">
 	              
 	            </p>
@@ -126,6 +126,44 @@
 	document.querySelector("#" + target).classList.add("target");
 	tabTarget.classList.add("active");
 	}
+  	
+	var taglistBtn = document.getElementsByClassName("taglist");
+	for(var x=0;x<taglistBtn.length;x++){
+		taglistBtn[x].addEventListener("click", function() {
+// 			alert("클릭");
+		    var seltag = this.textContent;
+// 		    alert(seltag);
+		    var postAreas = document.getElementsByClassName("postArea");
+		    for (var i = 0; i < postAreas.length; i++) {
+		        var tagBtns = postAreas[i].querySelectorAll(".tags button");
+		        var isdis = true;
+		        for (var j = 0; j < tagBtns.length; j++) {
+		            if (tagBtns[j].textContent === seltag) {
+		                isdis = false;
+		                break;
+		            }
+		        }
+		        if (isdis) {
+		            postAreas[i].style.display = "none";
+		        } else {
+		            postAreas[i].style.display = "block";
+		        }
+		    }
+		});
+	}
+	
+	function showall(){
+		var postAreas = document.getElementsByClassName("postArea");
+		for (var i = 0; i < postAreas.length; i++) {
+			postAreas[i].style.display = "block";
+		}
+	}
+	
+	function myFunction(id){		//게시물 상세 페이지로 게시물 아이디 넘기기
+// 		alert("개굴게시물 : "+id); 
+		location.href = '/goPost/'+id;///login
+	}
+	
 
 
 </script>
