@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.BoardDTO;
@@ -56,13 +57,12 @@ public class SeriesService {
 		long Sec = (d1.getTime() - d2.getTime()) / 1000; // 초
 		long Days = Sec / (24*60*60); // 일자수
 		
-		System.out.println(Days + "일 차이");
+//		System.out.println(Days + "일 차이");
 		
 		return String.valueOf(Days);
 	}
 
 	public List<BoardDTO> findBoardsBySeries(Long seriesId) {
-		System.out.println("service");
 //		List<Board> boardList = seriesRepository.findBoardsBySeries(seriesId);
 //		List<BoardDTO> boards = new ArrayList<>();
 		
@@ -81,6 +81,12 @@ public class SeriesService {
 		
 //		return boards;
 		return seriesRepository.findBoardsBySeries(seriesId);
+	}
+
+	@Transactional
+	public void updateSeriesTitle(Long seriesId, String seriesName) {
+		Series series = seriesRepository.findById(seriesId);
+		series.setSeriesName(seriesName);
 	}
 
 }

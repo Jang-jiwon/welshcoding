@@ -19,7 +19,7 @@
 	<div class="seriesdetail">
 		<div class="">
 			<label>시리즈</label>
-			<h1 contenteditable="false" th:text="${seriesName}">spring-boot 교육과정</h1>
+			<h1 contenteditable="true" th:text="${seriesName}">spring-boot 교육과정</h1>
 			<div class="line"></div>
 			
 			<section>
@@ -102,8 +102,11 @@
 	
     /* 적용 버튼 눌렀을 때*/
     var btnupdate = $(".applydiv button");
+    var h1input = $(".seriesdetail div h1");
     btnupdate.click(function() {
-    	location.href="/kdy/series/[[${memberId}]]/[[${seriesId}]]";
+    	/*시리즈 제목 수정*/
+		var seriesName = h1input.text();
+    	location.href="/kdy/series/[[${memberId}]]/[[${seriesId}]]?seriesName=" + seriesName;
     });
     
 </script>
