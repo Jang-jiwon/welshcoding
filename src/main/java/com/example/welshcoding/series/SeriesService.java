@@ -10,7 +10,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.example.welshcoding.domain.Board;
+import com.example.welshcoding.domain.BoardDTO;
 import com.example.welshcoding.domain.Series;
 import com.example.welshcoding.domain.SeriesListDTO;
 
@@ -54,9 +57,36 @@ public class SeriesService {
 		long Sec = (d1.getTime() - d2.getTime()) / 1000; // 초
 		long Days = Sec / (24*60*60); // 일자수
 		
-		System.out.println(Days + "일 차이");
+//		System.out.println(Days + "일 차이");
 		
 		return String.valueOf(Days);
+	}
+
+	public List<BoardDTO> findBoardsBySeries(Long seriesId) {
+//		List<Board> boardList = seriesRepository.findBoardsBySeries(seriesId);
+//		List<BoardDTO> boards = new ArrayList<>();
+		
+//		for(Board board : boardList) {
+//			BoardDTO dto = new BoardDTO();
+//			dto.setSeriesId(seriesId);
+//			dto.setBoardId(board.getBoardId());
+//			dto.setBoardCont(board.getBoardCont());
+//			dto.setBoardDate(board.getBoardDate());
+//			dto.setThumbnailPath(board.getThumbnailPath());
+//			dto.setBoardTitle(board.getBoardTitle());
+//			dto.setBoardTag(board.getBoardTag());
+//			dto.setBoardLike(board.getBoardLike());
+//			boards.add(dto);
+//		}
+		
+//		return boards;
+		return seriesRepository.findBoardsBySeries(seriesId);
+	}
+
+	@Transactional
+	public void updateSeriesTitle(Long seriesId, String seriesName) {
+		Series series = seriesRepository.findById(seriesId);
+		series.setSeriesName(seriesName);
 	}
 
 }

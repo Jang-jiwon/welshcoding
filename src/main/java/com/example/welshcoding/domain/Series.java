@@ -38,7 +38,7 @@ public class Series {
 	@JoinColumn(name = "MEMBERID")
 	private Member member;
 	
-	@OneToMany(mappedBy = "series")
+	@OneToMany(mappedBy = "series", cascade = CascadeType.ALL)
 	private List<Board> boards = new ArrayList<>();
 	
 	public void addBoard(Board board) {

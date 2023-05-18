@@ -270,3 +270,21 @@ div.draglist2 {
     margin-right: 0.25rem;
     font-style: italic;
 }
+.message {
+	font-size: 2rem;
+    color: #868E96;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+.empty {
+	width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+}
+.empty img {
+	width: 20rem;
+}
