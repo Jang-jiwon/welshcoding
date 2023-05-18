@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.BoardDTO;
@@ -38,6 +39,11 @@ public class SeriesRepository {
 
 	public Series findById(Long seriesId) {
 		return em.find(Series.class, seriesId);
+	}
+
+	@Transactional
+	public void deleteSeries(Series series) {
+		 em.remove(series);
 	}
 
 }

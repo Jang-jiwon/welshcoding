@@ -89,4 +89,10 @@ public class SeriesService {
 		series.setSeriesName(seriesName);
 	}
 
+	@Transactional
+	public void deleteById(Long seriesId) {
+		Series series = seriesRepository.findById(seriesId);
+		seriesRepository.deleteSeries(series);
+	}
+
 }

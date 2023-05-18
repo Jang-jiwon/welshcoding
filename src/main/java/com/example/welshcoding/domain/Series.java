@@ -34,11 +34,11 @@ public class Series {
 	private String updateDate;
 	private String seriesImgUrl;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "MEMBERID")
 	private Member member;
 	
-	@OneToMany(mappedBy = "series", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "series", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Board> boards = new ArrayList<>();
 	
 	public void addBoard(Board board) {

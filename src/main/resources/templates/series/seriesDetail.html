@@ -24,8 +24,8 @@
 			<section>
 				<div class="btndiv1">
 					<div class="btndiv2">
-						<button>수정</button>
-						<button>삭제</button>
+						<button id="editbtn">수정</button>
+						<button id="deletebtn">삭제</button>
 					</div>
 				</div>
 				<div class="sortbtndiv">
@@ -113,10 +113,21 @@
     });
     
     /* 수정 버튼 눌렀을 때*/
-    var btnupdate = $(".btndiv2 button");
+    var btnupdate = $("#editbtn");
     var curURL = document.location.href;
     btnupdate.click(function() {
     	location.href= curURL + "/edit";
+    });
+    
+    /* 삭제 버튼 눌렀을 때*/
+    var btndelete = $("#deletebtn");
+    var curURL = document.location.href;
+    btndelete.click(function() {
+    	if(confirm("해당 시리즈를 정말 삭제하시겠습니까?")){
+	    	location.href= curURL + "/delete";
+    	} else {
+			return false;    		
+    	}
     });
     
 </script>

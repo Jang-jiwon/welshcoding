@@ -20,7 +20,7 @@ public class SeriesController {
 
 	private final SeriesService seriesService;
 	
-	@GetMapping("/kdy/series/{memberId}")
+//	@GetMapping("/kdy/series/{memberId}")
 	public String seriesList(@PathVariable Long memberId, Model model) throws ParseException {
 		
 		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(memberId);
@@ -66,5 +66,16 @@ public class SeriesController {
 		model.addAttribute("boardList",boardList);
 		model.addAttribute("seriesName",boardList.get(0).getSeriesName());
 		return "series/seriesUpdate";
+	}
+	@GetMapping("/kdy/series/{memberId}/{seriesId}/delete")
+	public String deleteSeries(
+			@PathVariable(name = "memberId") Long memberId,
+			@PathVariable(name = "seriesId") Long seriesId,
+			Model model
+			) {
+		
+		seriesService.deleteById(seriesId);
+		
+		return "redirect:/mainBoard/" + memberId;
 	}
 }
