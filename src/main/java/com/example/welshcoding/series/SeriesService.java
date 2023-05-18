@@ -45,10 +45,10 @@ public class SeriesService {
 	}
 
 	public String dateConvert(String str) throws ParseException {
-		String date1 = LocalDate.now().format(DateTimeFormatter.ofPattern("yy/MM/dd"));
+		String date1 = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		String date2 = str;
 
-		DateFormat format = new SimpleDateFormat("yy/MM/dd");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		
 		/* Date타입으로 변경 */
 		

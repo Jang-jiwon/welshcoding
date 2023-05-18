@@ -36,7 +36,7 @@
 									<span th:text="${board.boardTitle}">Day57 2023.04.13(목)</span>
 								</h2>
 								<section>
-									<img th:src="${board.thumbnailPath}" alt="post-thumbnail">
+									<img th:src="${board.thumbnailPath}" onerror="this.src='/kdy/imgs/noImage.png'" alt="post-thumbnail">
 									<div class="post-info">
 										<p th:text="${board.boardCont}"></p>
 										<div class="date" th:text="${board.boardDate}">2023년 4월 13일</div>

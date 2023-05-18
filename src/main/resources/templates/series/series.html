@@ -7,7 +7,9 @@
 	<div class="serieslist" th:each="series : ${seriesList}">
 		<a class="seriesatag" href="/kdy/seriesDetail.html" th:href="@{|/kdy/series/${memberId}/${series.seriesId}|}">
 			<div class="serieslistdiv">
-				<img class="seriesimg" src="/kdy/imgs/test.jpg" th:src="${series.seriesImgUrl}" >
+				<img class="seriesimg" src="/kdy/imgs/test.jpg" 
+				onerror="this.src='/kdy/imgs/noImage.png'"
+				th:src="${series.seriesImgUrl}" >
 			</div>
 		</a>
 		<h4 class="titleh4tag">

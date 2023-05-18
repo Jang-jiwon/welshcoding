@@ -62,7 +62,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/mainBoard")
-	public String list2(Model model ,HttpSession session) {
+	public String list2(Model model ,HttpSession session) throws ParseException {
 		
 		Member member = (Member)session.getAttribute("member");
 		long testmemberid = member.getMemberId();
@@ -81,6 +81,17 @@ public class BoardController {
 			}
 		}
 		
+		/********* kdy - series 부분 *********/
+		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(testmemberid);
+		
+		if(seriesList.size() == 0) {
+			model.addAttribute("seriesSize", false);
+		} else {
+			model.addAttribute("seriesSize", true);
+		}
+		model.addAttribute("memberId", testmemberid);
+		model.addAttribute("seriesList", seriesList);
+		/********* ------------------- *********/
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("tags", tags);
