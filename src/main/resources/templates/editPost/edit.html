@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<link rel="stylesheet" type="text/css" href = "/editPost/style.css">
+
+<style >
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
+
+*{
+font-family: 'IBM Plex Sans KR';
+}
+
+</style>
+
+
+<!-- ======================= 참고 링크 =======================
+https://shanepark.tistory.com/126
+https://github.com/nhn/tui.editor/blob/master/docs/v3.0-migration-guide-ko.md
+
+- 게시물 viewer
+https://docs.sysout.co.kr/etc/naver-toastui-editor/viewer-quick-start
+
+-게시물 수정
+https://curryyou.tistory.com/475
+ -->
+
+
+</head>
+<body>
+	
+	<div style="position:relative; width: 100%;">
+		<input class="title" type="text"  placeholder="제목 입력">
+		<input class="tags" type="text"  placeholder="태그입력부분 - 미완성">
+		<div id="editor" ></div>
+		<div class="bottomArea" >
+			<div class="buttonArea" >
+				<div class="backArea" style="width: 30%;">
+					<button class="backBtn"  onclick="location.href='/body1/body.html'"><strong>← 나가기</strong></button>
+				</div>
+				<div class="saveArea" >
+					<button class="tmprysaveBtn" ><strong>임시저장</strong></button>
+					<button class="saveBtn" onclick="saveHtml()"><strong>출간하기</strong></button>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	
+</body>
+<script >
+	
+	function save(){
+	// 	alert("저장");
+	}
+	
+	const Editor = toastui.Editor;
+	
+	const editor = new Editor({
+		  el: document.querySelector('#editor'),
+		  height: '500px',
+		  initialEditType: 'markdown',
+		  previewStyle: 'vertical'
+		});
+		//previewStyle: 'tab' //편집중인 컨텐츠의 모습을 미리 볼 수 있는 프리뷰 형태 변환
+		
+		
+		saveHtml = function(){
+// 				alert(editor.getMarkdown());
+				location.href='/editPost/save.html';
+			}
+
+
+	
+</script>
+
+</html>

@@ -15,73 +15,56 @@
 </head>
 
 <body>
-
-			<div class="introback">
-				<div class="text-center" style="text-align: center; width: 100%;">
-	                <h1>소개</h1>
-	                <img id="anyimg" src="/introduce/imgs/yeondu.jpg" alt="anyimg" class="yeondu_img mx-auto" style="width: 400px; height: 400px;"/>
-	                <p id="anytext" class="my-paragraph" style="font-size: 16px;text-align: center;">소개가 작성되지 않았습니다.</p>
-	                <button id="btn-show-form" class="btn btn-primary">글 작성하기</button>
-	                <div id="form-container"></div>
-	                <!-- 동적 폼 생성 -->
-	            </div>
+    <div class="introback">
+        <div class="text-center" style="text-align: center; width: 100%;">
+            <h1>소개</h1>
+            <img id="anyimg" src="/introduce/imgs/yeondu.jpg" alt="anyimg" class="yeondu_img mx-auto"
+                 style="width: 400px; height: 400px;" th:if="${introduce == null}">
+            <p id="anytext" class="my-paragraph" style="font-size: 16px;text-align: center;"
+               th:if="${introduce == null}">소개가 작성되지 않았습니다.</p>
+            <button id="btn-show-form" class="btn btn-primary" th:if="${introduce == null}"
+                    onclick="showForm()">글 작성하기</button>
+            <div id="form-container" th:if="${introduce != null}">
+                <form id="introform" th:object="${introduce}" method="POST" action="/introduce/save">
+                    <textarea id="intro" name="content" class="form-control autosize" readonly
+                              th:text="${introduce.content}"></textarea>
+                    <button id="introSaveBtn" class="btn btn-primary" type="button" onclick="editContent()">수정하기</button>
+                </form>
             </div>
-			
-            
-            
+        </div>
+    </div>
+
 </body>
 
 </html>
 
 <script>
-    //tab3
-    const btnShowForm = document.getElementById("btn-show-form");
-    const formContainer = document.getElementById("form-container");
-    const img = document.getElementById("anyimg");
-    const text = document.getElementById("anytext");
+    function showForm() {
+        const btnShowForm = document.getElementById("btn-show-form");
+        const formContainer = document.getElementById("form-container");
 
-    btnShowForm.addEventListener("click", () => {
         btnShowForm.style.display = "none";
-        img.style.display="none";
-        text.style.display="none";
-        // 폼을 동적으로 추가하기
-        const form = document.createElement("form");
-        form.id="introform";
-        form.method = "POST";
-        form.action = "/post";
-        form.innerHTML =
-            `
-				<textarea id="intro" name="content" class="form-control autosize" placeholder="당신은 어떤사람인가요? 당신에 대해서 알려주세요."></textarea>
-				<button id="introSaveBtn" class="btn btn-primary" type="submit">저장하기</button>
-			`;
-        formContainer.appendChild(form);
+        formContainer.innerHTML = `
+            <form id="introform" method="POST" action="/introduce/save">
+                <textarea id="intro" name="content" class="form-control autosize" placeholder="당신은 어떤 사람인가요? 당신에 대해서 알려주세요."></textarea>
+                <button id="introSaveBtn" class="btn btn-primary" type="submit">저장하기</button>
+            </form>
+        `;
         autosize(document.querySelector('textarea'));
-    });
+    }
 
-    const btnSave = form.querySelector('button[type="submit"]');
+    function editContent() {
+        const textarea = document.getElementById("intro");
+        const btnSave = document.getElementById("introSaveBtn");
 
-    btnSave.addEventListener('click', (event) => {
-        event.preventDefault();
-
-        // 저장하기 버튼을 누른 경우
-        if (btnSave.textContent === '저장하기') {
-            // 버튼 이름 변경
-            btnSave.textContent = '수정하기';
-
-            // textarea readonly 설정
-            const textarea = form.querySelector('textarea');
-            textarea.readOnly = true;
-        }
-        // 수정하기 버튼을 누른 경우
-        else if (btnSave.textContent === '수정하기') {
-            // 버튼 이름 변경
-            btnSave.textContent = '저장하기';
-
-            // textarea readonly 해제
-            const textarea = form.querySelector('textarea');
+        if (textarea.readOnly) {
             textarea.readOnly = false;
+            btnSave.textContent = "저장하기";
+        } else {
+            textarea.readOnly = true;
+            btnSave.textContent = "수정하기";
         }
-    });
+    }
 </script>
 
 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<!--    autosize라이브러리추가-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href = "/introduce/style.css">
+
+
+</head>
+
+<body>
+<div class="introback">
+    <div class="text-center" style="text-align: center; width: 100%;">
+        <h1>소개</h1>
+<!--        <input type="hidden" name="memberId" th:value="${session.member.id}" />-->
+        <img id="anyimg" src="/introduce/imgs/yeondu.jpg" alt="anyimg" class="yeondu_img mx-auto"
+             style="width: 400px; height: 400px;" th:if="${introduce == null}" />
+        <p id="anytext" class="my-paragraph" style="font-size: 16px;text-align: center;"
+           th:if="${introduce == null}">소개가 작성되지 않았습니다.</p>
+        <button id="btn-show-form" class="btn btn-primary" th:if="${introduce == null}"
+                onclick="showForm()">글 작성하기</button>
+        <div id="form-container" th:if="${introduce == null}">
+<!--            동적폼생성-->
+        </div>
+        <div id="form-container2" th:if="${introduce != null}">
+            <form id="introform" method="POST" action="/introduce/save">
+                <input type="hidden" name="memberId" th:value="${session.member.id}" />
+                <textarea id="intro" name="content" class="form-control autosize"
+                          readonly="readonly" th:text="${introduce.content}"></textarea>
+                <button id="introSaveBtn" class="btn btn-primary" type="button" onclick="editContent()">수정하기</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>
+
+<script>
+    function showForm() {
+        const btnShowForm = document.getElementById("btn-show-form");
+        const formContainer = document.getElementById("form-container");
+        const anyImg = document.getElementById("anyimg");
+        const anyText = document.getElementById("anytext");
+        console.log("동적 폼 생성");
+
+        btnShowForm.style.display = "none";
+        anyImg.style.display = "none";
+        anyText.style.display = "none";
+        formContainer.innerHTML = `
+        <form id="introform" method="POST" action="/introduce/save">
+            <input type="hidden" name="memberId" th:value="${session.member.id}" />
+            <textarea id="intro" name="content" class="form-control autosize" placeholder="당신은 어떤 사람인가요? 당신에 대해서 알려주세요." th:text="${introduce?.content}"></textarea> <!-- introduce 객체가 null이 아닌 경우 content 출력 -->
+            <button id="introSaveBtn" class="btn btn-primary" type="submit">저장하기</button>
+        </form>
+
+    `;
+        autosize(document.querySelector('textarea'));
+    }
+
+
+    function editContent() {
+        const textarea = document.getElementById("intro");
+        const btnSave = document.getElementById("introSaveBtn");
+
+        if (textarea.readOnly) {
+            textarea.readOnly = false;
+            btnSave.textContent = "저장하기";
+        } else {
+            textarea.readOnly = true;
+            btnSave.textContent = "수정하기";
+        }
+    }
+</script>
+
+
