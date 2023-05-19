@@ -36,7 +36,7 @@ public class Member {
 	private String userPhone;
 	@Embedded
 	private Sns sns;
-	private String tags;
+	private String tagsString;
 	
 	@OneToMany(mappedBy = "member")
 	private List<Board> boards = new ArrayList<>();
@@ -72,6 +72,14 @@ public class Member {
 	public void addSeries(Series series) {
 		series.setMember(this);
 		this.serieses.add(series);
+	}
+	
+	
+	@OneToMany(mappedBy = "member")
+	private List<Tags> tags = new ArrayList<>();
+	public void addTags(Tags tag) {
+		tag.setMember(this);
+		this.tags.add(tag);
 	}
 	
 }

@@ -1,8 +1,13 @@
 package com.example.welshcoding.board;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,9 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.welshcoding.Tag.TagService;
 import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.SeriesListDTO;
+import com.example.welshcoding.domain.Tags;
 import com.example.welshcoding.edit.TestMemberService;
 import com.example.welshcoding.series.SeriesService;
 
@@ -30,19 +37,18 @@ public class BoardController {
 	private final BoardService boardService;
 	private final TestMemberService testMemberService;
 	private final SeriesService seriesService;
+	private final TagService tagServices;
 	
 	@GetMapping("/mainBoard/{memberId}")
 	public String list(@PathVariable Long memberId,Model model ,HttpSession session) throws ParseException {
 		log.info("1818memberId : "+memberId);
 		try {
 			List<Board> boards = boardService.findBoards(memberId);
-			String tags = testMemberService.findTags(memberId);
 			model.addAttribute("boards", boards);
-			model.addAttribute("tags", tags);
 		} catch (Exception e) {
-			// TODO: handle exception
 			log.info("18181818818");
 		}
+		
 		
 		/********* kdy - series 부분 *********/
 		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(memberId);
@@ -56,7 +62,19 @@ public class BoardController {
 		model.addAttribute("seriesList", seriesList);
 		/********* ------------------- *********/
 		
+		Member member = (Member)session.getAttribute("member");
+		List<Tags> newtags = tagServices.findTags(member);
+		String[] newtagsList = new String[newtags.size()];
+		for(int j=0;j<newtags.size();j++) {
+			newtagsList[j]=newtags.get(j).getTagsName();
+		}
+		Set<String> set = new HashSet<>(Arrays.asList(newtagsList));
+		String[] result = set.toArray(new String[set.size()]);
+		for(int j=0;j<result.length;j++) {
+			log.info("NewTagService : "+result[j]);
+		}
 		
+		model.addAttribute("alltags", result);
 		return "mainbody/body";
 	}
 	
@@ -71,16 +89,28 @@ public class BoardController {
 		log.info("Board Controller");
 		System.out.println("================sdadadsadsdadad");//boards.get(0).getBoardTitle()+
 		
-		List<String> tags = new ArrayList<>();
-		String taglist = testMemberService.findTags(testmemberid);
-		if(taglist != null) {
-			String[] tagsArray = taglist.split(",");
-			for(int i=0;i<tagsArray.length;i++) {
-				if(tagsArray[i]!="") {
-					tags.add(tagsArray[i]);
-				}
-			}
+//		List<String> tags = new ArrayList<>();
+		List<Tags> newtags = tagServices.findTags(member);
+		String[] newtagsList = new String[newtags.size()];
+		for(int j=0;j<newtags.size();j++) {
+			newtagsList[j]=newtags.get(j).getTagsName();
 		}
+		Set<String> set = new HashSet<>(Arrays.asList(newtagsList));
+		String[] result = set.toArray(new String[set.size()]);
+		for(int j=0;j<result.length;j++) {
+			log.info("NewTagService : "+result[j]);
+		}
+		
+//		String taglist = testMemberService.findTags(testmemberid);
+//		if(taglist != null) {
+//			String[] tagsArray = taglist.split(",");
+//			for(int i=0;i<tagsArray.length;i++) {
+//				if(tagsArray[i]!="") {
+//					tags.add(tagsArray[i]);
+//					
+//				}
+//			}
+//		}
 		
 		/********* kdy - series 부분 *********/
 		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(testmemberid);
@@ -105,7 +135,7 @@ public class BoardController {
 		/*-----------------------------------------------------------*/
 		
 		model.addAttribute("boards", boards);
-		model.addAttribute("tags", tags);
+		model.addAttribute("alltags", result);
 		return "mainbody/body";
 	}
 	

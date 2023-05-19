@@ -63,8 +63,8 @@ https://developeryoung.tistory.com/39 -->
 	          	<hr style="margin: 5px;">
 	          	<ul>
 	          		<li ><button id="tagall" class="tagall"   style="background-color: #00ff0000; border: none;" onclick="showall()">전체보기</button> </li>
-	          		<li th:each="tag : ${tags}">
-	          		<button id="taglist" class="taglist"  th:text="${tag}" style="background-color: #00ff0000; border: none;" ></button> </li>
+	          		<li th:each="newtag : ${alltags}">
+	          		<button id="taglist" class="taglist"  th:text="${newtag}" style="background-color: #00ff0000; border: none;" ></button> </li>
 	          	</ul>
           	</div>
             <div class="searchArea" >
@@ -83,7 +83,8 @@ https://developeryoung.tistory.com/39 -->
 	              
 	            </p>
 	            <div class="tags">
-				    <button class="tagBtn" th:each="tag : ${#strings.arraySplit(board.boardTag, ',')}" th:text="${tag}"></button>
+	            	<div th:each="board: ${boards}"> </div>
+				    <button class="tagBtn" th:each="tag: ${board.tags}" th:text="${tag.tagsName}"></button>
 				</div>
 	            <p class="postDay" th:text="${board.boardDate}"></p>
 	        </div>

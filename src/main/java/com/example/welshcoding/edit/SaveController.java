@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.welshcoding.Tag.TagService;
 import com.example.welshcoding.board.BoardService;
 import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Comments;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.Series;
 import com.example.welshcoding.domain.Sns;
+import com.example.welshcoding.domain.Tags;
 import com.example.welshcoding.domain.Temporary;
 import com.example.welshcoding.testjiwon.TestSService;
 
@@ -33,6 +35,8 @@ public class SaveController {
 	private final BoardService boardService ;
 	private final TestMemberService testMemberService;
 	private final TestSService testSService;
+	private final TagService tagService;
+	
 	@RequestMapping("save")
 	public String save() {	 //여기서 시리즈 목록 가져오기
 		log.info("save Controller");
@@ -67,16 +71,10 @@ public class SaveController {
 		board.setBoardCont(gridData);
 		board.setBoardDate(formattedDateTime);
 		board.setBoardLike("3");
-		if(tagList != null) {
-			member = testMemberService.addTags(member.getMemberId(),tagList);
-			board.setBoardTag(tagList);
-		}
-//		board.setBoardTag(tagList);
+		board.setBoardTag(tagList);
 		board.setSeries(new Series());
 		board.setThumbnailPath("test");
 		board.setMember(member);
-		
-		
 		
 		if((!selSeries.isEmpty()) && (selSeries != null) ) {
 			System.out.println("===========들어온다개굴이==============");
@@ -103,6 +101,20 @@ public class SaveController {
 		boardService.insertData(board);
 		System.out.println("=========================저장완료=============================");
 		
+		
+		if(tagList != null) {
+			member = testMemberService.addTags(member.getMemberId(),tagList);
+			board.setBoardTag(tagList);
+			String[] tagsArray = tagList.split(",");
+			for(int i=0;i<tagsArray.length;i++) {
+				Tags tags = new Tags();
+				tags.setBoard(board);
+				tags.setMember(member);
+				tags.setTagsName(tagsArray[i]);
+				tagService.save(tags);
+			}
+			
+		}
 	    return "redirect:/mainBoard";
 	}
 }
