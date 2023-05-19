@@ -28,11 +28,8 @@
 				</div>
 				<div class="div-updatelist">
 					<div class="frame-droppable" id="container">
-						<div th:if="${!boardsOfSeriesSize}" class="empty">
-							<img src="/kdy/imgs/noSeires.png" alt="list is empty">
-							<div class="message">게시글이 없습니다.</div>
-						</div>
-						<div th:if="${boardsOfSeriesSize}" draggable="true" class="draglist" th:each="board : ${boardList}">
+					
+						<div draggable="true" class="draglist" th:each="board : ${boardList}">
 							<div class="draglist2">
 								<h2>
 									<span class="number" th:text="|${boardStat.count}.|">1.</span>
