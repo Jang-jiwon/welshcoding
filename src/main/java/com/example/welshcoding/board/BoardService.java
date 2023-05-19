@@ -48,4 +48,13 @@ public class BoardService {
 		boardRepository.deleteBoard(board);
 	}
 	
+	@Transactional
+	public void updateBoard(Board board,long boardId , long memberId) {
+		Board oldboard = boardRepository.findOne(boardId,memberId);
+		oldboard.setBoardTitle(board.getBoardTitle());
+		oldboard.setBoardCont(board.getBoardCont());
+		oldboard.setBoardDate(board.getBoardDate());
+//		oldboard.setTags(board.getTags());
+	}
+	
 }

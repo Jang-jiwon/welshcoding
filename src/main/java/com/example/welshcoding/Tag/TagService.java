@@ -31,4 +31,30 @@ public class TagService {
 	public List<Tags> findTags(Member member) {
 		return tagRepository.findTags(member);
 	}
+	
+
+	public List<Tags> findTags2(long boardId , long memberId) {
+		return tagRepository.findTags2(boardId,memberId);
+	}
+	
+	@Transactional
+	public void deleteById(long boardId , long memberId) {
+		List<Tags>  oldtags = tagRepository.findTags2(boardId ,memberId);
+		for(int i=0;i<oldtags.size();i++) {
+			tagRepository.deleteTags(oldtags.get(i));
+		}
+		
+	}
+	
+	@Transactional
+	public void updateTags(List<Tags> tags ,long boardId , long memberId) throws IllegalAccessException {
+//		List<Tags> oldtags = tagRepository.findTags2(boardId ,memberId);
+//		tagRepository.deleteTags(oldtags);
+		deleteById(boardId,memberId);
+		for(int i=0;i<tags.size();i++) {
+			save(tags.get(i));
+		}
+		
+		
+	}
 }

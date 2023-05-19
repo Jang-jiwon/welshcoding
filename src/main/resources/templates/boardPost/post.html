@@ -22,7 +22,7 @@
 		<div id="date" class="date" >
 		<p th:text="${board.boardDate}" class="dateP"></p>
 			<div id="options" class="options">
-				<button id="changeBtn" class="optionsBtn">수정</button>
+				<button id="changeBtn" class="optionsBtn" th:onclick="|change('${board.boardId}')|">수정</button>
 				<button id="delBtn" class="optionsBtn" th:onclick="|del('${board.boardId}')|">삭제</button>
 			</div>
 		</div>
@@ -61,13 +61,10 @@ tagBtns.forEach((btn) => {
 
 
 function del(postId){
-// 	var queryString = window.location.search;
-// 	var result = queryString.split('/');
-// 	var postId = result[result.length - 2];
-// 	alert(postId);
 	location.href = '/delPost/'+postId;
-
-
+}
+function change(postId){
+	location.href = '/changePost/'+postId;
 }
 </script>
 </html>

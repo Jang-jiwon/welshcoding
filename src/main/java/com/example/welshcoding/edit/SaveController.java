@@ -44,10 +44,48 @@ public class SaveController {
 		return "edit/save";	// home.html 로 찾아간다.
 	}
 	
+	@RequestMapping("changesave")
+	public String changesave() {	 
+		
+		return "edit/changeController";	// home.html 로 찾아간다.
+	}
+	
 	@RequestMapping("controller")
 	public String goController() {
 		log.info("controller Controller");
 		return "edit/controller";	// home.html 로 찾아간다.
+	}
+	
+	@PostMapping("/updateData")
+	public String updateData(@RequestParam("gridData") String gridData  ,@RequestParam("gridtitle") String gridtitle,
+			@RequestParam("tag") String tagList ,@RequestParam("boardId") long boardId,HttpSession session) throws IllegalAccessException {
+		Member member = (Member)session.getAttribute("member");
+		LocalDateTime localDateTime = LocalDateTime.now();
+		// 원하는 형식으로 시간 표시
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = localDateTime.format(formatter);
+        System.out.println("로컬 시간: " + formattedDateTime);
+		Board board = new Board();
+		board.setBoardTitle(gridtitle);
+		board.setBoardDate(formattedDateTime);
+		board.setBoardCont(gridData);
+		
+		boardService.updateBoard(board,boardId,member.getMemberId());
+		Board newBoard= boardService.findOne(boardId,member.getMemberId());
+		List<Tags> tags = new ArrayList<>();
+		if(tagList != null) {
+			String[] tagsArray = tagList.split(",");
+			for(int i=0;i<tagsArray.length;i++) {
+//				tags.get(i).setBoard(board);
+				tags.add(new Tags());
+				tags.get(i).setMember(member);
+				tags.get(i).setTagsName(tagsArray[i]);
+				tags.get(i).setBoard(newBoard);
+			}
+		}
+		tagService.updateTags(tags,boardId,member.getMemberId());		
+		return "redirect:/goPost/"+boardId;
+		
 	}
 	
 	@PostMapping("/save-data")

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="/updateData" method="POST" id="myForm"> 
+	<input type="hidden" name="boardId"  id="boardId"/>
+	<input type="hidden" name="gridtitle"  id="title"/>
+    <input type="hidden" name="gridData"  id="myInput"/>
+    <input type="hidden" name="tag"  id="tag"/>
+    <input type="hidden" name="selSeries"  id="selSeries"/>
+<!--     <input type="hidden" name="postintro"  id="postintro"/> -->
+</form>
+</body>
+<script >
+
+var boardId = sessionStorage.getItem("boardId");
+var gridData = sessionStorage.getItem("editcont");
+var boardTitle = sessionStorage.getItem("boardTitle");
+var tagList = sessionStorage.getItem("tagList");
+
+
+
+sessionStorage.removeItem("boardId");
+sessionStorage.removeItem("editcont");
+sessionStorage.removeItem("boardTitle");
+sessionStorage.removeItem("tagList");
+
+
+// alert(tagList);
+
+var inputElement = document.getElementById('myInput');
+inputElement.value = gridData;
+var titleElement2 = document.getElementById('title');
+titleElement2.value = boardTitle;
+var titleElement3 = document.getElementById('tag');
+titleElement3.value = tagList;
+var inputElement4 = document.getElementById('boardId');
+inputElement4.value = boardId;
+var form = document.getElementById('myForm');
+form.submit();
+
+
+
+</script>
+</html>

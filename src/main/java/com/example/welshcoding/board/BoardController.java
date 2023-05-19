@@ -184,9 +184,17 @@ public class BoardController {
 	public String delPost(@PathVariable Long boardId,Model model ,HttpSession session) {
 		Member member = (Member)session.getAttribute("member");
 		boardService.deleteById(member,boardId);
-		
-		
 		return "redirect:/mainBoard";
+	}
+	
+	// 게시물수정
+	@GetMapping("/changePost/{boardId}")
+	public String changePost(@PathVariable Long boardId,Model model ,HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+//		model.addAttribute("boardId", boardId);
+		Board board = boardService.findOne(boardId,member.getMemberId());
+		model.addAttribute("changePost", board);
+		return "/boardPost/changePost";
 	}
 	
 	public static String removeSpecialCharacters(String input) {
