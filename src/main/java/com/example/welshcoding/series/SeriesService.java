@@ -95,4 +95,8 @@ public class SeriesService {
 		seriesRepository.deleteSeries(series);
 	}
 
+	public Series findSeriesById(Long seriesId) {
+		return seriesRepository.findById(seriesId);
+	}
+
 }
