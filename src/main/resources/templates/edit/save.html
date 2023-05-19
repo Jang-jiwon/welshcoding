@@ -29,10 +29,14 @@
 			</div>
 			<div class='v-line'></div>
 			<div class="rightbody">
-				<div class="rightsub" style="    height: 100%;">
-					<p style="padding:8px 0px 8px 0px; "><strong>시리즈 설정</strong></p>
-					<button class="addBtn" id="addBtn" onclick="showInputSeri()"><strong>시리즈에 추가하기</strong></button>
-					<div id="seriesInputlist" class="seriesInputlist" style="  height: 40%;"></div>
+<!-- 				<div class="rightsub" style="    height: 100%;"> -->
+				<div class="rightsub" >
+<!-- 				th:each="series: ${seriesList}" th:text="${series.seriesName}" -->
+					<p style="padding:8px 0px 8px 0px; " ><strong>시리즈 설정</strong></p>
+					<button class="addBtn" id="addBtn" onclick="showInputSeri()" ><strong>시리즈 설정</strong></button>
+<!-- 					<div id="seriesInputlist" class="seriesInputlist" style="  height: 40%;"> -->
+					
+<!-- 					</div> -->
 					<div class="bottomArea">
 						<button class="xBtn" onclick="history.back()" ><strong>취소</strong></button>
 						<button class="saveBtn" onclick="save()"><strong>출간하기</strong></button>
@@ -44,39 +48,58 @@
 </form>
 
 </body>
-<script>
+<script th:inline="javascript">
+
 function showInputSeri() { 
-// 	window.open("openSeriesPopup", "a", "width=400, height=300, left=550, top=200");     height: 80%;
-var code = `<input type="text" id="inpputSeries" class="inpputSeries" onkeypress="handleKeyPress(event)" placeholder="추가하고 싶은 시리즈를 입력해주세요"
-			style="width: 75%;     height: 15%; outline: none;"/>
-			<div style=" width:80%; overflow-y:auto; height: 90%;">
-				<ul id="seriesUl" style=" width:100%;  display: contents; "></ul>
-			</div>`;
-$("#seriesInputlist").append(code);
+// 	alert(seriesList[0]);
+	window.open("openSeriesPopup", "a", "width=500, height=400, left=500, top=150");
+	
+	
+
+// 	var code = `<input type="text" id="inpputSeries" class="inpputSeries" onkeypress="handleKeyPress(event)" placeholder="추가하고 싶은 시리즈를 입력해주세요"
+// 				style="width: 75%;     height: 15%; outline: none;"/>
+// 				<div style=" width:80%; overflow-y:auto; height: 90%;">
+// 					<ul class="seriesUl" id="seriesUl" style=" width:100%;  display: contents; "></ul>
+// 				</div>`;
+// 	$("#seriesInputlist").append(code);
+	
+		
+// 		var code = `
+// 			<div id="seriesInputlist" class="seriesInputlist" style="height: 40%;">
+// 		    <li class="savedSeriesLi" th:each="series : ${seriesList}" style="list-style:none; display: grid; display: none;">
+// 		        <button style="font-size: 15px; margin: 10px 0px 0px 0px; padding: 5px; border: none; border-radius: 5px; background-color: #12b886; color: white;"
+// 		                onclick="addSeriesList(${series.seriesId})" id="selSeriBtn${series.seriesId}">${series.seriesName}
+// 		        </button>
+// 		    </li>
+// 		</div>
+// 		`;
+// 		$("#seriesUl").append(code);
+
 }
 
-var seriList = [];
-var snum = sessionStorage.getItem("seriesNum") || 0;
-function handleKeyPress(event) {
-   if (event.keyCode === 13) { // 13은 엔터 키의 keyCode입니다.
-		var input = document.getElementById("inpputSeries");
-		if(input.value!=""){
-			if(!seriList.includes(input.value)){
-				addSeriesList(input.value);
-			}
-		}
-		input.value = ""; 
-   }
- }
+// var seriList = [];
+// var snum = sessionStorage.getItem("seriesNum") || 0;
+// function handleKeyPress(event) {
+//    if (event.keyCode === 13) { // 13은 엔터 키의 keyCode입니다.
+// 		var input = document.getElementById("inpputSeries");
+// 		if(input.value!=""){
+// 			if(!seriList.includes(input.value)){
+// 				addSeriesList(input.value);
+// 			}
+// 		}
+// 		input.value = ""; 
+//    }
+//  }
 
-function addSeriesList(series){
-	 seriList.push(series);
-	 var mycss=` font-size: 15px; margin: 10px 0px 0px 0px; padding: 5px; border: none; border-radius: 5px; background-color: #12b886; color: white;`;
-	 var tb1 = `<li class="seriesLi" style="list-style:none; display: grid;" ><button id="selSeriBtn${snum}" style="${mycss}" onclick="addSeri(${snum})">${series}</button></li>`;
-	  $("#seriesUl").append(tb1);
-	  snum++;
-	  sessionStorage.setItem("seriesNum",snum);
-}
+// function addSeriesList(series){
+// 	 seriList.push(series);
+// 	 var mycss=` font-size: 15px; margin: 10px 0px 0px 0px; padding: 5px; border: none; border-radius: 5px; background-color: #12b886; color: white;`;
+// 	 var tb1 = `<li class="seriesLi" style="list-style:none; display: grid;" ><button id="selSeriBtn${snum}" style="${mycss}" onclick="addSeri(${snum})">${series}</button></li>`;
+// 	  $("#seriesUl").append(tb1);
+// 	  snum++;
+// 	  sessionStorage.setItem("seriesNum",snum);
+	  
+// }
 function addSeri(seriId){
 	 var seri = document.getElementById("selSeriBtn"+seriId.toString());
 	 sessionStorage.setItem("selSeries",seri.innerText);
@@ -101,13 +124,22 @@ function del(){
 
 
 function save(){
-	var sename = sessionStorage.getItem("selSeries");
+	 var selSeries = getCookie("selSeries");
+// 	var sename = sessionStorage.getItem("selSeries");
+	sessionStorage.setItem("selSeries",selSeries);
+	deleteCookie("selSeries");
 // 	var tb1 = `<p style="width:80%;font-size: 20px;">선택된 시리즈 : <strong>${sename}</strong></p>`;
 //   	$("#serieslist").append(tb1);
 	
 // 	alert(sename);
 	location.href='/controller';
 }
-
+function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+var getCookie = function(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+};
 </script>
 </html>

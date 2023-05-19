@@ -29,4 +29,15 @@ public class BoardService {
 		return boardRepository.findOne(postId,memberId);
 	}
 	
+	public String search(long memberId,String inputSearch) {
+		List<Board> results = boardRepository.search(memberId,inputSearch);
+		String resultList = "";
+		for(int i=0;i<results.size();i++) {
+			resultList += ","+results.get(i).getBoardId();
+		}
+		resultList = resultList.trim().replaceAll("^,|,$", "");
+		
+		return resultList;
+	}
+	
 }

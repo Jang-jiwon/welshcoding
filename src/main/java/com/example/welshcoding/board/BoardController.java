@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Member;
@@ -117,5 +120,12 @@ public class BoardController {
 		return "post/post";
 	}
 	
+	@PostMapping("search")
+	@ResponseBody
+	public String search(HttpSession session,@RequestParam("inputSearch") String inputSearch) {
+		Member member = (Member)session.getAttribute("member");
+		String resultList = boardService.search(member.getMemberId(),inputSearch);
+		return resultList;
+	}
 	
 }

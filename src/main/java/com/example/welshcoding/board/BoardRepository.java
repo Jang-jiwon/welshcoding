@@ -37,4 +37,13 @@ public class BoardRepository {
 		return board;
 	}
 	
+	
+	public List<Board> search(long memberId,String inputSearch){
+		Query query = em.createQuery("SELECT b FROM Board b WHERE (LOWER(b.boardCont) LIKE LOWER(:boardCont) OR LOWER(b.boardTitle) LIKE LOWER(:boardCont)) AND b.member.memberId = :memberId ", Board.class);
+
+		query.setParameter("boardCont", "%"+inputSearch+"%");
+		query.setParameter("memberId", memberId);
+		List<Board> results =query.getResultList();
+		return results;
+	}
 }

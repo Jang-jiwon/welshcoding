@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -19,9 +20,11 @@ import lombok.Setter;
 		allocationSize = 1
 		)
 public class Temporary {
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TEMPORARYID_GENERATOR")
+	@Id //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_TEMPORARYID_GENERATOR")
 	private Long temporaryId;
 	private String temporaryTitle;
+	
+	@Lob //수정함
 	private String temporaryDetail;
 	private String temporaryDate;
 	

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,10 +33,10 @@ public class SaveController {
 	private final BoardService boardService ;
 	private final TestMemberService testMemberService;
 	private final TestSService testSService;
-	
 	@RequestMapping("save")
-	public String home() {	 //여기서 시리즈 목록 가져오기
+	public String save() {	 //여기서 시리즈 목록 가져오기
 		log.info("save Controller");
+		
 		return "edit/save";	// home.html 로 찾아간다.
 	}
 	
@@ -79,8 +80,13 @@ public class SaveController {
 		
 		if((!selSeries.isEmpty()) && (selSeries != null) ) {
 			System.out.println("===========들어온다개굴이==============");
-			Series series = new Series();
-			series.setSeriesName(selSeries);
+			Series series = null;
+			if(testSService.isIn(selSeries) == null) {	//새로운 시리즈일경우
+				series = new Series();
+				series.setSeriesName(selSeries);
+			}else {
+				series = testSService.isIn(selSeries);
+			}
 			series.addBoard(board);
 			series.setCreateDate(formattedDateTime);
 			series.setUpdateDate(formattedDateTime);
