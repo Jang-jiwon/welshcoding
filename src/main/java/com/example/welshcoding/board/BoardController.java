@@ -24,10 +24,12 @@ import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Introduce;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.SeriesListDTO;
+import com.example.welshcoding.domain.Sns;
 import com.example.welshcoding.domain.Tags;
 import com.example.welshcoding.edit.TestMemberService;
 import com.example.welshcoding.introduce.service.IntroduceService;
 import com.example.welshcoding.series.SeriesService;
+import com.example.welshcoding.testeunho.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +43,7 @@ public class BoardController {
 	private final SeriesService seriesService;
 	private final TagService tagServices;
 	private final IntroduceService introduceService;
+	private final MemberService memberService;
 	
 	@GetMapping("/mainBoard/{memberId}")
 	public String list(@PathVariable Long memberId,Model model ,HttpSession session) throws ParseException {
@@ -84,6 +87,9 @@ public class BoardController {
         model.addAttribute("introduce", introduce);
 		
 		model.addAttribute("alltags", result);
+		model.addAttribute("memberId", memberId);
+		
+		
 		return "mainbody/body";
 	}
 	
