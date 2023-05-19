@@ -1,8 +1,13 @@
 package com.example.welshcoding.board;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,11 +15,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.welshcoding.Tag.TagService;
 import com.example.welshcoding.domain.Board;
+import com.example.welshcoding.domain.Introduce;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.SeriesListDTO;
+import com.example.welshcoding.domain.Tags;
 import com.example.welshcoding.edit.TestMemberService;
+import com.example.welshcoding.introduce.service.IntroduceService;
 import com.example.welshcoding.series.SeriesService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,19 +39,19 @@ public class BoardController {
 	private final BoardService boardService;
 	private final TestMemberService testMemberService;
 	private final SeriesService seriesService;
+	private final TagService tagServices;
+	private final IntroduceService introduceService;
 	
 	@GetMapping("/mainBoard/{memberId}")
 	public String list(@PathVariable Long memberId,Model model ,HttpSession session) throws ParseException {
 		log.info("1818memberId : "+memberId);
 		try {
 			List<Board> boards = boardService.findBoards(memberId);
-			String tags = testMemberService.findTags(memberId);
 			model.addAttribute("boards", boards);
-			model.addAttribute("tags", tags);
 		} catch (Exception e) {
-			// TODO: handle exception
 			log.info("18181818818");
 		}
+		
 		
 		/********* kdy - series 부분 *********/
 		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(memberId);
@@ -53,7 +65,25 @@ public class BoardController {
 		model.addAttribute("seriesList", seriesList);
 		/********* ------------------- *********/
 		
+		Member member = (Member)session.getAttribute("member");
+		List<Tags> newtags = tagServices.findTags(member);
+		String[] newtagsList = new String[newtags.size()];
+		for(int j=0;j<newtags.size();j++) {
+			newtagsList[j]=newtags.get(j).getTagsName();
+		}
+		Set<String> set = new HashSet<>(Arrays.asList(newtagsList));
+		String[] result = set.toArray(new String[set.size()]);
+		for(int j=0;j<result.length;j++) {
+			log.info("NewTagService : "+result[j]);
+		}
 		
+        System.out.println(memberId);
+
+        Introduce introduce = introduceService.findById(memberId);
+
+        model.addAttribute("introduce", introduce);
+		
+		model.addAttribute("alltags", result);
 		return "mainbody/body";
 	}
 	
@@ -68,16 +98,28 @@ public class BoardController {
 		log.info("Board Controller");
 		System.out.println("================sdadadsadsdadad");//boards.get(0).getBoardTitle()+
 		
-		List<String> tags = new ArrayList<>();
-		String taglist = testMemberService.findTags(testmemberid);
-		if(taglist != null) {
-			String[] tagsArray = taglist.split(",");
-			for(int i=0;i<tagsArray.length;i++) {
-				if(tagsArray[i]!="") {
-					tags.add(tagsArray[i]);
-				}
-			}
+//		List<String> tags = new ArrayList<>();
+		List<Tags> newtags = tagServices.findTags(member);
+		String[] newtagsList = new String[newtags.size()];
+		for(int j=0;j<newtags.size();j++) {
+			newtagsList[j]=newtags.get(j).getTagsName();
 		}
+		Set<String> set = new HashSet<>(Arrays.asList(newtagsList));
+		String[] result = set.toArray(new String[set.size()]);
+		for(int j=0;j<result.length;j++) {
+			log.info("NewTagService : "+result[j]);
+		}
+		
+//		String taglist = testMemberService.findTags(testmemberid);
+//		if(taglist != null) {
+//			String[] tagsArray = taglist.split(",");
+//			for(int i=0;i<tagsArray.length;i++) {
+//				if(tagsArray[i]!="") {
+//					tags.add(tagsArray[i]);
+//					
+//				}
+//			}
+//		}
 		
 		/********* kdy - series 부분 *********/
 		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(testmemberid);
@@ -97,12 +139,17 @@ public class BoardController {
 			String cont = boards.get(i).getBoardCont();
 			cont  = cont.replaceAll("<.*?>", "");
 			cont = cont.substring(0, Math.min(cont.length(), 300));
+			cont =removeSpecialCharacters(cont);
 			boards.get(i).setBoardIntro(cont+"....");
 		}
 		/*-----------------------------------------------------------*/
 		
+		Introduce introduce = introduceService.findById(testmemberid);
+
+        model.addAttribute("introduce", introduce);
+		
 		model.addAttribute("boards", boards);
-		model.addAttribute("tags", tags);
+		model.addAttribute("alltags", result);
 		return "mainbody/body";
 	}
 	
@@ -114,8 +161,45 @@ public class BoardController {
 		Member member = (Member)session.getAttribute("member");
 		Board board = boardService.findOne(postId,member.getMemberId());
 		model.addAttribute("board", board);
-		return "post/post";
+		return "boardPost/post";
 	}
+	
+	@PostMapping("search")
+	@ResponseBody
+	public String search(HttpSession session,@RequestParam("inputSearch") String inputSearch) {
+		Member member = (Member)session.getAttribute("member");
+		String resultList = boardService.search(member.getMemberId(),inputSearch);
+		return resultList;
+	}
+	
+	
+	// 게시물삭제
+	@GetMapping("/delPost/{boardId}")
+	public String delPost(@PathVariable Long boardId,Model model ,HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+		boardService.deleteById(member,boardId);
+		
+		
+		return "redirect:/mainBoard";
+	}
+	
+	public static String removeSpecialCharacters(String input) {
+        // 특수문자 제외한 문자열을 저장할 StringBuilder 생성
+        StringBuilder sb = new StringBuilder();
+        
+        // 입력 문자열을 한 글자씩 순회
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            
+            // 특수문자가 아닌 경우만 StringBuilder에 추가
+            if (Character.isLetterOrDigit(c) || Character.isWhitespace(c)) {
+                sb.append(c);
+            }
+        }
+        
+        // StringBuilder의 내용을 문자열로 반환
+        return sb.toString();
+    }
 	
 	
 }

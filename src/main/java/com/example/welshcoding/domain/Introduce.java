@@ -1,33 +1,25 @@
 package com.example.welshcoding.domain;
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 @Entity
-@Getter @Setter
-@SequenceGenerator(
-		name = "SEQ_INTRODUCEID_GENERATOR",
-		sequenceName = "SEQ_INTRODUCEID",
-		allocationSize = 1
-		)
+@Getter
+@Setter
 public class Introduce {
-	@Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_INTRODUCEID_GENERATOR")
-	private Long introduceId;
+	@Id
+	private Long introduceId = 1L; // 고정된 값을 할당
+
 	private String content;
-	
+
 	@OneToOne
 	@JoinColumn(name = "MEMBERID")
 	private Member member;
-	
+
+
 }

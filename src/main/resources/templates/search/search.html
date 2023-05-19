@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+
+<style>
+    button.tagBtn{
+	border-radius: 35%; 
+	padding: 7px; 
+	padding-left:12px ; 
+	padding-right:12px; 
+	border: none; 
+	color: #12b886; 
+	margin-right: 10px; 
+	background-color: #f8f9fa;
+}
+
+div.postArea{
+    padding-top: 50px;
+    
+}
+
+p.postDay{
+	margin: 0px;
+	margin-top: 10px;
+	font-size: 13px;
+	color: #868e96;
+    padding-bottom: 50px;
+}
+
+p.postCont{
+	margin: 7px;
+	margin-bottom: 20px;
+}
+
+h1.postH1{
+	margin: 5px;
+}
+
+hr{
+    margin:0px;
+    padding: 0px;
+    opacity: 0.5;
+}
+</style>
+
+<body>
+	<div id="header"></div>
+	<br>
+	<br>
+	<br>
+    <div style="display: flex; justify-content: center; width: 100%;">
+        <div style="width: 50%;">
+            xks642님이 작성한 포스트 검색
+            <fieldset style="margin-top: 5px; padding: 5px; align-items: center; display: flex; opacity: 0.7;">
+                <img src="../header/imgs/search.png" style="width: 3%; padding: 10px; display: block; ">
+                <input type="text" style="outline: none; border: none;width: 90%; font-size: 25px; height: fit-content;" value="java" placeholder="검색어를 입력해주세요.">
+            </fieldset>
+            <p>총 <strong>3개</strong>의 포스트를 찾았습니다.</p>
+
+            <div class="postArea" >
+	        	<h1 class="postH1">[JAVA] 조건문</h1>
+	            <p class="postCont">
+	              특정 조건을 충족할 경우에만 실행하는 구문이다.if문if~else문if~else if~ else 문switch 문if문은 주어진 조건이 참일 경우에만 코드를 실행한다.사용법예시\>> 0위의 코드에서 만약 num이 0이 아니라면 3번째 줄은 실행 되지 않는다. if문의
+	            </p>
+	            <div class="tags">
+	            	<button class="tagBtn" >응애</button>
+	            	<button class="tagBtn" >조건문</button>
+	            </div>
+	            <p class="postDay">2023년 1월 26일 · 0개의 댓글 · ♥0</p>
+                <hr>
+	        </div>
+
+            <div class="postArea" >
+	        	<h1 class="postH1">[JAVA] 조건문</h1>
+	            <p class="postCont">
+	              특정 조건을 충족할 경우에만 실행하는 구문이다.if문if~else문if~else if~ else 문switch 문if문은 주어진 조건이 참일 경우에만 코드를 실행한다.사용법예시\>> 0위의 코드에서 만약 num이 0이 아니라면 3번째 줄은 실행 되지 않는다. if문의
+	            </p>
+	            <div class="tags">
+	            	<button class="tagBtn" >응애</button>
+	            	<button class="tagBtn" >조건문</button>
+	            </div>
+	            <p class="postDay">2023년 1월 26일 · 0개의 댓글 · ♥0</p>
+                <hr>
+	        </div>
+
+            <div class="postArea" >
+	        	<h1 class="postH1">[JAVA] 조건문</h1>
+	            <p class="postCont">
+	              특정 조건을 충족할 경우에만 실행하는 구문이다.if문if~else문if~else if~ else 문switch 문if문은 주어진 조건이 참일 경우에만 코드를 실행한다.사용법예시\>> 0위의 코드에서 만약 num이 0이 아니라면 3번째 줄은 실행 되지 않는다. if문의
+	            </p>
+	            <div class="tags">
+	            	<button class="tagBtn" >응애</button>
+	            	<button class="tagBtn" >조건문</button>
+	            </div>
+	            <p class="postDay">2023년 1월 26일 · 0개의 댓글 · ♥0</p>
+                <hr>
+	        </div>
+
+        </div>
+    </div>
+</body>
+
+<script >
+//외부 html 붙히기
+$(function() {
+  $("#header").load("/header/header.html");
+});
+const tabItem = document.querySelectorAll(".tab-container__item");
+const tabContent = document.querySelectorAll(".content-container__content");
+
+tabItem.forEach((item) => {
+item.addEventListener("click", tabHandler);
+});
+</script>
+
+</html>

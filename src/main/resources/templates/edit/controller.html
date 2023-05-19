@@ -10,7 +10,7 @@
     <input type="hidden" name="gridData"  id="myInput"/>
     <input type="hidden" name="tag"  id="tag"/>
     <input type="hidden" name="selSeries"  id="selSeries"/>
-    <input type="hidden" name="postintro"  id="postintro"/>
+<!--     <input type="hidden" name="postintro"  id="postintro"/> -->
 </form>
 </body>
 <script >
@@ -21,6 +21,9 @@ var boardTitle = sessionStorage.getItem("boardTitle");
 var tagList = sessionStorage.getItem("tagList");
 var selSeries = sessionStorage.getItem("selSeries");
 // var postintro = sessionStorage.getItem("postintro");
+
+
+
 
 sessionStorage.removeItem("editcont");
 sessionStorage.removeItem("boardTitle");
@@ -41,7 +44,7 @@ var titleElement4 = document.getElementById('selSeries');
 titleElement4.value = selSeries;
 // var titleElement5 = document.getElementById('postintro');
 // titleElement5.value = postintro;
-
+// alert(titleElement4.value );
 var form = document.getElementById('myForm');
 form.submit();
 

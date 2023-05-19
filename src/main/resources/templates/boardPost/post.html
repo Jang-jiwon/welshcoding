@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+<link th:href="@{/css/postStyle.css}" rel="stylesheet">
+<link th:href="@{/css/headerStyle.css}" rel="stylesheet">
+<link th:href="@{/css/footerStyle.css}" rel="stylesheet">
+</head>
+
+<body>
+<!-- <p th:text="'응애 아이디 : ' + ${postId}"></p> -->
+<!-- <p th:text="'응애 제목 : ' + ${board.boardTitle}"></p> -->
+<!-- <p th:text="'응애 제목 : ' + ${board.boardCont}"></p> -->
+<div id="header" th:replace="fragments/header :: header" ></div>
+<br><br><br><br>
+<div id="back" class="back">
+	<div id="board" class="board">
+		<div id="title" class="title" th:text="${board.boardTitle}"></div>
+		<div id="date" class="date" >
+		<p th:text="${board.boardDate}" class="dateP"></p>
+			<div id="options" class="options">
+				<button id="changeBtn" class="optionsBtn">수정</button>
+				<button id="delBtn" class="optionsBtn" th:onclick="|del('${board.boardId}')|">삭제</button>
+			</div>
+		</div>
+		<div id="tags" class="tags">
+			<button class="tagBtn" th:each="tag: ${board.tags}" th:text="${tag.tagsName}"></button>
+		</div><br>
+		<div id="series" class="series" >
+			<p class="seriesName" th:text="${board.series.seriesName}">
+		</div><br><br>
+		<div id="cont" class="cont"></div>
+	</div>
+</div>
+<div id="footer" th:replace="fragments/footer :: footer" ></div>
+
+</body>
+<script th:inline="javascript">
+    var cont = /*[[${board.boardCont}]]*/ '';
+//    	$("#cont").append(cont);
+   	
+   	
+</script>
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<script >
+const editor = toastui.Editor.factory({
+    el : document.querySelector(".cont"),
+    viewer:true,
+    initialValue : cont
+});
+
+const tagBtns = document.querySelectorAll('.tagBtn'); 
+tagBtns.forEach((btn) => {
+  if (btn.innerText.trim() === '') {
+    btn.style.display = 'none'; 
+  }
+});
+
+
+function del(postId){
+// 	var queryString = window.location.search;
+// 	var result = queryString.split('/');
+// 	var postId = result[result.length - 2];
+// 	alert(postId);
+	location.href = '/delPost/'+postId;
+
+
+}
+</script>
+</html>

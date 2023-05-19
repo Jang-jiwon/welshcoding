@@ -45,7 +45,7 @@ https://curryyou.tistory.com/475
 					<button class="backBtn"  onclick="location.href='/mainBoard'" ><strong>← 나가기</strong></button>
 				</div>
 				<div class="saveArea" >
-					<button class="tmprysaveBtn" ><strong>임시저장</strong></button>
+					<button class="tmprysaveBtn" onclick="temporary()"><strong>임시저장</strong></button>
 					<button class="saveBtn" onclick="saveHtml()"><strong>출간하기</strong></button>
 				</div>
 			</div>
@@ -56,11 +56,12 @@ https://curryyou.tistory.com/475
 	
 </body>
 <script >
+
 var n = sessionStorage.getItem("tagNum") || 0;
 var tagList = [];
 
 function add() {
-  var name = prompt("추가할 시리즈를 입력해주세요");
+  var name = prompt("추가할 태그를 입력해주세요");
 
   if (name == null) {
     return;
@@ -103,13 +104,45 @@ saveHtml = function(){
 		sessionStorage.setItem("tagList", tagList);
 		sessionStorage.setItem("tagNum", 0);
 		var inputElement = document.getElementById('boardTitle');
-		sessionStorage.setItem("editcont", editor.getHTML());
-// 		sessionStorage.setItem("postintro", editor.getValue());
+// 		sessionStorage.setItem("editcont", editor.getHTML());
+		sessionStorage.setItem("editcont", editor.getMarkdown());
 		sessionStorage.setItem("boardTitle", inputElement.value);
 		location.href='/save';
 	}
 
+function temporary(){	//태그는 임시저장 안함
+	var cont = editor.getHTML();
+	var titleInput = document.getElementById('boardTitle').value;
+	if(titleInput.trim() === ''){
+		alert("제목을 입력해주세요!!");
+		return;
+	}
+// 	location.href="goTempForm";
+	
+// 	sessionStorage.setItem("gridtitle",titleInput);
+// 	sessionStorage.setItem("gridData",cont);
+	
+// 	//ajax통신
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "temporary", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
+	var formData = "temporaryTitle=" + encodeURIComponent(titleInput) + "&temporaryDetail=" + encodeURIComponent(cont);
+	xhr.send(formData);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4){
+			if(xhr.responseText.trim() == "ok"){
+				alert("임시저장됨");
+			}else{
+				alert("저장실패 ");
+			}
+			
+		}
+	}
+	
+	
+	
+}
 	
 </script>
 

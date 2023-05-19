@@ -8,16 +8,19 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.welshcoding.Tag.TagService;
 import com.example.welshcoding.board.BoardService;
 import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Comments;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.Series;
 import com.example.welshcoding.domain.Sns;
+import com.example.welshcoding.domain.Tags;
 import com.example.welshcoding.domain.Temporary;
 import com.example.welshcoding.testjiwon.TestSService;
 
@@ -32,10 +35,12 @@ public class SaveController {
 	private final BoardService boardService ;
 	private final TestMemberService testMemberService;
 	private final TestSService testSService;
+	private final TagService tagService;
 	
 	@RequestMapping("save")
-	public String home() {	 //여기서 시리즈 목록 가져오기
+	public String save() {	 //여기서 시리즈 목록 가져오기
 		log.info("save Controller");
+		
 		return "edit/save";	// home.html 로 찾아간다.
 	}
 	
@@ -66,21 +71,20 @@ public class SaveController {
 		board.setBoardCont(gridData);
 		board.setBoardDate(formattedDateTime);
 		board.setBoardLike("3");
-		if(tagList != null) {
-			member = testMemberService.addTags(member.getMemberId(),tagList);
-			board.setBoardTag(tagList);
-		}
-//		board.setBoardTag(tagList);
+		board.setBoardTag(tagList);
 		board.setSeries(new Series());
 		board.setThumbnailPath("test");
 		board.setMember(member);
 		
-		
-		
 		if((!selSeries.isEmpty()) && (selSeries != null) ) {
 			System.out.println("===========들어온다개굴이==============");
-			Series series = new Series();
-			series.setSeriesName(selSeries);
+			Series series = null;
+			if(testSService.isIn(selSeries) == null) {	//새로운 시리즈일경우
+				series = new Series();
+				series.setSeriesName(selSeries);
+			}else {
+				series = testSService.isIn(selSeries);
+			}
 			series.addBoard(board);
 			series.setCreateDate(formattedDateTime);
 			series.setUpdateDate(formattedDateTime);
@@ -97,6 +101,20 @@ public class SaveController {
 		boardService.insertData(board);
 		System.out.println("=========================저장완료=============================");
 		
+		
+		if(tagList != null) {
+			member = testMemberService.addTags(member.getMemberId(),tagList);
+			board.setBoardTag(tagList);
+			String[] tagsArray = tagList.split(",");
+			for(int i=0;i<tagsArray.length;i++) {
+				Tags tags = new Tags();
+				tags.setBoard(board);
+				tags.setMember(member);
+				tags.setTagsName(tagsArray[i]);
+				tagService.save(tags);
+			}
+			
+		}
 	    return "redirect:/mainBoard";
 	}
 }

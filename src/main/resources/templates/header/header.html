@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+div.main_header{
+    /* background-color: aquamarine; */
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.header_left {
+    margin: auto;
+    /* background-color: white;  */
+    width: 33%; 
+    height: 70%;
+    display: flex;
+    align-items: center;
+}
+div.header_right{
+    margin: auto;
+    /* background-color: white;  */
+    width: 33%; 
+    height: 70%;
+    display: inline-block;
+}
+div.header_left_icon{
+    width: 6%;
+    height: 90%;
+    display: flex;
+    /* background-color: blue; */
+}
+img.icon_black{
+    width: 100%;
+    height: 100%;
+}
+button.velog_name{
+    margin: 10px;
+    width: 10%;
+    height: 100%;
+    border: none;
+    background-color: #00ff0000;
+    font-size: large;
+    font-weight: 600;
+}
+div.header_menu , div.header_newWriting , div.header_search,div.header_light{
+    float: right;
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+div.header_menu {
+    width: 10% !important ;
+}
+div.header_newWriting{
+    width: 25% !important ;
+}
+div.header_search{
+    width: 7% !important ;
+    border-radius: 50%;
+}
+div.header_search:hover{
+    background-color: #e4e4e4;
+}
+
+
+/* 드롭다운버튼CSS */
+
+.dropdown{
+  position : relative;
+  display : inline-block;
+  width :100%;
+  height: 100%;
+}
+
+.dropbtn{
+  height: 100%;
+  width: 100%;
+  border : #00ff0000;
+  background-color: #00ff0000;
+  font-weight: 400;
+  color : rgb(100, 100, 100);
+  cursor : pointer;
+  font-size : 12px;
+  display: flex;
+  justify-content: center;
+  padding: 0px;
+
+}
+.dropdown-content{
+  display : none;
+  /* position : absolute; */
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 400;
+  background-color: #f9f9f9;
+  min-width : 150px;
+  float: right;
+  box-shadow:  0px 0px 6px 0px rgb(206, 206, 206);
+}
+
+.dropdown-content a{
+  display : block;
+  text-decoration : none;
+  color : rgb(37, 37, 37);
+  font-size: 12px;
+  padding : 12px 20px;
+  background-color: white;
+}
+
+/* 선택된영역 */
+.dropdown-content a:hover{
+  background-color : #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+img.header_right_icon{
+    height: 100%;
+    width: 70%;
+    border-radius: 50%;
+    object-fit: cover; 
+}
+p.dropbtnArrow{
+    height: 100%;
+    width: 30%;
+}
+
+button.header_newWriting_btn{
+    width: 90%;
+    height: 90%;
+    border-radius: 20px;
+    border: 1px solid;
+    border-color: #212529;
+    background-color: #f8f9fa;
+    font-weight: 800;
+}
+button.header_newWriting_btn:hover{
+    color: white;
+    background-color: rgb(42, 42, 42);
+    border: none;
+}
+
+a.searchA{
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+img.header_right_searchIcon , a.searchA{
+    height: 80%;
+}
+
+a.leftA{
+	width:100%;
+	display: flex;
+	text-decoration:none;
+    align-items: center;
+}
+
+</style>
+
+<body>
+
+    <div class="main_header" >
+        <div class="header_left" >
+	        <a class ="leftA" href="/body1/body.html">
+	        	<div class="header_left_icon">
+	                <img class="icon_black" src="/header/imgs/icon_black.png">
+	            </div>
+	            <button class="velog_name">Z_ON</button>
+	        </a>
+            
+        </div>
+        <div class="header_right" >
+            <div class="header_menu" ><!--style="background-color: brown;"-->
+                <!-- <p>dd</p> -->
+                <div class="dropdown">
+                    <button class="dropbtn"> 
+                      <img class="header_right_icon" src="/header/imgs/me_profile.png" >
+                      <p class="dropbtnArrow" >▼</p>
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="#">내 벨로그</a>
+                      <a href="/temporary/temporary.html">임시글</a>
+                      <a href="/setPage/setPage.html">설정</a>
+                      <a href="#">로그아웃</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="header_newWriting" ><!--style="background-color: aqua; "-->
+                <!-- <p>dd</p> -->
+                <button class="header_newWriting_btn" onclick="location.href='/editPost/edit.html'">새 글 작성</button>
+            </div>
+            <div class="header_search"  id="header_search"><!--style="background-color: blueviolet;"-->
+                <!-- <p>dd</p> -->
+                <a class="searchA" href="/search/search.html"><img class="header_right_searchIcon"  src="/header/imgs/search.png" ></a>
+                
+            </div>
+            <div class="header_light" ><!--style="background-color: cadetblue;"-->
+                <!-- 혹시모를 밝기 버튼 영역 -->
+            </div>
+        </div>
+    </div>
+
+ </body>
+
+<script>
+
+
+</script>
+
+</html>

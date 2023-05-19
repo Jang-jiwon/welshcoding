@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="temporary" method="POST" id="myForm">
+<input type="hidden" name="gridtitle"  id="title"/>
+<input type="hidden" name="gridData"  id="myInput"/>
+</form>
+</body>
+<script>
+var gridtitle = sessionStorage.getItem("gridtitle");
+var gridData = sessionStorage.getItem("gridData");
+
+sessionStorage.removeItem("gridtitle");
+sessionStorage.removeItem("gridData");
+
+var inputElement = document.getElementById('title');
+inputElement.value = gridtitle;
+var titleElement2 = document.getElementById('myInput');
+titleElement2.value = gridData;
+
+var form = document.getElementById('myForm');
+form.submit();
+</script>
+</html>

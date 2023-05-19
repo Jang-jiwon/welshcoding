@@ -28,7 +28,7 @@ public class TestMemberService {
 	}
 	
 	public String findTags(long testmemberid) {
-		String tags = testMemberRepository.findTags(testmemberid).getTags();
+		String tags = testMemberRepository.findTags(testmemberid).getTagsString();
 		return tags;
 	}
 	
@@ -57,7 +57,7 @@ public class TestMemberService {
 			}
 			newtags = newtags + "," +findmem.getTags();
 		}
-		findmem.setTags(newtags);
+		findmem.setTagsString(newtags);
 		return findmem;
 	}
 }
