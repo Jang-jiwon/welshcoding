@@ -11,7 +11,8 @@
      <link th:href="@{/css/headerStyle.css}" rel="stylesheet">
      <link th:href="@{/css/mainbody.css}" rel="stylesheet">
 	 <link rel="stylesheet" type="text/css" href="/kdy/seriesStyle.css">
-
+	<link th:href="@{/css/footerStyle.css}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href = "/introduce/style.css">
 </head>
 
 <!-- 
@@ -19,7 +20,7 @@ ajax검색기능
 https://developeryoung.tistory.com/39 -->
 
 
-<body>
+<body style="width: 100% !important;">
    <div id="header" th:replace="fragments/header :: header" ></div>
    <br><br><br>
    <div class="wholebody">
@@ -97,12 +98,12 @@ https://developeryoung.tistory.com/39 -->
             
           </article>
           <article id="tab3" class="content-container__content">
-              <div id="introduce"></div>
+              <div id="introduce" th:replace="introduce/body :: intro"></div>
           </article>
           
         </section>
       </div>
-   
+      <div id="footer" th:replace="fragments/footer :: footer" ></div>
 </body>
 
 </html>

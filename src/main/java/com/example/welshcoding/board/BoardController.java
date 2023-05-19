@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.welshcoding.Tag.TagService;
 import com.example.welshcoding.domain.Board;
+import com.example.welshcoding.domain.Introduce;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.SeriesListDTO;
 import com.example.welshcoding.domain.Tags;
 import com.example.welshcoding.edit.TestMemberService;
+import com.example.welshcoding.introduce.service.IntroduceService;
 import com.example.welshcoding.series.SeriesService;
 
 import lombok.RequiredArgsConstructor;
@@ -38,6 +40,7 @@ public class BoardController {
 	private final TestMemberService testMemberService;
 	private final SeriesService seriesService;
 	private final TagService tagServices;
+	private final IntroduceService introduceService;
 	
 	@GetMapping("/mainBoard/{memberId}")
 	public String list(@PathVariable Long memberId,Model model ,HttpSession session) throws ParseException {
@@ -73,6 +76,12 @@ public class BoardController {
 		for(int j=0;j<result.length;j++) {
 			log.info("NewTagService : "+result[j]);
 		}
+		
+        System.out.println(memberId);
+
+        Introduce introduce = introduceService.findById(memberId);
+
+        model.addAttribute("introduce", introduce);
 		
 		model.addAttribute("alltags", result);
 		return "mainbody/body";
@@ -130,9 +139,14 @@ public class BoardController {
 			String cont = boards.get(i).getBoardCont();
 			cont  = cont.replaceAll("<.*?>", "");
 			cont = cont.substring(0, Math.min(cont.length(), 300));
+			cont =removeSpecialCharacters(cont);
 			boards.get(i).setBoardIntro(cont+"....");
 		}
 		/*-----------------------------------------------------------*/
+		
+		Introduce introduce = introduceService.findById(testmemberid);
+
+        model.addAttribute("introduce", introduce);
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("alltags", result);
@@ -147,7 +161,7 @@ public class BoardController {
 		Member member = (Member)session.getAttribute("member");
 		Board board = boardService.findOne(postId,member.getMemberId());
 		model.addAttribute("board", board);
-		return "post/post";
+		return "boardPost/post";
 	}
 	
 	@PostMapping("search")
@@ -158,4 +172,21 @@ public class BoardController {
 		return resultList;
 	}
 	
+	public static String removeSpecialCharacters(String input) {
+        // 특수문자 제외한 문자열을 저장할 StringBuilder 생성
+        StringBuilder sb = new StringBuilder();
+        
+        // 입력 문자열을 한 글자씩 순회
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            
+            // 특수문자가 아닌 경우만 StringBuilder에 추가
+            if (Character.isLetterOrDigit(c) || Character.isWhitespace(c)) {
+                sb.append(c);
+            }
+        }
+        
+        // StringBuilder의 내용을 문자열로 반환
+        return sb.toString();
+    }
 }

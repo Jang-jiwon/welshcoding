@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<div class="introback">
+<div class="introback" th:fragment="intro">
     <div class="text-center" style="text-align: center; width: 100%;">
         <h1>소개</h1>
 <!--        <input type="hidden" name="memberId" th:value="${session.member.id}" />-->
@@ -43,7 +43,7 @@
 
 </html>
 
-<script>
+<script th:inline="javascript">
     function showForm() {
         const btnShowForm = document.getElementById("btn-show-form");
         const formContainer = document.getElementById("form-container");
@@ -54,14 +54,12 @@
         btnShowForm.style.display = "none";
         anyImg.style.display = "none";
         anyText.style.display = "none";
+        
         formContainer.innerHTML = `
         <form id="introform" method="POST" action="/introduce/save">
-            <input type="hidden" name="memberId" th:value="${session.member.id}" />
             <textarea id="intro" name="content" class="form-control autosize" placeholder="당신은 어떤 사람인가요? 당신에 대해서 알려주세요." th:text="${introduce?.content}"></textarea> <!-- introduce 객체가 null이 아닌 경우 content 출력 -->
             <button id="introSaveBtn" class="btn btn-primary" type="submit">저장하기</button>
-        </form>
-
-    `;
+        </form>    `;
         autosize(document.querySelector('textarea'));
     }
 

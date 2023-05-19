@@ -39,7 +39,7 @@ public class IntroduceRepository {
 
     public Introduce findById(Long memberId) {
         try {
-            return em.createQuery("select m from Introduce m where m.member = :memberId", Introduce.class)
+            return em.createQuery("select m from Introduce m where m.member.memberId = :memberId", Introduce.class)
                     .setParameter("memberId", memberId)
                     .getSingleResult();
         } catch (NoResultException e) {

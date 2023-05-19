@@ -104,8 +104,8 @@ saveHtml = function(){
 		sessionStorage.setItem("tagList", tagList);
 		sessionStorage.setItem("tagNum", 0);
 		var inputElement = document.getElementById('boardTitle');
-		sessionStorage.setItem("editcont", editor.getHTML());
-// 		sessionStorage.setItem("postintro", editor.getValue());
+// 		sessionStorage.setItem("editcont", editor.getHTML());
+		sessionStorage.setItem("editcont", editor.getMarkdown());
 		sessionStorage.setItem("boardTitle", inputElement.value);
 		location.href='/save';
 	}

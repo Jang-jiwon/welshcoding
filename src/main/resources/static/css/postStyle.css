@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
+
+body{
+font-family: 'IBM Plex Sans KR';
+width: 100%;
+margin: 0px;
+padding: 0px;
+}
+.back{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+/* background-color: silver; */
+}
+.board{
+/* 	background-color:aqua; */
+	width: 55%;
+}
+
+.cont , .title,.date,.series,.tags{
+	margin:2px 0px 2px 0px;
+/* 	background-color:white; */
+	width: 100%;
+}
+.date{
+	display: flex;
+	justify-content: space-between;
+}
+button.tagBtn{
+	border-radius: 35%; 
+	padding: 7px; 
+	padding-left:12px ; 
+	padding-right:12px; 
+	border: none; 
+	color: #12b886; 
+	margin-right: 10px; 
+	background-color: #f8f9fa;
+}
+.series{
+    background: #6161610a;
+    height : 150px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 2px;
+    display:flex;
+    align-items: center;
+    position: relative;
+}
+.seriesName{
+	margin-left: 50px;
+	font-size: 25px;
+	font-weight: bold;
+	color: #000000b3;
+}
+.title{
+	margin:20px 0px 20px 0px;
+	font-size: 50px;
+	font-weight: bold;
+}
+.options{
+	align-self: center;
+}
+.optionsBtn{
+	font-size : 15px;
+	border: none; 
+	color: #868e96;
+	background-color: #00ff0000;
+}
+.dateP{
+	color:#6e6e6e;
+}
+
+
+/* --------------게시물내용-----------------*/
+
+.toastui-editor-contents {
+	font-family: 'IBM Plex Sans KR' !important;
+/*     font-family: Open Sans,Helvetica Neue,Helvetica,Arial,나눔바른고딕,Nanum Barun Gothic,맑은고딕,Malgun Gothic,sans-serif; */
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    z-index: 20;
+}
