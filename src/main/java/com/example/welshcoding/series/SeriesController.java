@@ -20,7 +20,7 @@ public class SeriesController {
 
 	private final SeriesService seriesService;
 	
-//	@GetMapping("/kdy/series/{memberId}")
+	@GetMapping("/kdy/series/{memberId}")
 	public String seriesList(@PathVariable Long memberId, Model model) throws ParseException {
 		
 		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(memberId);
@@ -49,10 +49,13 @@ public class SeriesController {
 		}
 		
 		List<BoardDTO> boardList = seriesService.findBoardsBySeries(seriesId);
+		if(boardList.size() == 0) {
+			model.addAttribute("boardsOfSeriesSize", false);
+		} else {
+			model.addAttribute("boardsOfSeriesSize", true);
+		}
 		model.addAttribute("boardList",boardList);
-		model.addAttribute("seriesName",boardList.get(0).getSeriesName());
-		
-		
+		model.addAttribute("seriesName",seriesService.findSeriesById(seriesId).getSeriesName());
 		return "series/seriesDetail";
 	}
 	@GetMapping("/kdy/series/{memberId}/{seriesId}/edit")
@@ -63,8 +66,13 @@ public class SeriesController {
 			) {
 		
 		List<BoardDTO> boardList = seriesService.findBoardsBySeries(seriesId);
+		if(boardList.size() == 0) {
+			model.addAttribute("boardsOfSeriesSize", false);
+		} else {
+			model.addAttribute("boardsOfSeriesSize", true);
+		}
 		model.addAttribute("boardList",boardList);
-		model.addAttribute("seriesName",boardList.get(0).getSeriesName());
+		model.addAttribute("seriesName",seriesService.findSeriesById(seriesId).getSeriesName());
 		return "series/seriesUpdate";
 	}
 	@GetMapping("/kdy/series/{memberId}/{seriesId}/delete")

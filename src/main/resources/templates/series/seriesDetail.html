@@ -40,8 +40,12 @@
 				
 				
 				<!-- series detail list -->
+				<div th:if="${!boardsOfSeriesSize}" class="empty">
+					<img src="/kdy/imgs/noSeires.png" alt="list is empty">
+					<div class="message">게시글이 없습니다.</div>
+				</div>
 				
-				<div class="seriesdetaillist" th:each="board : ${boardList}")>
+				<div th:if="${boardsOfSeriesSize}" class="seriesdetaillist" th:each="board : ${boardList}")>
 					<div class="">
 						<h2 class="detailtitle">
 							<span class="number" th:text="|${boardStat.count}.|">1.</span>
