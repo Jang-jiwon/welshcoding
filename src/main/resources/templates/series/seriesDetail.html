@@ -45,16 +45,16 @@
 					<div class="message">게시글이 없습니다.</div>
 				</div>
 				
-				<div th:if="${boardsOfSeriesSize}" class="seriesdetaillist" th:each="board : ${boardList}")>
+				<div th:if="${boardsOfSeriesSize}" class="seriesdetaillist" th:each="board : ${boardList}">
 					<div class="">
 						<h2 class="detailtitle">
 							<span class="number" th:text="|${boardStat.count}.|">1.</span>
 							<a class=""
 								th:text="${board.boardTitle}"
-								href="/@kdy2da/Day57-2023.04.13목">Day57 2023.04.13(목)</a>
+								th:href="@{|/goPost/${board.boardId}|}">Day57 2023.04.13(목)</a>
 						</h2>
 						<section>
-							<a class="" href="/@kdy2da/Day57-2023.04.13목">
+							<a class="" th:href="@{|/goPost/${board.boardId}|}">
 							<img
 								onerror="this.src='/kdy/imgs/noImage.png'"
 								th:src="${board.thumbnailPath}"

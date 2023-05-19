@@ -20,7 +20,7 @@ public class SeriesController {
 
 	private final SeriesService seriesService;
 	
-	@GetMapping("/kdy/series/{memberId}")
+//	@GetMapping("/kdy/series/{memberId}")
 	public String seriesList(@PathVariable Long memberId, Model model) throws ParseException {
 		
 		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(memberId);
