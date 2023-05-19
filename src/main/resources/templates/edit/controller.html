@@ -22,6 +22,9 @@ var tagList = sessionStorage.getItem("tagList");
 var selSeries = sessionStorage.getItem("selSeries");
 // var postintro = sessionStorage.getItem("postintro");
 
+
+
+
 sessionStorage.removeItem("editcont");
 sessionStorage.removeItem("boardTitle");
 sessionStorage.removeItem("tagList");
@@ -41,7 +44,7 @@ var titleElement4 = document.getElementById('selSeries');
 titleElement4.value = selSeries;
 // var titleElement5 = document.getElementById('postintro');
 // titleElement5.value = postintro;
-
+// alert(titleElement4.value );
 var form = document.getElementById('myForm');
 form.submit();
 

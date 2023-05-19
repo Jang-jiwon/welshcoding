@@ -64,7 +64,7 @@ https://developeryoung.tistory.com/39 -->
 	          	<hr style="margin: 5px;">
 	          	<ul>
 	          		<li ><button id="tagall" class="tagall"   style="background-color: #00ff0000; border: none;" onclick="showall()">전체보기</button> </li>
-	          		<li th:each="newtag : ${alltags}">
+	          		<li th:each="newtag : ${alltags}" class="tagPar">
 	          		<button id="taglist" class="taglist"  th:text="${newtag}" style="background-color: #00ff0000; border: none;" ></button> </li>
 	          	</ul>
           	</div>
@@ -109,6 +109,25 @@ https://developeryoung.tistory.com/39 -->
 </html>
 
 <script>
+const tagListButtons = document.querySelectorAll('.taglist'); 
+
+tagListButtons.forEach((button) => {
+  if (button.innerText.trim() === '') {
+    button.style.display = 'none'; 
+    const liElement = button.parentElement; 
+    if (liElement) {
+      liElement.style.display = 'none'; 
+    }
+  }
+});
+
+const tagBtns = document.querySelectorAll('.tagBtn'); 
+tagBtns.forEach((btn) => {
+  if (btn.innerText.trim() === '') {
+    btn.style.display = 'none'; 
+  }
+});
+
 // 	deleteCookie("selSeries");
 deleteAllCookies();
 	//외부 html 붙히기

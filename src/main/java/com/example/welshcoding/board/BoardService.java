@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.welshcoding.domain.Board;
+import com.example.welshcoding.domain.Member;
+import com.example.welshcoding.domain.Series;
 
 import lombok.RequiredArgsConstructor;
 
@@ -38,6 +40,12 @@ public class BoardService {
 		resultList = resultList.trim().replaceAll("^,|,$", "");
 		
 		return resultList;
+	}
+	
+	@Transactional
+	public void deleteById(Member member,Long boardId) {
+		Board board = boardRepository.findOne(boardId,member.getMemberId());
+		boardRepository.deleteBoard(board);
 	}
 	
 }

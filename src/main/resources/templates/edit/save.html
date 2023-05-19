@@ -125,9 +125,15 @@ function del(){
 
 function save(){
 	 var selSeries = getCookie("selSeries");
+	 var isnull = getCookie("isnull");
+	 if (isnull != "no") {
+		 selSeries = "기본";
+		}
+	
 // 	var sename = sessionStorage.getItem("selSeries");
 	sessionStorage.setItem("selSeries",selSeries);
 	deleteCookie("selSeries");
+	deleteCookie("isnull");
 // 	var tb1 = `<p style="width:80%;font-size: 20px;">선택된 시리즈 : <strong>${sename}</strong></p>`;
 //   	$("#serieslist").append(tb1);
 	

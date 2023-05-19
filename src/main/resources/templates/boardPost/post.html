@@ -23,7 +23,7 @@
 		<p th:text="${board.boardDate}" class="dateP"></p>
 			<div id="options" class="options">
 				<button id="changeBtn" class="optionsBtn">수정</button>
-				<button id="delBtn" class="optionsBtn">삭제</button>
+				<button id="delBtn" class="optionsBtn" th:onclick="|del('${board.boardId}')|">삭제</button>
 			</div>
 		</div>
 		<div id="tags" class="tags">
@@ -51,5 +51,23 @@ const editor = toastui.Editor.factory({
     viewer:true,
     initialValue : cont
 });
+
+const tagBtns = document.querySelectorAll('.tagBtn'); 
+tagBtns.forEach((btn) => {
+  if (btn.innerText.trim() === '') {
+    btn.style.display = 'none'; 
+  }
+});
+
+
+function del(postId){
+// 	var queryString = window.location.search;
+// 	var result = queryString.split('/');
+// 	var postId = result[result.length - 2];
+// 	alert(postId);
+	location.href = '/delPost/'+postId;
+
+
+}
 </script>
 </html>

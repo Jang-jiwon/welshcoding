@@ -172,6 +172,17 @@ public class BoardController {
 		return resultList;
 	}
 	
+	
+	// 게시물삭제
+	@GetMapping("/delPost/{boardId}")
+	public String delPost(@PathVariable Long boardId,Model model ,HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+		boardService.deleteById(member,boardId);
+		
+		
+		return "redirect:/mainBoard";
+	}
+	
 	public static String removeSpecialCharacters(String input) {
         // 특수문자 제외한 문자열을 저장할 StringBuilder 생성
         StringBuilder sb = new StringBuilder();
@@ -189,4 +200,6 @@ public class BoardController {
         // StringBuilder의 내용을 문자열로 반환
         return sb.toString();
     }
+	
+	
 }
