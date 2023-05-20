@@ -239,4 +239,38 @@ deleteAllCookies();
 			}
 		}
 	}
+function showForm() {
+    // const btnShowForm = document.getElementById("btn-show-form");
+    // const formContainer1 = document.getElementById("form-container1"); //글작성하기 폼
+    // const anyimg = document.getElementById("anyimg");
+    // const anytext = document.getElementById("anytext");
+    // btnShowForm.style.display = "none";
+    // anyimg.style.display = "none";
+    // anytext.style.display = "none";
+    // formContainer1.style.display="flex";
+
+    const formContainer0 = document.getElementById("form-container0");
+    const formContainer2 = document.getElementById("form-container2");
+    formContainer0.style.display = "none";
+    formContainer2.style.display = "flex";
+
+
+
+}
+
+function createSaveForm() {
+    const introform1 = document.getElementById("introform1");
+    const introText = document.getElementById("intro1");
+    const introBtn = document.getElementById("introEditBtn1");
+
+    if (introBtn.innerText === "수정하기") {
+        introText.removeAttribute("readonly");
+        introBtn.innerText = "저장하기";
+    } else {
+        introText.setAttribute("readonly", "readonly");
+        introBtn.innerText = "수정하기";
+        introform1.submit();
+    }
+}
+
 </script>
