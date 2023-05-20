@@ -23,6 +23,7 @@ public class IntroduceRepository {
         this.em = em;
     }
 
+    @Transactional
     public void saveIntroduce(Introduce introduce) {
         if (introduce.getContent() == null) {
             em.persist(introduce);
@@ -45,6 +46,10 @@ public class IntroduceRepository {
         } catch (NoResultException e) {
             return null;
         }
+    }
+
+    public Member findMemberById(Long memberId) {
+        return em.find(Member.class, memberId);
     }
 
 

@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -26,28 +23,41 @@ public class IntroduceController {
         this.introduceService = introduceService;
     }
 
-    @GetMapping("/introduce")
-    public String getIntroduce(Model model, HttpSession session) {
+//    @GetMapping("/introduce/{memberId}")
+    public String getIntroduce(@PathVariable Long memberId, Model model, HttpSession session) {
         // memberId를 얻어오는 코드를 추가
-
-        Long memberId = (Long)session.getAttribute("memberId");
+        Member member = (Member)session.getAttribute("member");
+//        Long memberId = (Long)session.getAttribute("memberId");
         System.out.println(memberId);
 
         Introduce introduce = introduceService.findById(memberId);
 
         model.addAttribute("introduce", introduce);
-
+        System.out.println("================");
+        System.out.println(introduce.getContent());
         return "introduce/body";
     }
 
 
-    @PostMapping("/introduce/save")
-    public String saveIntroduce(@ModelAttribute Introduce introduce) {
+    @PostMapping("/introduce/{memberId}/save")
+    public String saveIntroduce(@PathVariable(name = "memberId") Long memberId
+                        , @RequestParam(name = "content") String content) {
 
-        introduceService.saveIntroduce(introduce.getContent(), introduce.getMember());
-        System.out.println("saveIntroduce 메소드 호출");
+        introduceService.saveIntroduce(memberId, content);
+        // System.out.println(memberId);
+        // System.out.println("+++++++++++++++++++++++++");
+        // System.out.println(content);
 
-        return "introduce/body";
+        return "redirect:/mainBoard/"+memberId;
+    }
+
+    @PostMapping("/introduce/{memberId}/editIntro")
+    public String editIntroduce(@PathVariable(name = "memberId") Long memberId
+            , @RequestParam(name = "content") String content) {
+
+        introduceService.editIntro(memberId, content);
+
+        return "redirect:/mainBoard/"+memberId;
     }
 
 }

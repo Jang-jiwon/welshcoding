@@ -15,7 +15,10 @@ public class IntroduceService {
     private final IntroduceRepository introduceRepository;
 
     @Transactional
-    public void saveIntroduce(String content, Member member) {
+    public void saveIntroduce(Long memberId, String content) {
+
+        Member member = introduceRepository.findMemberById(memberId);
+
         Introduce introduce = new Introduce();
         introduce.setContent(content);
         introduce.setMember(member);
@@ -27,5 +30,10 @@ public class IntroduceService {
         return introduceRepository.findById(memberId);
     }
 
+    @Transactional
+    public void editIntro(Long memberId, String content) {
+        Introduce introduce = findById(memberId);
+        introduce.setContent(content);
+    }
 }
 
