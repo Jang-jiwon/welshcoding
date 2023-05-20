@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/save_style.css}" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+	<div class="backgrd" >
+		<div class="subback">
+			<div class="leftbody">
+				<p ><strong>포스트 미리보기</strong></p>
+				<div class="inputImg">
+					<div class="subinputImg">
+						<div class="a18">
+							<div class="imgIconArea" >
+								<img src="/editPost/imgs/imgIcon.png" class="imgIcon">
+							</div>
+							<button class="upBtn"><strong>썸네일 업로드</strong></button>
+						</div>
+						
+					</div>
+				</div>
+				<div class="inputArea" >
+					<textarea class="introduction"  placeholder="소개 입력"></textarea>
+				</div>
+				
+			</div>
+			<div class='v-line'></div>
+			<div class="rightbody">
+<!-- 				<div class="rightsub" style="    height: 100%;"> -->
+				<div class="rightsub" >
+<!-- 				th:each="series: ${seriesList}" th:text="${series.seriesName}" -->
+					<p style="padding:8px 0px 8px 0px; " ><strong>시리즈 설정</strong></p>
+					<button class="addBtn" id="addBtn" onclick="showInputSeri()" ><strong>시리즈 설정</strong></button>
+<!-- 					<div id="seriesInputlist" class="seriesInputlist" style="  height: 40%;"> -->
+					
+<!-- 					</div> -->
+					<div class="bottomArea">
+						<button class="xBtn" onclick="history.back()" ><strong>취소</strong></button>
+						<button class="saveBtn" onclick="save()"><strong>출간하기</strong></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+</body>
+<script th:inline="javascript">
+
+function showInputSeri() { 
+// 	alert(seriesList[0]);
+	window.open("openSeriesPopup", "a", "width=500, height=400, left=500, top=150");
+	
+	
+
+// 	var code = `<input type="text" id="inpputSeries" class="inpputSeries" onkeypress="handleKeyPress(event)" placeholder="추가하고 싶은 시리즈를 입력해주세요"
+// 				style="width: 75%;     height: 15%; outline: none;"/>
+// 				<div style=" width:80%; overflow-y:auto; height: 90%;">
+// 					<ul class="seriesUl" id="seriesUl" style=" width:100%;  display: contents; "></ul>
+// 				</div>`;
+// 	$("#seriesInputlist").append(code);
+	
+		
+// 		var code = `
+// 			<div id="seriesInputlist" class="seriesInputlist" style="height: 40%;">
+// 		    <li class="savedSeriesLi" th:each="series : ${seriesList}" style="list-style:none; display: grid; display: none;">
+// 		        <button style="font-size: 15px; margin: 10px 0px 0px 0px; padding: 5px; border: none; border-radius: 5px; background-color: #12b886; color: white;"
+// 		                onclick="addSeriesList(${series.seriesId})" id="selSeriBtn${series.seriesId}">${series.seriesName}
+// 		        </button>
+// 		    </li>
+// 		</div>
+// 		`;
+// 		$("#seriesUl").append(code);
+
+}
+
+// var seriList = [];
+// var snum = sessionStorage.getItem("seriesNum") || 0;
+// function handleKeyPress(event) {
+//    if (event.keyCode === 13) { // 13은 엔터 키의 keyCode입니다.
+// 		var input = document.getElementById("inpputSeries");
+// 		if(input.value!=""){
+// 			if(!seriList.includes(input.value)){
+// 				addSeriesList(input.value);
+// 			}
+// 		}
+// 		input.value = ""; 
+//    }
+//  }
+
+// function addSeriesList(series){
+// 	 seriList.push(series);
+// 	 var mycss=` font-size: 15px; margin: 10px 0px 0px 0px; padding: 5px; border: none; border-radius: 5px; background-color: #12b886; color: white;`;
+// 	 var tb1 = `<li class="seriesLi" style="list-style:none; display: grid;" ><button id="selSeriBtn${snum}" style="${mycss}" onclick="addSeri(${snum})">${series}</button></li>`;
+// 	  $("#seriesUl").append(tb1);
+// 	  snum++;
+// 	  sessionStorage.setItem("seriesNum",snum);
+	  
+// }
+function addSeri(seriId){
+	 var seri = document.getElementById("selSeriBtn"+seriId.toString());
+	 sessionStorage.setItem("selSeries",seri.innerText);
+	 alert(seri.innerText);
+	 delHtml(seri.innerText);
+}
+
+function delHtml(seri) {
+	  $("#seriesInputlist").empty();
+	  
+	  var code = `<p style="width:80%;font-size: 20px; display: flex; align-items: stretch; justify-content: space-evenly;">선택된 시리즈 : <strong>${seri}</strong></p>`;
+	  $("#seriesInputlist").append(code);
+	  var code2 = `<button style="background-color: #00ff0000; color: red; border: none;margin-top: 20px;" onclick="del()">시리즈 삭제</button>`;
+	  $("#seriesInputlist").append(code2);
+	  
+	}
+function del(){
+	seriList = [];
+	sessionStorage.removeItem("selSeries");
+	$('#seriesInputlist').empty();
+}
+
+
+function save(){
+	 var selSeries = getCookie("selSeries");
+	 var isnull = getCookie("isnull");
+	 if (isnull != "no") {
+		 selSeries = "기본";
+		}
+	
+// 	var sename = sessionStorage.getItem("selSeries");
+	sessionStorage.setItem("selSeries",selSeries);
+	deleteCookie("selSeries");
+	deleteCookie("isnull");
+// 	var tb1 = `<p style="width:80%;font-size: 20px;">선택된 시리즈 : <strong>${sename}</strong></p>`;
+//   	$("#serieslist").append(tb1);
+	
+// 	alert(sename);
+	location.href='/controllertemp';
+}
+function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+var getCookie = function(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+};
+</script>
+</html>

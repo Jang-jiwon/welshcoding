@@ -5,12 +5,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/save-data" method="POST" id="myForm"> 
+<form action="/save-data-temp" method="POST" id="myForm"> 
 	<input type="hidden" name="gridtitle"  id="title"/>
     <input type="hidden" name="gridData"  id="myInput"/>
     <input type="hidden" name="tag"  id="tag"/>
     <input type="hidden" name="selSeries"  id="selSeries"/>
-<!--     <input type="hidden" name="tempId"  id="tempId"/> -->
+    <input type="hidden" name="tempId"  id="tempId"/>
 <!--     <input type="hidden" name="postintro"  id="postintro"/> -->
 </form>
 </body>
@@ -21,7 +21,7 @@ var gridData = sessionStorage.getItem("editcont");
 var boardTitle = sessionStorage.getItem("boardTitle");
 var tagList = sessionStorage.getItem("tagList");
 var selSeries = sessionStorage.getItem("selSeries");
-// var tempId = sessionStorage.getItem("boardId");
+var tempId = sessionStorage.getItem("boardId");
 // var postintro = sessionStorage.getItem("postintro");
 
 
@@ -31,7 +31,7 @@ sessionStorage.removeItem("editcont");
 sessionStorage.removeItem("boardTitle");
 sessionStorage.removeItem("tagList");
 sessionStorage.removeItem("selSeries");
-// sessionStorage.removeItem("boardId");
+sessionStorage.removeItem("boardId");
 // sessionStorage.removeItem("postintro");
 
 
@@ -45,8 +45,8 @@ var titleElement3 = document.getElementById('tag');
 titleElement3.value = tagList;
 var titleElement4 = document.getElementById('selSeries');
 titleElement4.value = selSeries;
-// var titleElement5 = document.getElementById('tempId');
-// titleElement5.value = tempId;
+var titleElement5 = document.getElementById('tempId');
+titleElement5.value = tempId;
 // var titleElement5 = document.getElementById('postintro');
 // titleElement5.value = postintro;
 // alert(titleElement4.value );

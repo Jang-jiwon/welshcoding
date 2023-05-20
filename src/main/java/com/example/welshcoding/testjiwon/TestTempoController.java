@@ -24,12 +24,12 @@ import lombok.extern.slf4j.Slf4j;
 public class TestTempoController {
 	private final TestTemporaryService testTemporaryService;
 	
-	@GetMapping("goTempForm")
+//	@GetMapping("goTempForm")
 	public String goForm(Model model) {
 		return "/edit/tempController";
 	}
 	
-	@PostMapping("temporary")
+//	@PostMapping("temporary")
 	@ResponseBody
 	public String home(HttpSession session,Model model, @RequestParam("temporaryTitle") String temporaryTitle ,
 			@RequestParam("temporaryDetail") String temporaryDetail) throws IllegalAccessException {

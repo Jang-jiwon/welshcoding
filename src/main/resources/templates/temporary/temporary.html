@@ -7,7 +7,8 @@
 <title>임시 글 목록 - velog</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
-<link href="style.css" rel="stylesheet">
+<link th:href="@{/css/tempstyle.css}" rel="stylesheet">
+<link th:href="@{/css/headerStyle.css}" rel="stylesheet">
 <style >
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
 
@@ -18,60 +19,32 @@ font-family: 'IBM Plex Sans KR';
 </style>
 
 <body>
-<div id="header"></div>
+<div id="header" th:replace="fragments/header :: header" ></div>
    <br><br><br>
- <div class="container"> 
+ <div class="container" > 
  		
        
         <section class="content-container" >
-            <article id="tab1" class="content-container__content target">          	        
-	        <!-- 테스트 컨텐츠 -->
-	        
-	        <div class="titlAarea">
-		 		<h1 class="titleH1">임시 글 목록</h1>
-			</div>	
-	        <div class="postArea" >
-	        	<h1 class="postH1">[JAVA] 조건문</h1>
-	            <p class="postCont">
-	              특정 조건을 충족할 경우에만 실행하는 구문이다.if문if~else문if~else if~ else 문switch 문if문은 주어진 조건이 참일 경우에만 코드를 실행한다.사용법예시\>> 0위의 코드에서 만약 num이 0이 아니라면 3번째 줄은 실행 되지 않는다. if문의
-	            </p>
-	            <section>
-	            	<div class="time">2023년 1월 26일</div>
-	            	<button class="remove">삭제</button>
-	            </section>	            
-	                        
-	            <br>
-	            <hr class="hr1">
-	        </div>
-	        <div class="postArea" >
-	        	<h1 class="postH1">[JAVA] 조건문</h1>
-	            <p>
-	              특정 조건을 충족할 경우에만 실행하는 구문이다.if문if~else문if~else if~ else 문switch 문if문은 주어진 조건이 참일 경우에만 코드를 실행한다.사용법예시\>> 0위의 코드에서 만약 num이 0이 아니라면 3번째 줄은 실행 되지 않는다. if문의
-	            </p>
-	            
-	            <section>
-	            	<div class="time">2023년 1월 26일</div>
-	            	<button class="remove">삭제</button>
-	            </section>	
-	            <br>
-	            <hr class="hr1">
-	        </div>
-	        <div class="postArea" >
-	        	<h1 class="postH1">[JAVA] 조건문</h1>
-	            <p>
-	              특정 조건을 충족할 경우에만 실행하는 구문이다.if문if~else문if~else if~ else 문switch 문if문은 주어진 조건이 참일 경우에만 코드를 실행한다.사용법예시\>> 0위의 코드에서 만약 num이 0이 아니라면 3번째 줄은 실행 되지 않는다. if문의
-	            </p>
-	           
-	            <section>
-	            	<div class="time">2023년 1월 26일</div>
-	            	<button class="remove">삭제</button>
-	            </section>	
-	            <br>
-	            <hr class="hr1">
-	        </div>
-	        </article>
-	        </section>
-	        </div>
+	            <article id="tab1" class="content-container__content target">          	        
+			        <div class="titlAarea">
+				 		<h1 class="titleH1" >임시 글 목록</h1>
+					</div>	
+			        <div class="postArea" th:each="temp : ${temps}" >
+			        	<h1 class="postH1" th:text="${temp.temporaryTitle}"
+			        	th:onclick="|myFunction('${temp.temporaryId}')|"></h1>
+			            <p class="postCont" th:text="${temp.temporaryDetail}">
+			            </p>
+			            <section>
+			            	<div class="time" th:text="${temp.temporaryDate}"></div>
+			            	<button class="remove" th:onclick="|del('${temp.temporaryId}')|">삭제</button>
+			            </section>	            
+			                        
+			            <br>
+			            <hr class="hr1">
+			        </div>
+		        </article>
+        </section>
+  </div>
 	        
 	        
             
@@ -83,9 +56,9 @@ font-family: 'IBM Plex Sans KR';
 </html>
 <script>
 	//외부 html 붙히기
-	$(function() {
-	  $("#header").load("/header/header.html");
-	});
+// 	$(function() {
+// 	  $("#header").load("/header/header.html");
+// 	});
 	const tabItem = document.querySelectorAll(".tab-container__item");
 	const tabContent = document.querySelectorAll(".content-container__content");
 	
@@ -125,4 +98,14 @@ font-family: 'IBM Plex Sans KR';
         formContainer.appendChild(form);
         autosize(document.querySelector('textarea'));
     });
+    
+    
+    function myFunction(id){		//게시물 상세 페이지로 게시물 아이디 넘기기
+// 		alert("개굴게시물 : "+id); 
+		location.href = '/goTempEdit/'+id;///login
+	}
+    
+    function del(temporaryId){
+    	location.href = '/delTemp/'+temporaryId;
+    }
 </script>
