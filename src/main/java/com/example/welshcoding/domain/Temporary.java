@@ -31,4 +31,8 @@ public class Temporary {
 	@ManyToOne
 	@JoinColumn(name = "MEMBERID")
 	private Member member;
+
+	
+
+	
 }

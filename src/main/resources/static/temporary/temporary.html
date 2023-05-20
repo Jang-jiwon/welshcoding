@@ -26,16 +26,21 @@ font-family: 'IBM Plex Sans KR';
 		    	<div class="titlAarea">
 			 		<h1 class="titleH1">임시 글 목록</h1>
 				</div>	
+				
 		        <div class="postArea" >
-		        	<h1 class="postH1">[JAVA] 조건문</h1>
+		        	<h1  class="postH1">
+		        		<div id="title" class="title" th:text="${temporary.temporaryTitle}"></div>
+		        	</h1>  		
+	        		
+		        	
 		            <p class="postCont">
-		              특정 조건을 충족할 경우에만 실행하는 구문이다.if문if~else문if~else if~ else 문switch 문if문은 주어진 조건이 참일 경우에만 코드를 실행한다.사용법예시\>> 0위의 코드에서 만약 num이 0이 아니라면 3번째 줄은 실행 되지 않는다. if문의
+		            	<a href="/edittemporary/{{temporaryId}}"></a>		              
 		            </p>
 		            <section>
 		            	<div class="time">
-		            		2023년 1월 26일
+		            		<p th:text="${board.boardDate}" class="dateP"></p>
 		            	</div>
-		            	<button class="remove">삭제</button>
+		            	<button class="remove" th:onclick="|del('${temporary.temporaryId}')|">삭제</button>
 		            </section>	            
 		                        
 		            <br>
@@ -116,4 +121,7 @@ font-family: 'IBM Plex Sans KR';
         formContainer.appendChild(form);
         autosize(document.querySelector('textarea'));
     });
+    function del(postId){
+    	location.href = '/delPost/'+postId;
+    }
 </script>

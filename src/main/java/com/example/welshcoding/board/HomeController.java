@@ -1,4 +1,4 @@
-package com.example.welshcoding.board;
+ package com.example.welshcoding.board;
 
 import javax.servlet.http.HttpSession;
 
