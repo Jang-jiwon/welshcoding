@@ -28,9 +28,11 @@ font-family: 'IBM Plex Sans KR';
 				</div>	
 				
 		        <div class="postArea" >
-		        	<h1  class="postH1">
-		        		<div id="title" class="title" th:text="${temporary.temporaryTitle}"></div>
-		        	</h1>  		
+		       
+		        	
+	        		<div th:text="${temporary.temporaryTitle}">
+	        			<h1  class="postH1" th:text="${temporary.temporaryTitle}"></h1>  		
+	        		</div>
 	        		
 		        	
 		            <p class="postCont">
