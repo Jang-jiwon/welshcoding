@@ -27,8 +27,8 @@
 
       <!-- default 값 -->
       <div class="defaultInfo" id="defInfo">
-        <h2 class="vUsername" th:text="${member.userName}"></h2>
-        <p class="vUserBio" th:text="${member.userBio}"></p>
+        <h2 class="vUsername" th:text="${member.userName != null && member.userName != '' ? member.userName : '입력된 이름이 없습니다.'}"></h2>
+        <p class="vUserBio" th:text="${member.userBio != null && member.userBio != '' ? member.userBio : '입력된 한 줄 소개가 없습니다.'}"></p>
         <button class="edit-button" id="editButton_Mp">수정</button>
       </div>
 
@@ -98,24 +98,24 @@
             <div class="contents">
               <ul class="social-info-textlist">
                 <li>
-                  <img class="icons" src="img/email-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="email">
-                  <div id="snsEmail" th:text="${member.userEmail}" > </div>
+                  <img class="icons" src="/setPage/img/email-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="email">
+                  <div id="snsEmail" th:text="${member.userEmail != null && member.userEmail != '' ? member.userEmail : '입력된 이메일이 없습니다.'}"></div>
                 </li>
                 <li>
-                  <img class="icons" src="img/github-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="github">
-                  <div id="snsGithub" th:text="${sns.userGithub}" > </div>
+                  <img class="icons" src="/setPage/img/github-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="github">
+                  <div id="snsGithub" th:text="${sns.userGithub != null && sns.userGithub != '' ? sns.userGithub : '입력된 Github 링크가 없습니다.'}"></div>
                 </li>
                 <li>
-                  <img class="icons" src="img/twitter-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
-                  <div id="snsTwitter" th:text="${sns.userTwitter}" > </div>
+                  <img class="icons" src="/setPage/img/twitter-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
+                  <div id="snsTwitter" th:text="${sns.userTwitter != null && sns.userTwitter != '' ? sns.userTwitter : '입력된 Twitter 링크가 없습니다.'}"></div>
                 </li>
                 <li>
-                  <img class="icons" src="img/facebook-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
-                  <div id="snsFacebook" th:text="${sns.userFacebook}" > </div>
+                  <img class="icons" src="/setPage/img/facebook-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
+                  <div id="snsFacebook" th:text="${sns.userFacebook != null && sns.userFacebook != '' ? sns.userFacebook : '입력된 Facebook 링크가 없습니다.'}"></div>
                 </li>
                 <li>
-                  <img class="icons" src="img/home-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
-                  <div id="snsHome" th:text="${sns.userHomepage}" > </div>
+                  <img class="icons" src="/setPage/img/home-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
+                  <div id="snsHome" th:text="${sns.userHomepage != null && sns.userHomepage != '' ? sns.userHomepage : '입력된 개인 홈페이지 링크가 없습니다.'}"></div>
                 </li>
               </ul>
             </div>
@@ -130,28 +130,28 @@
                   th:action="@{/members/setPage/{memberId}/edit3(memberId=${member.memberId})}">
                 <ul class="sns_textSet">
                     <li class="snsBox">
-                      <img class="icons" src="img/email-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="email">
-                      <input name="userEmail" class="snsButton sns_editBox"
-                              id="snsEmail_e"
-                              placeholder="이메일을 입력하세요." 
-                              value="" th:value="${member.userEmail}">
+                      <img class="icons" src="/setPage/img/email-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="email">
+                      <input name="userEmail" class="snsButton sns_editBox" id="snsEmail_e"
+                             placeholder="이메일을 입력하세요."
+                             value="" th:value="${member.userEmail}">
+
                     </li>
                     <li class="snsBox">
-                      <img class="icons" src="img/github-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="Github">
+                      <img class="icons" src="/setPage/img/github-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="Github">
                       <input name="userGithub" class="snsButton sns_editBox"
                               id="snsGithub_e"
                               placeholder="Github 계정을 입력하세요." 
                               value="" th:value="${sns.userGithub}">
                     </li>
                     <li class="snsBox">
-                      <img class="icons" src="img/twitter-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="twitter">
+                      <img class="icons" src="/setPage/img/twitter-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="twitter">
                       <input name="userTwitter" class="snsButton sns_editBox"
                             id="snsTwitter_e"
                             placeholder="Twitter 계정을 입력하세요." 
                             value="" th:value="${sns.userTwitter}">
                     </li>
                     <li class="snsBox">
-                      <img class="icons" src="img/facebook-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="facebook">
+                      <img class="icons" src="/setPage/img/facebook-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="facebook">
                         <div tabindex="0" class="facebookBox">
                           <span>https://www.facebook.com/</span>
                           <input name="userFacebook" value="" id="snsFacebook_e"
@@ -159,7 +159,7 @@
                         </div>
                     </li>
                     <li class="snsBox">
-                      <img class="icons" src="img/home-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
+                      <img class="icons" src="/setPage/img/home-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
                       <input name="userHomepage" class="snsButton sns_editBox"
                             id="snsHome_e"
                             placeholder="홈페이지 주소를 입력하세요." 

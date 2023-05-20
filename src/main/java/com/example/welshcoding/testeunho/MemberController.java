@@ -30,7 +30,7 @@ public class MemberController {
     @PostMapping("/setPage/{memberId}/edit")
     @Transactional
     public String editPage(@PathVariable("memberId") Long memberId
-            , @ModelAttribute EditFormDTO form
+            , @ModelAttribute MemberDTO form
             , Model model) {
 
         memberService.editMemberById(memberId, form);
@@ -49,15 +49,17 @@ public class MemberController {
         return "redirect:/members/setPage/" + memberId;
     }
 
+
     @PostMapping("/setPage/{memberId}/edit3")
     @Transactional
     public String editPage3(@PathVariable("memberId") Long memberId
-            , @ModelAttribute EditSnsDTO editSnsDTO) {
+            , @ModelAttribute MemberDTO editSnsDTO) {
 
         memberService.edit3MemberById(memberId, editSnsDTO);
 
         return "redirect:/members/setPage/" + memberId;
 
+        // 처음 시도했던 방법 (1차시도)
 //    @PostMapping("/setPage/{memberId}/edit3")
 //    @Transactional
 //    public String editPage3(@PathVariable("memberId") Long memberId
