@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<!--    autosize라이브러리추가-->
+    <!--    autosize라이브러리추가-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href = "/introduce/style.css">
@@ -15,56 +15,36 @@
 </head>
 
 <body>
-    <div class="introback">
-        <div class="text-center" style="text-align: center; width: 100%;">
-            <h1>소개</h1>
-            <img id="anyimg" src="/introduce/imgs/yeondu.jpg" alt="anyimg" class="yeondu_img mx-auto"
-                 style="width: 400px; height: 400px;" th:if="${introduce == null}">
+<div class="introback" th:fragment="intro">
+    <div class="text-center" style="text-align: center; width: 100%;">
+        <div id="form-container0" th:if="${introduce == null}" >
+            <img id="anyimg" src="/kdy/imgs/noSeires.png" alt="anyimg" class="yeondu_img mx-auto"
+                 style="width: 400px; height: 400px;"/>
             <p id="anytext" class="my-paragraph" style="font-size: 16px;text-align: center;"
-               th:if="${introduce == null}">소개가 작성되지 않았습니다.</p>
-            <button id="btn-show-form" class="btn btn-primary" th:if="${introduce == null}"
+              >소개가 작성되지 않았습니다.</p>
+            <button id="btn-show-form" class="btn btn-primary"
                     onclick="showForm()">글 작성하기</button>
-            <div id="form-container" th:if="${introduce != null}">
-                <form id="introform" th:object="${introduce}" method="POST" action="/introduce/save">
-                    <textarea id="intro" name="content" class="form-control autosize" readonly
-                              th:text="${introduce.content}"></textarea>
-                    <button id="introSaveBtn" class="btn btn-primary" type="button" onclick="editContent()">수정하기</button>
-                </form>
-            </div>
+        </div>
+        <div id="form-container1" th:if="${introduce != null}">
+            <form id="introform1" method="POST" th:action="@{/introduce/{memberId}/editIntro(memberId=${memberId})}">
+                <textarea id="intro1" name="content" class="form-control autosize"
+                          readonly="readonly" th:text="${introduce.content}"></textarea>
+                <button id="introEditBtn1" class="btn btn-primary" type="button" onclick="createSaveForm()">수정하기</button>
+            </form>
+        </div>
+        <div id="form-container2" style="display: none">
+            <form id="introform2" method="POST" th:action="@{/introduce/{memberId}/save(memberId=${memberId})}">
+                <textarea id="intro2" name="content" placeholder="소개를 해주세요" class="form-control autosize"></textarea>
+                <button id="introEditBtn2" class="btn btn-primary" type="submit">저장하기</button>
+            </form>
         </div>
     </div>
+</div>
 
 </body>
 
+
 </html>
 
-<script>
-    function showForm() {
-        const btnShowForm = document.getElementById("btn-show-form");
-        const formContainer = document.getElementById("form-container");
-
-        btnShowForm.style.display = "none";
-        formContainer.innerHTML = `
-            <form id="introform" method="POST" action="/introduce/save">
-                <textarea id="intro" name="content" class="form-control autosize" placeholder="당신은 어떤 사람인가요? 당신에 대해서 알려주세요."></textarea>
-                <button id="introSaveBtn" class="btn btn-primary" type="submit">저장하기</button>
-            </form>
-        `;
-        autosize(document.querySelector('textarea'));
-    }
-
-    function editContent() {
-        const textarea = document.getElementById("intro");
-        const btnSave = document.getElementById("introSaveBtn");
-
-        if (textarea.readOnly) {
-            textarea.readOnly = false;
-            btnSave.textContent = "저장하기";
-        } else {
-            textarea.readOnly = true;
-            btnSave.textContent = "수정하기";
-        }
-    }
-</script>
 
 

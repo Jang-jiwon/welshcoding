@@ -9,7 +9,6 @@
     <!--    autosize라이브러리추가-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href = "/introduce/style.css">
 
 
 </head>
@@ -22,20 +21,26 @@
                  style="width: 400px; height: 400px;"/>
             <p id="anytext" class="my-paragraph" style="font-size: 16px;text-align: center;"
               >소개가 작성되지 않았습니다.</p>
-            <button id="btn-show-form" class="btn btn-primary"
+            <button id="btn-show-form" class="btn btn-primary "
                     onclick="showForm()">글 작성하기</button>
         </div>
         <div id="form-container1" th:if="${introduce != null}">
             <form id="introform1" method="POST" th:action="@{/introduce/{memberId}/editIntro(memberId=${memberId})}">
-                <textarea id="intro1" name="content" class="form-control autosize"
+                <textarea id="intro1" name="content" class="introduce autosize"
                           readonly="readonly" th:text="${introduce.content}"></textarea>
-                <button id="introEditBtn1" class="btn btn-primary" type="button" onclick="createSaveForm()">수정하기</button>
+                <div class="btnDiv">
+                    <button id="introEditBtn1" class="btnSave" type="button" onclick="createSaveForm()">수정하기</button>
+                </div>
             </form>
         </div>
         <div id="form-container2" style="display: none">
             <form id="introform2" method="POST" th:action="@{/introduce/{memberId}/save(memberId=${memberId})}">
-                <textarea id="intro2" name="content" placeholder="소개를 해주세요" class="form-control autosize"></textarea>
-                <button id="introEditBtn2" class="btn btn-primary" type="submit">저장하기</button>
+                <div text>
+                    <textarea id="intro2" name="content" placeholder="소개를 해주세요" class="introduce autosize"></textarea>
+                </div>
+                <div class="btnDiv">
+                <button id="introEditBtn2" class="btnSave" type="submit">저장하기</button>
+                </div>
             </form>
         </div>
     </div>

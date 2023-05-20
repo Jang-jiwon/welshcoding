@@ -120,7 +120,7 @@ li {
   margin: 15px;
 }
 .content-container {
-/*   padding: 10px; */
+  padding: 10px;
   width: 100%;
 /*   background-color: yellow; */
   display: flex;
@@ -233,6 +233,48 @@ h1.postH1{
 	align-content: center;
 }
 
+.btnSave{
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: #96F2D7;
+    color: #121212;
+    border-radius: 4px;
+    padding: 0px 1.125rem;
+    height: 2.5rem;
+    font-size: 1.125rem;
+}
+
+.btnDiv{
+    display: flex;
+    margin-bottom: 1.5rem;
+    -webkit-box-pack: end;
+    justify-content: center;
+}
+.introduce{
+    width: 375px;
+    display: block;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #121212;
+    background-color: #f9f9f9;
+    background-clip: padding-box;
+    border: #12B886 solid 1px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
 #btn-show-form , #introSaveBtn{
 	border: none;
 	background-color: #12b886;
@@ -246,7 +288,7 @@ h1.postH1{
 #introSaveBtn{
 	margin-top: 20px;
 }
-#introform{
+.introform{
     display: grid;
     width: 100%;
     justify-items: center;
