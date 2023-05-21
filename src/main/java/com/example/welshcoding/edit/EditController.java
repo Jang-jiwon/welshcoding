@@ -29,7 +29,7 @@ public class EditController {
 		Random random = new Random();
 		int id = random.nextInt(10000);
 //		return "redirect:/newPost/"+id;
-		session.setAttribute("newPostId", id);
+		session.setAttribute("newTempId", id);
 		return "edit/edit";
 	}
 	

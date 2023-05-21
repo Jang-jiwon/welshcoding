@@ -61,18 +61,19 @@ var n = sessionStorage.getItem("tagNum") || 0;
 var tagList = [];
 
 function add() {
-  var name = prompt("추가할 태그를 입력해주세요");
+	  var name = prompt("추가할 태그를 입력해주세요");
+	  if (name == null || name.trim() === "") {
+	    return;
+	  } else {
+		  if(tagList.includes(name)){return;}
+	    tagList.push(name);
+	    var tb1 = `<button id="tag${n}" value="${name}" style="background-color: #00ff0000; border: none; outline: none;" onclick="del(${n})">${name} ×</button>`;
+	    $("#addedlist").append(tb1);
+	    n++; // n 값을 증가시킴
+	    sessionStorage.setItem("tagNum", n); // 업데이트된 n 값을 sessionStorage에 저장
+	  }
+	}
 
-  if (name == null) {
-    return;
-  } else {
-    tagList.push(name);
-  }
-  var tb1 = `<button id="tag${n}" value="${name}" style="background-color: #00ff0000; border: none; outline: none;" onclick="del(${n})">${name} ×</button>`;
-  $("#addedlist").append(tb1);
-  n++; // n 값을 증가시킴
-  sessionStorage.setItem("tagNum", n); // 업데이트된 n 값을 sessionStorage에 저장
-}
 
 function del(btnid) {
   var tagname = $("#tag" + btnid).val();
@@ -132,7 +133,7 @@ function temporary(){	//태그는 임시저장 안함
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if(xhr.responseText.trim() == "ok"){
-				alert("임시저장됨");
+				alert("임시저장되었습니다.");
 			}else{
 				alert("저장실패 ");
 			}

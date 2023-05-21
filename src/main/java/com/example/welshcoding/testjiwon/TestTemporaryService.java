@@ -39,4 +39,12 @@ public class TestTemporaryService {
 		testTemporaryRepository.deleteTemp(temp);
 	}
 	
+	
+	@Transactional
+	public void updateTemp(Temporary temp) {
+		Temporary oldTemp = testTemporaryRepository.findOne2(temp.getTemporaryId(),temp.getMember().getMemberId());
+		oldTemp.setTemporaryTitle(temp.getTemporaryTitle());
+		oldTemp.setTemporaryDetail(temp.getTemporaryDetail());
+		oldTemp.setTemporaryDate(temp.getTemporaryDate());
+	}
 }

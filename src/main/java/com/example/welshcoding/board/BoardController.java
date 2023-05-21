@@ -193,6 +193,7 @@ public class BoardController {
 		Member member = (Member)session.getAttribute("member");
 //		model.addAttribute("boardId", boardId);
 		Board board = boardService.findOne(boardId,member.getMemberId());
+//		log.info("tagCont : "+board.getTags().get(0).getTagsName());
 		model.addAttribute("changePost", board);
 		return "/boardPost/changePost";
 	}

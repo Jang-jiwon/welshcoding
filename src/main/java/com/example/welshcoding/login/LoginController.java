@@ -21,7 +21,7 @@ public class LoginController {
 	private final LoginService loginService;
 	
 	/*로그인 테스트를 위한 URL */
-	@GetMapping("logintest")
+	@GetMapping("gologin")
 	public String home() {
 		return "login/login";
 	}
@@ -42,7 +42,8 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		session.setAttribute("member", loginMember);
 		
-		return "redirect:/mainBoard/"+loginMember.getMemberId();	
+//		return "redirect:/mainBoard/"+loginMember.getMemberId();	
+		return "redirect:/mainBoard";
 	}
 	
 	/*로그아웃 : redirect 경로 수정 필요 */
@@ -54,6 +55,11 @@ public class LoginController {
 			//session.removeAttribute("member");
 			session.invalidate();
 		}
-		return "redirect:/logintest";
+		return "redirect:/";
+	}
+	
+	@GetMapping("signup")
+	public String signup() {
+		return "signup/signup";
 	}
 }

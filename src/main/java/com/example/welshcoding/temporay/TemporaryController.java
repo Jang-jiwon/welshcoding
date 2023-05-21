@@ -77,7 +77,7 @@ public class TemporaryController {
 	public String home(HttpSession session,Model model, @RequestParam("temporaryTitle") String temporaryTitle ,
 			@RequestParam("temporaryDetail") String temporaryDetail) throws IllegalAccessException {
 		log.info("temporaryLog:"+temporaryDetail);
-		int newpostId = (int) session.getAttribute("newPostId");
+		int newpostId = (int) session.getAttribute("newTempId");
 		String result="";
 		try {
 			Temporary temporary = testTemporaryService.findOne(newpostId);
@@ -105,6 +105,33 @@ public class TemporaryController {
 			log.info("개굴스3");
 		}
 		
+		return result;	// home.html 로 찾아간다.
+	}
+	
+	@PostMapping("/goTempEdit/changeTemporary")
+	@ResponseBody
+	public String changeTemporary(HttpSession session,Model model, @RequestParam("temporaryTitle") String temporaryTitle ,
+			@RequestParam("temporaryId") long temporaryId ,
+			@RequestParam("temporaryDetail") String temporaryDetail) {
+		log.info("interJIWON18");
+		String result="";
+		try {
+			Member member = (Member)session.getAttribute("member");
+			LocalDateTime localDateTime = LocalDateTime.now();
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	        String formattedDateTime = localDateTime.format(formatter);
+			Temporary temp = new Temporary();
+			temp.setTemporaryId(temporaryId);
+			temp.setTemporaryDetail(temporaryDetail);
+			temp.setTemporaryTitle(temporaryTitle);
+			temp.setMember(member);
+			temp.setTemporaryDate(formattedDateTime);
+			testTemporaryService.updateTemp(temp);
+			result = "ok";
+		} catch (Exception e) {
+			log.info("interJIWON181818");
+			e.printStackTrace();
+		}
 		return result;	// home.html 로 찾아간다.
 	}
 	

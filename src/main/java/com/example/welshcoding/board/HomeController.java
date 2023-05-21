@@ -24,7 +24,7 @@ public class HomeController {
 
 	private final TestMemberService testMemberService;
 	
-	@RequestMapping("login")
+//	@RequestMapping("login")
 	public String home( HttpSession session) throws IllegalAccessException {
 		Member member = new Member();
 		member.setUserEmail("test");
