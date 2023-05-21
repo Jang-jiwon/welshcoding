@@ -60,6 +60,6 @@ public class LoginController {
 	
 	@GetMapping("signup")
 	public String signup() {
-		return "signup/signup";
+		return "signup/register";
 	}
 }

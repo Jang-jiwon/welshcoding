@@ -2,14 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href = "/signup/style.css">
+<!--     <link rel="stylesheet" type="text/css" href = "/signup/style.css"> -->
+     <link th:href="@{/css/signstyle.css}" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
 
 <div class="main_header" >
   <div class="header_left" >
-    <a class ="leftA" href="/body1/body.html">
+    <a class ="leftA" href="gologin">
       <div class="header_left_icon">
         <img class="icon_black" src="/header/imgs/icon_black.png">
       </div>
@@ -21,39 +22,107 @@
 
   </div>
 </div>
+<br><br>
 <div class="loginbody">
-  <div class="loginArea">
-    <form action="#" >
-      <div style="height: 100%;">
-        <div style="height: 25%;display: flex; align-items: flex-end; justify-content: center;">
+    <form action="/goSignup"  id="joinForm" method="POST" >
+        <div style="height: 18%;display: flex; align-items: center; justify-content: center;">
           <p style="margin: 0px; font-weight: bold; font-size: 50px; font-family: 'Dosis' !important;">WelshCoding</p>
         </div>
-        <div style="height: 75%; display: flex;align-items: center;">
-          <div>
-            <div class="aa1818" >
-              <div style="width: 100%; align-items: center;  height: 80%;">
-                <input type="text" class="inputArea" placeholder="아이디">
-                <button class="DoubleChkBtn" type="button">중복확인</button>
-                <input type="text" class="inputArea" placeholder="이름">
-                <input type="text" class="inputArea" placeholder="비밀번호">
-                <input type="text" class="inputArea" placeholder="비밀번호 확인">
-              </div>
-            </div>
-            <hr style="opacity: 0.5;">
-            <div style="display: flex; justify-content: center; margin-top: 25px;">
+        <div style="height: 82%; display: flex;align-items: center;justify-content: center;">
+          <div style="height: 100%; width: 50%;">
+            <div style="width: 100%; align-items: center;  height: 75%; display: flex; justify-content: center;">
+	            <div style="width: 100%;">
+		            <div style="width: 100%;   align-items:center; display: flex;    justify-content: space-between;">
+			            <input type="text" class="inputArea" placeholder="아이디" id="userEmail" name ="userEmail">
+		                <button class="DoubleChkBtn" type="button" onclick="checkId(joinForm.userEmail.value)">중복확인</button><br>
+	                </div>
+	            	<input type="text" class="inputArea" placeholder="이름" id="userName" name ="userName"><br>
+	                <input type="text" class="inputArea" placeholder="비밀번호" id="userPw" name ="userPw"><br>
+	                <input type="text" class="inputArea" placeholder="비밀번호 확인" id="userPw_re" name ="userPw_re"><br>
+	            </div>
+             </div>
+            <div style="display: flex; justify-content: center; margin-top: 25px; align-items:center;">
               <p>계정이 이미있으신가요?</p>
-              <button class="loginBtn" onclick="location.href='/login/login.html'" type="button" >로그인</button>
-              <button class="CreateUserBtn"  type="button">회원가입</button>
+              <button class="loginBtn" onclick="location.href='gologin'" type="button" >로그인</button>
+              <button class="CreateUserBtn"  type="button" onclick="check()">회원가입</button>
             </div>
           </div>
         </div>
-      </div>
     </form>
-
-
-  </div>
 </div>
+<script>
+var ck = "not";
+function checkId(email){
+	 var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	
+	if(email === "" || email.trim() === ""){
+		alert("이메일을 입력해주세요.");
+	    return;
+	}
+	// 이메일 형식 검사
+	  if (!emailRegex.test(email)) {
+	    alert("올바른 이메일 형식을 입력해주세요.");
+	    return;
+	  }
+// 	alert(id);
+	//ajax통신
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "dubcheck", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
+	var formData = "email=" + encodeURIComponent(email);
+	xhr.send(formData);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4){
+			if(xhr.responseText.trim() == "ok"){
+				alert("사용 가능한 아이디 입니다");
+				ck="ok";
+			}else{
+				alert("이미 사용중인 아이디 입니다.");
+				ck="not";
+			}
+			
+		}
+	}
+}
+
+function check() {
+	  var form = document.getElementById("joinForm");
+
+	  // 입력값 가져오기
+	  var userEmail = form.userEmail.value;
+	  var userName = form.userName.value;
+	  var userPw = form.userPw.value;
+	  var userPw_re = form.userPw_re.value;
+
+	  // 입력값이 비어있는지 확인
+	  if (
+	    userPw === "" ||
+	    userPw_re === "" ||
+	    userName === ""
+	  ) {
+	    alert("입력값을 모두 입력해주세요.");
+	    return;
+	  }
+
+	  
+	  if(ck == "not"){
+		alert("이메일 증복확인을 해주세요.");
+		return; 				  
+	  }
+
+	  // 비밀번호 길이 및 일치 여부 검사
+	  if (userPw.length < 4 || userPw.length > 20 || userPw !== userPw_re) {
+	    alert("비밀번호는 4자 이상 20자 이하이며, 일치해야 합니다.");
+	    return;
+	  }
+
+	  // 모든 조건을 통과한 경우 폼 제출
+	  form.submit();
+	}
+
+
+</script>
 <!--     <input type="text" placeholder="검색어를 입력하세요." style="border: none; outline: none; width: 80%; text-align: center; margin: 1px;"> -->
 
 </body>

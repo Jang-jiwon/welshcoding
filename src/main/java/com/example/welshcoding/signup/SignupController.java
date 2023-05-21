@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.welshcoding.domain.Member;
+import com.example.welshcoding.domain.Sns;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,30 +22,22 @@ public class SignupController {
 	@PostMapping("/goSignup")
 	public String signup(@RequestParam("userEmail") String userEmail,
 			@RequestParam("userPw") String userPw,
-			@RequestParam("userName") String userName,
-			@RequestParam("userBirthyy") String userBirthyy,
-			@RequestParam("userBirthmm") String userBirthmm,
-			@RequestParam("userBirthdd") String userBirthdd,
-			@RequestParam("gender") String gender,
-			@RequestParam("userphone") String userphone
+			@RequestParam("userName") String userName
 			) {
 	    log.info("userEmail : " + userEmail);
 	    log.info("userPw : " + userPw);
 	    log.info("userName : " + userName);
-	    log.info("userBirth : " + userBirthyy+"-"+ userBirthmm+"-"+ userBirthdd);
-	    log.info("gender : " + gender);
-	    log.info("userphone : " + userphone);
-	    
-	    String birth = userBirthyy+"-"+ userBirthmm+"-"+ userBirthdd;
 	    
 	    Member member = new Member();
 	    member.setUserEmail(userEmail);
 	    member.setUserPwd(userPw);
 	    member.setUserName(userName);
-	    member.setUserBirth(birth);
-	    member.setUserGender(gender);
-	    member.setUserPhone(userphone);
-	    
+	    Sns sns = new Sns();
+	    sns.setUserFacebook(" ");
+	    sns.setUserGithub(" ");
+	    sns.setUserHomepage(" ");
+	    sns.setUserTwitter(" ");
+	    member.setSns(sns);
 	    
 	    signupService.join(member);
 	    
