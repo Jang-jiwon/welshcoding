@@ -33,17 +33,17 @@ public class SignupController {
 	    member.setUserPwd(userPw);
 	    member.setUserName(userName);
 	    Sns sns = new Sns();
-	    sns.setUserFacebook("");
-	    sns.setUserGithub("");
-	    sns.setUserHomepage("");
-	    sns.setUserTwitter("");
+	    sns.setUserFacebook(" ");
+	    sns.setUserGithub(" ");
+	    sns.setUserHomepage(" ");
+	    sns.setUserTwitter(" ");
 	    member.setSns(sns);
-	    member.setVelogPageName(userName);
-	    member.setUserBio("");
-	    member.setProfileImg("");
-	    member.setUserBirth("");
-	    member.setUserGender("");
-	    member.setUserPhone("");
+//	    member.setVelogPageName(userName);
+//	    member.setUserBio("");
+//	    member.setProfileImg("");
+//	    member.setUserBirth("");
+//	    member.setUserGender("");
+//	    member.setUserPhone("");
 	    
 	    
 	    
