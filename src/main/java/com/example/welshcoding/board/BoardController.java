@@ -156,6 +156,8 @@ public class BoardController {
 		
 		model.addAttribute("boards", boards);
 		model.addAttribute("alltags", result);
+		
+		
 		return "mainbody/body";
 	}
 	

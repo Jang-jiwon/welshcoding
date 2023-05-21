@@ -3,6 +3,9 @@ package com.example.welshcoding.testeunho;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.Sns;
 import lombok.RequiredArgsConstructor;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,10 +19,12 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/setPage/{memberId}")
-    public String setPage(@PathVariable("memberId") Long memberId, Model model) {
+    @GetMapping("/setPage")
+    public String setPage(Model model,HttpSession session) {
         // memberId를 사용하여 회원 정보를 조회하고 모델에 추가하는 로직을 작성하세요.
-        Member member = memberService.getMemberById(memberId);
+    	Member member = (Member)session.getAttribute("member");
+    	long memberId = member.getMemberId();
+        member = memberService.getMemberById(memberId);
         Sns sns = memberService.getMemberById(memberId).getSns();
         model.addAttribute("member", member);
         model.addAttribute("sns", sns);
