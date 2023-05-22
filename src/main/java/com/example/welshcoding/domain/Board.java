@@ -36,6 +36,8 @@ public class Board {
 	@Lob
 	private String boardCont;
 	private String boardLike;
+	
+	@Lob
 	private String thumbnailPath;
 	private String boardIntro;
 	

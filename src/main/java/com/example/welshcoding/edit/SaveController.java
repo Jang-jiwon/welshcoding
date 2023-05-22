@@ -103,7 +103,8 @@ public class SaveController {
 	
 	@PostMapping("/save-data")
 	public String saveData(@RequestParam("gridData") String gridData  ,@RequestParam("gridtitle") String gridtitle,
-			@RequestParam("tag") String tagList ,@RequestParam("selSeries") String selSeries ,HttpSession session) throws IllegalAccessException {
+			@RequestParam("tag") String tagList ,@RequestParam("thumPath") String thumPath ,
+			@RequestParam("selSeries") String selSeries ,HttpSession session) throws IllegalAccessException {
 		// 현재 로컬 시간 받기
         LocalDateTime localDateTime = LocalDateTime.now();
 		// 원하는 형식으로 시간 표시
@@ -124,7 +125,7 @@ public class SaveController {
 		board.setBoardLike("3");
 		board.setBoardTag(tagList);
 		board.setSeries(new Series());
-		board.setThumbnailPath("test");
+		board.setThumbnailPath(thumPath);
 		board.setMember(member);
 		
 		if((!selSeries.isEmpty()) && (selSeries != null) ) {

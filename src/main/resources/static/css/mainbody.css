@@ -187,6 +187,7 @@ div.searchArea{
 	width: 100%; 
 	display: flex; 
 	justify-content: flex-end;
+	margin-bottom: 40px;
 }
 
 fieldset.search{

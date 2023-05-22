@@ -159,6 +159,9 @@ public class BoardController {
 		
 		Member member = (Member)session.getAttribute("member");
 		Board board = boardService.findOne(postId,member.getMemberId());
+		
+		Member recentMember = memberService.findOne(member.getMemberId());
+        model.addAttribute("recentMember", recentMember);
 		model.addAttribute("board", board);
 		return "boardPost/post";
 	}
@@ -200,8 +203,6 @@ public class BoardController {
 //		log.info("내용 : "+imgsrc);
 		Member recentMember = memberService.findOne(member.getMemberId());
 		testMemberService.updateSrc(imgsrc,recentMember.getMemberId());
-		
-		
 		return re;
 	}
 	
@@ -222,6 +223,9 @@ public class BoardController {
 		
 		return re;
 	}
+	
+	
+	
 	
 	public static String removeSpecialCharacters(String input) {
         // 특수문자 제외한 문자열을 저장할 StringBuilder 생성

@@ -90,6 +90,12 @@ https://developeryoung.tistory.com/39 -->
 	        
 	        <!-- 게시물 목록 -->
 	        <div th:each="board: ${boards}" class="postArea" th:id="'boardId'+${board.boardId}" >
+	        <br><br>
+<!-- 	        	<div style="width: 100%;display: flex;align-items: center;justify-content: center;"> -->
+<!-- 	            	<img alt="" th:src="@{${board.thumbnailPath}}" -->
+<!-- 					     th:if="${board.thumbnailPath != null}" -->
+<!-- 					     style="width: 500px; height: 200px;"> -->
+<!-- 	            </div> -->
 	        	<h1 th:text="${board.boardTitle}" class="postH1" th:onclick="|myFunction('${board.boardId}')|"></h1>
 	            <p class="postCont" th:text="${board.boardIntro}">
 	              

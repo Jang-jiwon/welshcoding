@@ -9,25 +9,7 @@
 <body>
 	<div class="backgrd" >
 		<div class="subback">
-			<div class="leftbody">
-				<p ><strong>포스트 미리보기</strong></p>
-				<div class="inputImg">
-					<div class="subinputImg">
-						<div class="a18">
-							<div class="imgIconArea" >
-								<img src="/editPost/imgs/imgIcon.png" class="imgIcon">
-							</div>
-							<button class="upBtn"><strong>썸네일 업로드</strong></button>
-						</div>
-						
-					</div>
-				</div>
-				<div class="inputArea" >
-					<textarea class="introduction"  placeholder="소개 입력"></textarea>
-				</div>
-				
-			</div>
-			<div class='v-line'></div>
+
 			<div class="rightbody">
 <!-- 				<div class="rightsub" style="    height: 100%;"> -->
 				<div class="rightsub" >
@@ -45,61 +27,39 @@
 			</div>
 		</div>
 	</div>
-</form>
 
 </body>
 <script th:inline="javascript">
-
+var thumSrc = "";///editPost/imgs/imgIcon.png
+function thumImgPath() {
+	  const input = document.getElementById('thumImg');
+	  const preview = document.getElementById('imgIcon');
+		
+	  // 파일이 선택되었을 때만 실행
+	  if (input.files && input.files[0]) {
+	    const reader = new FileReader();
+//		alert();
+//console.log(preview.src);
+	    reader.onload = function (e) {
+	      preview.src = e.target.result;
+//	      이미지 업로드시
+			thumSrc =  preview.src;
+// 			console.log(thumSrc);
+// 	      
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  }
+	}
+	
+function delImg(){
+	thumSrc = "";
+	const preview = document.getElementById('imgIcon');
+	preview.src = "/editPost/imgs/imgIcon.png";
+}	
 function showInputSeri() { 
 // 	alert(seriesList[0]);
-	window.open("openSeriesPopup", "a", "width=500, height=400, left=500, top=150");
-	
-	
+	window.open("openSeriesPopup", "a", "width=500, height=400, left=500, top=150");}
 
-// 	var code = `<input type="text" id="inpputSeries" class="inpputSeries" onkeypress="handleKeyPress(event)" placeholder="추가하고 싶은 시리즈를 입력해주세요"
-// 				style="width: 75%;     height: 15%; outline: none;"/>
-// 				<div style=" width:80%; overflow-y:auto; height: 90%;">
-// 					<ul class="seriesUl" id="seriesUl" style=" width:100%;  display: contents; "></ul>
-// 				</div>`;
-// 	$("#seriesInputlist").append(code);
-	
-		
-// 		var code = `
-// 			<div id="seriesInputlist" class="seriesInputlist" style="height: 40%;">
-// 		    <li class="savedSeriesLi" th:each="series : ${seriesList}" style="list-style:none; display: grid; display: none;">
-// 		        <button style="font-size: 15px; margin: 10px 0px 0px 0px; padding: 5px; border: none; border-radius: 5px; background-color: #12b886; color: white;"
-// 		                onclick="addSeriesList(${series.seriesId})" id="selSeriBtn${series.seriesId}">${series.seriesName}
-// 		        </button>
-// 		    </li>
-// 		</div>
-// 		`;
-// 		$("#seriesUl").append(code);
-
-}
-
-// var seriList = [];
-// var snum = sessionStorage.getItem("seriesNum") || 0;
-// function handleKeyPress(event) {
-//    if (event.keyCode === 13) { // 13은 엔터 키의 keyCode입니다.
-// 		var input = document.getElementById("inpputSeries");
-// 		if(input.value!=""){
-// 			if(!seriList.includes(input.value)){
-// 				addSeriesList(input.value);
-// 			}
-// 		}
-// 		input.value = ""; 
-//    }
-//  }
-
-// function addSeriesList(series){
-// 	 seriList.push(series);
-// 	 var mycss=` font-size: 15px; margin: 10px 0px 0px 0px; padding: 5px; border: none; border-radius: 5px; background-color: #12b886; color: white;`;
-// 	 var tb1 = `<li class="seriesLi" style="list-style:none; display: grid;" ><button id="selSeriBtn${snum}" style="${mycss}" onclick="addSeri(${snum})">${series}</button></li>`;
-// 	  $("#seriesUl").append(tb1);
-// 	  snum++;
-// 	  sessionStorage.setItem("seriesNum",snum);
-	  
-// }
 function addSeri(seriId){
 	 var seri = document.getElementById("selSeriBtn"+seriId.toString());
 	 sessionStorage.setItem("selSeries",seri.innerText);
@@ -130,14 +90,10 @@ function save(){
 		 selSeries = "기본";
 		}
 	
-// 	var sename = sessionStorage.getItem("selSeries");
 	sessionStorage.setItem("selSeries",selSeries);
+	sessionStorage.setItem("thumPath",thumSrc);
 	deleteCookie("selSeries");
 	deleteCookie("isnull");
-// 	var tb1 = `<p style="width:80%;font-size: 20px;">선택된 시리즈 : <strong>${sename}</strong></p>`;
-//   	$("#serieslist").append(tb1);
-	
-// 	alert(sename);
 	location.href='/controller';
 }
 function deleteCookie(name) {

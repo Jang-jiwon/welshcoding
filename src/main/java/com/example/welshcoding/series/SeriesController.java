@@ -84,6 +84,6 @@ public class SeriesController {
 		
 		seriesService.deleteById(seriesId);
 		
-		return "redirect:/mainBoard/" + memberId;
+		return "redirect:/mainBoard";
 	}
 }
