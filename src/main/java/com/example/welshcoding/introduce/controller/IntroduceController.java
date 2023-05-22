@@ -48,7 +48,7 @@ public class IntroduceController {
         // System.out.println("+++++++++++++++++++++++++");
         // System.out.println(content);
 
-        return "redirect:/mainBoard/"+memberId;
+        return "redirect:/mainBoard";
     }
 
     @PostMapping("/introduce/{memberId}/editIntro")
@@ -57,7 +57,7 @@ public class IntroduceController {
 
         introduceService.editIntro(memberId, content);
 
-        return "redirect:/mainBoard/"+memberId;
+        return "redirect:/mainBoard";
     }
 
 }
