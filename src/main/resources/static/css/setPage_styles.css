@@ -1,4 +1,3 @@
-
 /*
 
 READ ME ! ! !
@@ -35,7 +34,7 @@ READ ME ! ! !
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
-}   
+}
 
 @font-face {
     font-family: 'SUITE-Regular';
@@ -46,16 +45,16 @@ READ ME ! ! !
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
 
- /* *********************************************************************** */
+/* *********************************************************************** */
 
 /* ====== 2. MAIN CSS ====== */
 
 /* 헤더 부분 동일하게 만들기 위해 다른 페이지와 margin 동일하게 설정 */
-body{
+body {
     margin: 8px;
 }
 
-.mainframe{
+.mainframe {
     /*margin-top:5rem;*/
     /* margin-left: auto; */
     /* margin-right: auto; */
@@ -66,9 +65,10 @@ body{
     /* font-family: 'Pretendard-Regular'; */
     /* font-family: 'SUITE-Regular'; */
     font-family: 'IBM Plex Sans KR';
- }
+}
+
 /* _ 2-1. COLOR LIST _ */
- :root {
+:root {
     /* 주로 사용하는 색상만 정리해서 분류했습니다 ! */
 
     --border-main: #F1F3F5;
@@ -79,10 +79,10 @@ body{
     --text-des: #868E96;
     --text-h: #212529;
     --main-color: #12B886;
- }
+}
 
- /* _ 2-2. 공통 적용 부분 _ */
- .edit-button{
+/* _ 2-2. 공통 적용 부분 _ */
+.edit-button {
     /* 수정 버튼 UI 통일 */
     outline: none;
     padding: 0px;
@@ -96,7 +96,7 @@ body{
     cursor: pointer;
 }
 
-.save-button{
+.save-button {
     /* 저장 버튼 UI 통일 */
     display: inline-flex;
     -webkit-box-align: center;
@@ -116,11 +116,11 @@ body{
 
 }
 
- /* *********************************************************************** */
+/* *********************************************************************** */
 
 /* ====== 3. 프로필 메인 영역 ====== */
 
-#profile-image{
+#profile-image {
     object-fit: cover;
     width: 8rem;
     height: 8rem;
@@ -140,12 +140,13 @@ body{
     display: flex;
     flex-direction: column;
 }
+
 .thumbnail-area button + button {
     margin-top: 0.5rem;
     margin-left: 0px;
 }
 
-.info-area{
+.info-area {
     flex: 1 1 0%;
     padding-left: 1.5rem;
     border-left: 1px solid var(--border-main);
@@ -153,7 +154,7 @@ body{
 
 /* _ 3-1. 프로필 메인 영역 텍스트 _ */
 
-.info-area h2{
+.info-area h2 {
     font-size: 2.25rem;
     margin: 0px;
     line-height: 1.5;
@@ -161,7 +162,7 @@ body{
     font-weight: bold;
 }
 
-.info-area p{
+.info-area p {
     font-size: 1rem;
     margin-top: 0.25rem;
     margin-bottom: 0.5rem;
@@ -207,7 +208,7 @@ body{
     -webkit-box-pack: center;
     justify-content: center;
     font-weight: bold;
-    cursor: pointer ;
+    cursor: pointer;
     outline: none;
     border: none;
     background: var(--main-color);
@@ -218,7 +219,7 @@ body{
     font-size: 1rem;
 }
 
-#RMB{
+#RMB {
     display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
@@ -242,17 +243,17 @@ body{
 
 /* ----- 4-1. 공통 적용 부분 ------ */
 
-.p_dt{
+.p_dt {
     /* 각 카테고리 별 세로 간격 설정 */
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
-.wrapper{
+.wrapper {
     display: flex;
 }
 
-.title-wrapper{
+.title-wrapper {
     width: 9.5rem;
     flex-shrink: 0;
 }
@@ -272,7 +273,7 @@ body{
 }
 
 
-.pd + .pd{
+.pd + .pd {
     /* 카테고리 별 구분선 */
     border-top: 1px solid var(--border-main);
 }
@@ -285,14 +286,14 @@ body{
     font-size: 0.875rem;
 }
 
-.contents{
-    flex: 1 1 0% ;
+.contents {
+    flex: 1 1 0%;
     font-size: 1rem;
     color: var(--text-main);
     line-height: 1.5;
 }
 
-.Profile-detail h3{
+.Profile-detail h3 {
     line-height: 1.5;
     color: var(--text-h);
     margin: 0px;
@@ -304,7 +305,7 @@ body{
 
 /* ------ 4-2. 벨로그 제목 영역 (velog-titleset) ------ */
 
-.Profile-detail{
+.Profile-detail {
     margin-top: 4rem;
 }
 
@@ -317,7 +318,7 @@ body{
 }
 
 .vName_editForm input {
-    flex: 1 1 0% ;
+    flex: 1 1 0%;
     margin-right: 1rem;
 }
 
@@ -342,7 +343,7 @@ body{
     margin-top: 0.5rem;
 }
 
-.edit_SnsForm{
+.edit_SnsForm {
     width: 25rem;
 }
 
@@ -351,18 +352,20 @@ body{
     padding: 0px;
     margin: 0px;
 }
+
 .edit_SnsForm li + li {
     margin-top: 1rem;
 }
 
-.snsBox{
+.snsBox {
     display: flex;
 }
 
-.icons{
+.icons {
     width: 20px;
     margin-right: 10px;
 }
+
 .sns_editBox {
     display: block;
     border: 1px solid var(--edit-border);
@@ -472,6 +475,7 @@ body{
     -webkit-box-align: center;
     align-items: center;
 }
+
 .rcv-ul li span {
     width: 14rem;
 }
@@ -483,12 +487,12 @@ body{
     display: block;
     position: relative;
     border-radius: 30px;
-    background-color:rgb(134, 142, 150);
+    background-color: rgb(134, 142, 150);
     /* box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%); */
     cursor: pointer;
-  }
-  
-  .toggleSwitch .toggleButton {
+}
+
+.toggleSwitch .toggleButton {
     width: 1.25rem;
     height: 1.25rem;
     position: absolute;
@@ -497,20 +501,20 @@ body{
     transform: translateY(-50%);
     border-radius: 50%;
     background: var(--background);
-  }
-  
-  .toggleSwitch.active {
+}
+
+.toggleSwitch.active {
     background: #20c997;
-  }
-  
-  .toggleSwitch.active .toggleButton {
+}
+
+.toggleSwitch.active .toggleButton {
     left: calc(100% - 50%);
     background: #fff !important;
-  }
-  
-  .toggleSwitch, .toggleButton {
+}
+
+.toggleSwitch, .toggleButton {
     transition: all 0.125s ease-in;
-  }
+}
 
 /* *********************************************************************** */
 
@@ -546,7 +550,7 @@ body{
 
 /* 회원 탈퇴 창을 예쁘게 만들고 싶어서 ㅎㅎ */
 
-.deleteAcFrame{
+.deleteAcFrame {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -575,15 +579,15 @@ body{
     animation: 0.4s ease-in-out 0s 1 normal forwards running cptskd;
 }
 
-.aF_textFrame h3{
-        margin: 0px;
-        font-size: 1.5rem;
-        color: var(--text-h);
-        line-height: 1.5;
-        font-weight: bold;
+.aF_textFrame h3 {
+    margin: 0px;
+    font-size: 1.5rem;
+    color: var(--text-h);
+    line-height: 1.5;
+    font-weight: bold;
 }
 
-.aF_textFrame .message{
+.aF_textFrame .message {
     line-height: 1.5;
     font-size: 1rem;
     color: var(--text-main);
@@ -591,6 +595,7 @@ body{
     margin-bottom: 1rem;
     white-space: pre-wrap;
 }
+
 .aF_textFrame .button-area {
     margin-top: 2rem;
     display: flex;

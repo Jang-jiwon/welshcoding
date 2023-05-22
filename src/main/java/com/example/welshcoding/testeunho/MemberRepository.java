@@ -1,13 +1,14 @@
 package com.example.welshcoding.testeunho;
 
+import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.Sns;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import javax.persistence.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -28,6 +29,10 @@ public class MemberRepository{
         em.remove(member);
     }
 
+    public Member findOne(long id) {
+    	return em.find(Member.class, id);
+    }
+    
 
 //    public Sns findByIdSns(Long memberId) {
 //

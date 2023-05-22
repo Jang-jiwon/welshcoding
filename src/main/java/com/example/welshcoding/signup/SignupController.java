@@ -38,12 +38,14 @@ public class SignupController {
 	    sns.setUserHomepage(" ");
 	    sns.setUserTwitter(" ");
 	    member.setSns(sns);
-//	    member.setVelogPageName(userName);
-//	    member.setUserBio("");
-//	    member.setProfileImg("");
-//	    member.setUserBirth("");
-//	    member.setUserGender("");
-//	    member.setUserPhone("");
+
+	    member.setVelogPageName(userName);
+	    member.setUserBio(" ");
+	    member.setProfileImg(" ");
+	    member.setUserBirth(" ");
+	    member.setUserGender(" ");
+	    member.setUserPhone(" ");
+		member.setTagsString(" ");
 	    
 	    
 	    
