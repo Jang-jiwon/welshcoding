@@ -1,5 +1,6 @@
 package com.example.welshcoding.testeunho;
 
+import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.Sns;
 import lombok.RequiredArgsConstructor;
@@ -134,6 +135,10 @@ public class MemberService {
         sns.setUserFacebook(editSnsDTO.getUserFacebook());
         sns.setUserHomepage(editSnsDTO.getUserHomepage());
     }
+    
+    public Member findOne(long memberId) {
+		return memberRepository.findOne(memberId);
+	}
 
     // SNS 수정 기능 원본 (예외처리 X)
 //    @Transactional

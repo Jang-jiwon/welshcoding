@@ -27,16 +27,27 @@ https://developeryoung.tistory.com/39 -->
         <div class="mainbody">
             <div class="subbody">
                 <div class="mainbody_head">
-                    <img class="mainImg" src="/header/imgs/me_profile.png" >
+                    <img class="mainImg" src="/css/imgs/icon.png" >
                     <div>
-                        <h3>지원</h3>
-                        <p>hello world..</p>
+                        <h3 th:text="${recentMember.userName}" >지원</h3>
+                        <p th:text="${recentMember.userBio}" >hello world..</p>
                     </div>
                 </div>
                 <hr class="hr1">
                 <div class="mainbody_social">
-                    <img class="socialIcon" src="/body1/imgs/githubIcon.png" >
-                    <img class="socialIcon" src="/body1/imgs/emailIcon.png" >
+                	<a href="#"  th:href="@{${recentMember.sns.userGithub}}"  id="github">
+                		<img class="socialIcon" src="/body1/imgs/githubIcon.png" >
+                	</a>
+                	<a href="#" th:href="@{${recentMember.sns.userTwitter}}" id="twitter">
+                		<img class="socialIcon" src="/body1/imgs/twiterIcon.png" >
+                	</a>
+                	<a href="#" th:href="@{${recentMember.sns.userFacebook}}" id="facebook">
+                		<img class="socialIcon" src="/body1/imgs/facebookIcon.png" >
+                	</a>
+                	<a href="#" th:href="@{${recentMember.sns.userHomepage}}" id="homepage">
+                		<img class="socialIcon" src="/body1/imgs/home-icon.png" >
+                	</a>
+<!--                <img class="socialIcon" src="/body1/imgs/emailIcon.png" > -->
                 </div>
             </div>
         </div>
@@ -102,9 +113,27 @@ https://developeryoung.tistory.com/39 -->
       </div>
       <div id="footer" th:replace="fragments/footer :: footer" ></div>
 </body>
-
-</html>
-
+<script th:inline="javascript">
+	var github = document.getElementById("github");
+	var twitter = document.getElementById("twitter");
+	var facebook = document.getElementById("facebook");
+	var homepage = document.getElementById("homepage");
+    var sns = /*[[${recentMember.sns}]]*/ '';
+	console.log(sns.userHomepage);
+	var link = document.getElementById("git");
+	if(sns.userGithub.trim()=="" || sns.userGithub == null || sns.userGithub =="입력된 Github 링크가 없습니다."){
+		github.style.display="none";
+	}
+	if(sns.userTwitter.trim()=="" || sns.userTwitter == null ||sns.userTwitter =="입력된 Twitter 링크가 없습니다."){
+		twitter.style.display="none";
+	}
+	if(sns.userFacebook.trim()=="" || sns.userFacebook == null || sns.userFacebook == "입력된 Facebook 링크가 없습니다." ){
+		facebook.style.display="none";
+	}
+	if(sns.userHomepage.trim()=="" || sns.userHomepage == null ||sns.userHomepage =="입력된 개인 홈페이지 링크가 없습니다."){
+		homepage.style.display="none";
+	}
+</script>
 <script>
 const tagListButtons = document.querySelectorAll('.taglist'); 
 
@@ -275,3 +304,7 @@ function createSaveForm() {
     autosize(document.getElementById('intro1'));
     autosize(document.getElementById('intro2'));
 </script>
+</html>
+
+
+

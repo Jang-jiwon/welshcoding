@@ -116,17 +116,6 @@ public class BoardController {
 			log.info("NewTagService : "+result[j]);
 		}
 		
-//		String taglist = testMemberService.findTags(testmemberid);
-//		if(taglist != null) {
-//			String[] tagsArray = taglist.split(",");
-//			for(int i=0;i<tagsArray.length;i++) {
-//				if(tagsArray[i]!="") {
-//					tags.add(tagsArray[i]);
-//					
-//				}
-//			}
-//		}
-		
 		/********* kdy - series 부분 *********/
 		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(testmemberid);
 		
@@ -150,10 +139,12 @@ public class BoardController {
 		}
 		/*-----------------------------------------------------------*/
 		
+		Member recentMember = memberService.findOne(member.getMemberId());
+		
 		Introduce introduce = introduceService.findById(testmemberid);
 
         model.addAttribute("introduce", introduce);
-		
+        model.addAttribute("recentMember", recentMember);
 		model.addAttribute("boards", boards);
 		model.addAttribute("alltags", result);
 		
