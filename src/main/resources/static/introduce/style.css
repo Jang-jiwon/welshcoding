@@ -234,6 +234,7 @@ h1.postH1{
 }
 
 .btnSave{
+    margin-left: 30%;
     display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
@@ -252,13 +253,15 @@ h1.postH1{
 }
 
 .btnDiv{
+    margin-left: 30%;
     display: flex;
     margin-bottom: 1.5rem;
     -webkit-box-pack: end;
     justify-content: center;
 }
 .introduce{
-    width: 375px;
+    margin-left: 25%;
+    width: 420px;
     display: block;
     padding: .375rem .75rem;
     font-size: 1rem;
