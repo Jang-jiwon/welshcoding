@@ -95,17 +95,35 @@ public class MemberController {
     @Transactional
     public String deleteUser() {
         Member member = (Member) session.getAttribute("member");
-        Long memberId = member.getMemberId();
-        if (memberId == null) {
-            // memberId 값이 세션에 없는 경우, 적절한 처리를 해주세요 (예: 로그인 페이지로 리다이렉트)
+        if (member == null) {
+            // 만약 세션에 "member"가 없다면, 적절한 조치를 취하세요 (예: 로그인 페이지로 리다이렉트)
             return "redirect:/login";
         }
 
+        Long memberId = member.getMemberId();
         memberService.deleteById(memberId);
         session.invalidate();
 
-        return "redirect:/";
+        System.out.println("회원탈퇴");
+
+        return "redirect:/gologin";
     }
+
+//    @GetMapping("/delete")
+//    @Transactional
+//    public String deleteUser() {
+//        Member member = (Member) session.getAttribute("member");
+//        Long memberId = member.getMemberId();
+//        if (memberId == null) {
+//            // memberId 값이 세션에 없는 경우, 적절한 처리를 해주세요 (예: 로그인 페이지로 리다이렉트)
+//            return "redirect:/login";
+//        }
+//
+//        memberService.deleteById(memberId);
+//        session.invalidate();
+//
+//        return "redirect:/";
+//    }
 
 
 
