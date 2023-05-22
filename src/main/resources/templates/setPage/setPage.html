@@ -27,8 +27,8 @@
 
       <!-- default 값 -->
       <div class="defaultInfo" id="defInfo">
-        <h2 class="vUsername" th:text="${member.userName != null && member.userName != '' ? member.userName : '입력된 이름이 없습니다.'}"></h2>
-        <p class="vUserBio" th:text="${member.userBio != null && member.userBio != '' ? member.userBio : '입력된 한 줄 소개가 없습니다.'}"></p>
+        <h2 class="vUsername" th:text="${member.userName != null && member.userName != ' ' ? member.userName : '입력된 이름이 없습니다.'}"></h2>
+        <p class="vUserBio" th:text="${member.userBio != null && member.userBio != ' ' ? member.userBio : '입력된 한 줄 소개가 없습니다.'}"></p>
         <button class="edit-button" id="editButton_Mp">수정</button>
       </div>
 
@@ -102,23 +102,23 @@
               <ul class="social-info-textlist">
                 <li>
                   <img class="icons" src="/setPage/img/email-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="email">
-                  <div id="snsEmail" th:text="${member.userEmail != null && member.userEmail != '' ? member.userEmail : '입력된 이메일이 없습니다.'}"></div>
+                  <div id="snsEmail" th:text="${member.userEmail != null && member.userEmail != ' ' ? member.userEmail : '입력된 이메일이 없습니다.'}"></div>
                 </li>
                 <li>
                   <img class="icons" src="/setPage/img/github-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="github">
-                  <div id="snsGithub" th:text="${sns.userGithub != null && sns.userGithub != '' ? sns.userGithub : '입력된 Github 링크가 없습니다.'}"></div>
+                  <div id="snsGithub" th:text="${sns.userGithub != null && sns.userGithub != ' ' ? sns.userGithub : '입력된 Github 링크가 없습니다.'}"></div>
                 </li>
                 <li>
                   <img class="icons" src="/setPage/img/twitter-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
-                  <div id="snsTwitter" th:text="${sns.userTwitter != null && sns.userTwitter != '' ? sns.userTwitter : '입력된 Twitter 링크가 없습니다.'}"></div>
+                  <div id="snsTwitter" th:text="${sns.userTwitter != null && sns.userTwitter != ' ' ? sns.userTwitter : '입력된 Twitter 링크가 없습니다.'}"></div>
                 </li>
                 <li>
                   <img class="icons" src="/setPage/img/facebook-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
-                  <div id="snsFacebook" th:text="${sns.userFacebook != null && sns.userFacebook != '' ? sns.userFacebook : '입력된 Facebook 링크가 없습니다.'}"></div>
+                  <div id="snsFacebook" th:text="${sns.userFacebook != null && sns.userFacebook != ' ' ? sns.userFacebook : '입력된 Facebook 링크가 없습니다.'}"></div>
                 </li>
                 <li>
                   <img class="icons" src="/setPage/img/home-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="home">
-                  <div id="snsHome" th:text="${sns.userHomepage != null && sns.userHomepage != '' ? sns.userHomepage : '입력된 개인 홈페이지 링크가 없습니다.'}"></div>
+                  <div id="snsHome" th:text="${sns.userHomepage != null && sns.userHomepage != ' ' ? sns.userHomepage : '입력된 개인 홈페이지 링크가 없습니다.'}"></div>
                 </li>
               </ul>
             </div>
