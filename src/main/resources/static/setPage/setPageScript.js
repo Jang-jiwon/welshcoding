@@ -1,6 +1,6 @@
 // th:inline="javascript"
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // DOM 로딩이 완료된 후 실행할 자바스크립트 코드 작성
     // ===================== 프로필 이미지 업로드, 삭제 기능 =====================
     window.addEventListener('DOMContentLoaded', (event) => {
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var vPageNameData = vPageNameT.innerText;
     vPageNameT_e.value = vPageNameData;
 
-    document.querySelector('#save-btn-PageName').addEventListener('click', function(event) {
+    document.querySelector('#save-btn-PageName').addEventListener('click', function (event) {
         event.preventDefault();
 
         var updatePageData = vPageNameT_e.value;
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
     snsFacebook_e.value = snsFacebookData;
     snsHome_e.value = snsHomeData;
 
-    document.querySelector('#save-btn-sns').addEventListener('click', function(event){
+    document.querySelector('#save-btn-sns').addEventListener('click', function (event) {
         event.preventDefault();
 
         var updateEmailData = snsEmail_e.value;
