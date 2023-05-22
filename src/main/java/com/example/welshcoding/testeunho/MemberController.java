@@ -104,7 +104,7 @@ public class MemberController {
         memberService.deleteById(memberId);
         session.invalidate();
 
-        System.out.println("회원탈퇴");
+        System.out.println(" =============   Delete User Confirm. ============= ");
 
         return "redirect:/gologin";
     }
