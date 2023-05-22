@@ -130,6 +130,22 @@ document.addEventListener('DOMContentLoaded', function () {
         var updateFacebookData = snsFacebook_e.value;
         var updateHomeData = snsHome_e.value;
 
+        if (updateEmailData === null || updateEmailData.trim() === '') {
+            updateEmailData = ' ';
+        }
+        if (updateGithubData === null || updateGithubData.trim() === '') {
+            updateGithubData = ' ';
+        }
+        if (updateTwitterData === null || updateTwitterData.trim() === '') {
+            updateTwitterData = ' ';
+        }
+        if (updateFacebookData === null || updateFacebookData.trim() === '') {
+            updateFacebookData = ' ';
+        }
+        if (updateHomeData === null || updateHomeData.trim() === '') {
+            updateHomeData = ' ';
+        }
+
         snsEmail.innerText = updateEmailData;
         snsGithub.innerText = updateGithubData;
         snsTwitter.innerText = updateTwitterData;
@@ -141,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.querySelector('#editForm3').submit();
     });
+
 
     // 회원 탈퇴 경고창 (못 생긴 거)
 
