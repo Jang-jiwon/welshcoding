@@ -23,6 +23,12 @@ public class TestMemberService {
 		return member.getMemberId();
 	}
 	
+	@Transactional
+	public void updateSrc(String imgsrc,long memberId) {
+		Member member = testMemberRepository.findOne(memberId);
+		member.setProfileImg(imgsrc);
+	}
+	
 	public Member findMember() {
 		return testMemberRepository.findMember();
 	}

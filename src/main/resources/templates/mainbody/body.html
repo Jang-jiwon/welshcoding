@@ -27,7 +27,7 @@ https://developeryoung.tistory.com/39 -->
         <div class="mainbody">
             <div class="subbody">
                 <div class="mainbody_head">
-                    <img class="mainImg" src="/css/imgs/icon.png" >
+                    <img class="mainImg" onerror="this.src='/css/imgs/corgi.png'" th:src="@{${recentMember.profileImg}}">
                     <div>
                         <h3 th:text="${recentMember.userName}" >지원</h3>
                         <p th:text="${recentMember.userBio}" >hello world..</p>

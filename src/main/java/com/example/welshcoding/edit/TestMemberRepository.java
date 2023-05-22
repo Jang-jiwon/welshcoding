@@ -3,7 +3,7 @@ package com.example.welshcoding.edit;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
+import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.welshcoding.domain.Board;
@@ -20,6 +20,7 @@ public class TestMemberRepository {
 	public void save(Member member) {
 		em.persist(member);
 	}
+	
 	
 	public Member findMember() {
 		

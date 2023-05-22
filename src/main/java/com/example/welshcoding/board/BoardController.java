@@ -185,10 +185,42 @@ public class BoardController {
 	public String changePost(@PathVariable Long boardId,Model model ,HttpSession session) {
 		Member member = (Member)session.getAttribute("member");
 //		model.addAttribute("boardId", boardId);
-		Board board = boardService.findOne(boardId,member.getMemberId());
+		Board board = boardService.findOne((Long)boardId,member.getMemberId());
 //		log.info("tagCont : "+board.getTags().get(0).getTagsName());
 		model.addAttribute("changePost", board);
 		return "/boardPost/changePost";
+	}
+	
+	
+	@PostMapping("profile")
+	@ResponseBody
+	public String imgsrc(@RequestParam("imgsrc") String imgsrc,HttpSession session) {
+		String re = "";
+		Member member = (Member)session.getAttribute("member");
+//		log.info("내용 : "+imgsrc);
+		Member recentMember = memberService.findOne(member.getMemberId());
+		testMemberService.updateSrc(imgsrc,recentMember.getMemberId());
+		
+		
+		return re;
+	}
+	
+	@PostMapping("delProfile")
+	@ResponseBody
+	public String delProfile(@RequestParam("imgsrc") String imgsrc,HttpSession session) {
+		String re = "";
+		Member member = (Member)session.getAttribute("member");
+//		log.info("내용 : "+imgsrc);
+		Member recentMember = memberService.findOne(member.getMemberId());
+		try {
+			testMemberService.updateSrc(" ",recentMember.getMemberId());
+			re="ok";
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return re;
 	}
 	
 	public static String removeSpecialCharacters(String input) {

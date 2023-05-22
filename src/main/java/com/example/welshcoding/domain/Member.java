@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -30,6 +31,7 @@ public class Member {
 	private String velogPageName;
 	private String userName;
 	private String userBio;
+	@Lob
 	private String profileImg;
 	private String userBirth;
 	private String userGender;

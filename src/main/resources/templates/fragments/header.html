@@ -26,7 +26,7 @@
                 <!-- <p>dd</p> -->
                 <div class="dropdown">
                     <button class="dropbtn"> 
-                      <img class="header_right_icon" src="/css/imgs/icon.png" >
+                      <img class="header_right_icon" src="/css/imgs/icon.png" onerror="this.src='/css/imgs/corgi.png'" th:src="@{${recentMember.profileImg}}" >
                       <p class="dropbtnArrow" >▼</p>
                     </button>
                     <div class="dropdown-content">
@@ -43,7 +43,7 @@
             </div>
             <div class="header_search"  id="header_search"><!--style="background-color: blueviolet;"-->
                 <!-- <p>dd</p> -->
-                <a class="searchA" href="/search/search.html"><img class="header_right_searchIcon"  src="/header/imgs/search.png" ></a>
+<!--                 <a class="searchA" href="/search/search.html"><img class="header_right_searchIcon"  src="/header/imgs/search.png" ></a> -->
                 
             </div>
             <div class="header_light" ><!--style="background-color: cadetblue;"-->

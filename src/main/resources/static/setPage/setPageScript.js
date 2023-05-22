@@ -8,23 +8,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const removeButton = document.getElementById('RMB');
         const profileImage = document.getElementById('profile-image');
 
-        uploadButton.addEventListener('click', () => {
-            // 이미지 업로드 버튼 클릭 시, 파일을 선택 창 띄우기
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-            input.addEventListener('change', (event) => {
-                const file = event.target.files[0];
-                const reader = new FileReader();
-
-                reader.addEventListener('load', (event) => {
-                    // 업로드된 파일로 프로필 이미지 소스를 업데이트
-                    profileImage.src = event.target.result;
-                });
-                reader.readAsDataURL(file);
-            });
-            input.click();
-        });
+//        uploadButton.addEventListener('click', () => {
+//            // 이미지 업로드 버튼 클릭 시, 파일을 선택 창 띄우기
+//            const input = document.createElement('input');
+//            input.type = 'file';
+//            input.accept = 'image/*';
+//            input.addEventListener('change', (event) => {
+//                const file = event.target.files[0];
+//                const reader = new FileReader();
+//
+//                reader.addEventListener('load', (event) => {
+//                    // 업로드된 파일로 프로필 이미지 소스를 업데이트
+//                    profileImage.src = event.target.result;
+//                });
+//                reader.readAsDataURL(file);
+//            });
+//            input.click();
+//        });
 
         removeButton.addEventListener('click', () => {
             // 이미지 제거 버튼 클릭 시, 업로드 된 소스 삭제 (디폴트 이미지 설정해둠)

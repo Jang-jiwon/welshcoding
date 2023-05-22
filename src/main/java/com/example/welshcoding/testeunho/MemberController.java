@@ -40,6 +40,7 @@ public class MemberController {
         long memberId = member.getMemberId();
         member = memberService.getMemberById(memberId);
         Sns sns = memberService.getMemberById(memberId).getSns();
+        model.addAttribute("recentMember", member);
         model.addAttribute("member", member);
         model.addAttribute("sns", sns);
 

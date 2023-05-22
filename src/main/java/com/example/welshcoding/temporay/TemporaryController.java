@@ -41,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class TemporaryController {
 	private final TestTemporaryService testTemporaryService;
-	
+	private final MemberService memberService;
 	@GetMapping("goTempForm")
 	public String goForm(Model model) {
 		return "/edit/tempController";
@@ -66,6 +66,8 @@ public class TemporaryController {
 			cont =removeSpecialCharacters(cont);
 			temps.get(i).setTemporaryDetail(cont);
 		}
+		member = memberService.getMemberById(member.getMemberId());
+		model.addAttribute("recentMember", member);
 		model.addAttribute("temps", temps);
 		return "/temporary/temporary";
 	}

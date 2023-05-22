@@ -200,9 +200,25 @@ body {
 }
 
 /* _ 3-2. 프로필 메인 영역 버튼 _ */
-
-#UPB {
-    display: inline-flex;
+.btn-upload{
+	display : flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: var(--main-color);
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+#UPB ,#UPB2 {
+    display: none;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
@@ -219,7 +235,7 @@ body {
     font-size: 1rem;
 }
 
-#RMB {
+#RMB,#RMB2 {
     display: inline-flex;
     -webkit-box-align: center;
     align-items: center;
