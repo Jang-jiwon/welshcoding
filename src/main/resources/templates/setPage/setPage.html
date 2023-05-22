@@ -36,7 +36,8 @@
       <div id="defInfo_editForm" style="display : none;">
         <form class="edit_mainForm" method="post"
               id="editForm"
-              th:action="@{/members/setPage/{memberId}/edit(memberId=${member.memberId})}">
+              th:action="@{/members/setPage/edit(memberId=__${session.memberId}__)}">
+<!--          th:action="@{/members/setPage/{memberId}/edit(memberId=${member.memberId})}">-->
           <input placeholder="이름" class="textArea vName_e" name="userName"
                  value="" th:value="${member.userName}">
           <input placeholder="한 줄 소개" class="textArea vBio_e" name="userBio"
@@ -73,7 +74,9 @@
          
           <!-- 숨겨진 항목 (수정 버튼 클릭시 나오는 영역) -->
           <div class="contents" id="vPageName_editForm" style="display: none;">
-            <form class="vName_editForm" id="editForm2" method="post" th:action="@{/members/setPage/{memberId}/edit2(memberId=${member.memberId})}">
+            <form class="vName_editForm" id="editForm2" method="post"
+                  th:action="@{/members/setPage/edit2(memberId=__${session.memberId}__)}">
+<!--                  th:action="@{/members/setPage/{memberId}/edit2(memberId=${member.memberId})}">-->
               <input placeholder="벨로그 제목" id="vPageNameT_e" name="velogPageName"
                      th:value="${member.velogPageName}">
               <button color="teal" class="save-button" id="save-btn-PageName">저장</button>
@@ -127,7 +130,8 @@
           <!-- 숨겨진 항목 (수정 버튼 클릭시 나오는 영역) -->
           <div class="contents" id="snsInfo_e" style="display: none;">
             <form class="edit_SnsForm" method="post" id="editForm3"
-                  th:action="@{/members/setPage/{memberId}/edit3(memberId=${member.memberId})}">
+                  th:action="@{/members/setPage/edit3(memberId=__${session.memberId}__)}">
+<!--                  th:action="@{/members/setPage/{memberId}/edit3(memberId=${member.memberId})}">-->
                 <ul class="sns_textSet">
                     <li class="snsBox">
                       <img class="icons" src="/setPage/img/email-icon.svg" onerror="this.src='/kdy/imgs/noImage.png'" alt="email">
