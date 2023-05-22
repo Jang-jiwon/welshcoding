@@ -190,7 +190,7 @@
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <button color="teal" class="save-button" id="save-btn-sns"> 저장</button>
+                                <button color="teal" class="save-button" id="save-btn-sns" onclick="savebtn()"> 저장</button>
                             </div>
                         </form>
                     </div>
@@ -279,6 +279,7 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
 <script>
+
     // ===================== 헤더 추가 =====================
     //     $(function() {
     //       $("#header").load("/header/header.html");
@@ -289,5 +290,31 @@
     tabItem.forEach((item) => {
         item.addEventListener("click", tabHandler);
     });
+</script>
+<script>
+
+var snsGithub_e = document.getElementById("snsGithub_e");
+var userTwitter = document.getElementById("userTwitter");
+var userFacebook = document.getElementById("userFacebook");
+var userHomepage = document.getElementById("userHomepage");
+var editForm3 = document.getElementById("editForm3");
+function savebtn(){
+// 	alert("dsads : "+snsGithub_e.value);
+// 	console.log("dsads : "+snsGithub_e.value);
+	if(snsGithub_e.value==null || snsGithub_e.value.trim()==""){
+// 		alert("dsads : "+snsGithub_e.value);
+		snsGithub_e.value=" ";
+	}
+	if(userTwitter.value==null || userTwitter.value.trim()==""){
+		userTwitter.value=" ";
+	}
+	if(userFacebook.value==null || userFacebook.value.trim()==""){
+		userFacebook.value=" ";
+	}
+	if(userHomepage.value==null || userHomepage.value.trim()==""){
+		userHomepage.value=" ";
+	}
+	editForm3.submit();
+}
 </script>
 </html>
