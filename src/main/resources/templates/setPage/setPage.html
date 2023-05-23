@@ -19,7 +19,7 @@
 
     <section class="Profile-main">
         <div class="thumbnail-area">
-            <img src="img/devJeans.png" onerror="this.src='/kdy/imgs/noImage.png'"
+            <img src="img/devJeans.png" onerror="this.src='/css/imgs/corgi.png'"
                  alt="profile-image"
                  id="profile-image" th:src="@{${member.profileImg}}">
                  <label for="UPB2">
@@ -287,7 +287,7 @@
 <script>
 function del(){
 	const preview = document.getElementById('profile-image');
-	preview.src = "/kdy/imgs/noImage.png";
+	preview.src = "/css/img/corgi.png";
 	
 	//ajax
 	var xhr = new XMLHttpRequest();
