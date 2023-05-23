@@ -104,7 +104,6 @@ public class BoardController {
 		log.info("Board Controller");
 		System.out.println("================sdadadsadsdadad");//boards.get(0).getBoardTitle()+
 		
-//		List<String> tags = new ArrayList<>();
 		List<Tags> newtags = tagServices.findTags(member);
 		String[] newtagsList = new String[newtags.size()];
 		for(int j=0;j<newtags.size();j++) {
@@ -112,9 +111,6 @@ public class BoardController {
 		}
 		Set<String> set = new HashSet<>(Arrays.asList(newtagsList));
 		String[] result = set.toArray(new String[set.size()]);
-		for(int j=0;j<result.length;j++) {
-			log.info("NewTagService : "+result[j]);
-		}
 		
 		/********* kdy - series 부분 *********/
 		List<SeriesListDTO> seriesList = seriesService.findSeriesAll(testmemberid);
@@ -137,6 +133,7 @@ public class BoardController {
 			cont =removeSpecialCharacters(cont);
 			boards.get(i).setBoardIntro(cont+"....");
 		}
+		
 		/*-----------------------------------------------------------*/
 		
 		Member recentMember = memberService.findOne(member.getMemberId());

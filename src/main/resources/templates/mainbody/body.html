@@ -74,9 +74,10 @@ https://developeryoung.tistory.com/39 -->
 	          	<p style="padding: 3px; margin: 5px;">태그 목록</p>
 	          	<hr style="margin: 5px;">
 	          	<ul>
-	          		<li ><button id="tagall" class="tagall"   style="background-color: #00ff0000; border: none;" onclick="showall()">전체보기</button> </li>
+	          		<li ><button id="tagall" class="tagall"   style="background-color: #00ff0000; border: none;" onclick="showall()">전체보기</button></li>
 	          		<li th:each="newtag : ${alltags}" class="tagPar">
-	          		<button id="taglist" class="taglist"  th:text="${newtag}" style="background-color: #00ff0000; border: none;" ></button> </li>
+	          			<button id="taglist" class="taglist"  th:text="${newtag}" style="background-color: #00ff0000; border: none;" ></button> 
+	          		</li>
 	          	</ul>
           	</div>
             <div class="searchArea" >
@@ -91,11 +92,6 @@ https://developeryoung.tistory.com/39 -->
 	        <!-- 게시물 목록 -->
 	        <div th:each="board: ${boards}" class="postArea" th:id="'boardId'+${board.boardId}" >
 	        <br><br>
-<!-- 	        	<div style="width: 100%;display: flex;align-items: center;justify-content: center;"> -->
-<!-- 	            	<img alt="" th:src="@{${board.thumbnailPath}}" -->
-<!-- 					     th:if="${board.thumbnailPath != null}" -->
-<!-- 					     style="width: 500px; height: 200px;"> -->
-<!-- 	            </div> -->
 	        	<h1 th:text="${board.boardTitle}" class="postH1" th:onclick="|myFunction('${board.boardId}')|"></h1>
 	            <p class="postCont" th:text="${board.boardIntro}">
 	              
@@ -142,14 +138,13 @@ https://developeryoung.tistory.com/39 -->
 </script>
 <script>
 const tagListButtons = document.querySelectorAll('.taglist'); 
-
 tagListButtons.forEach((button) => {
-  if (button.innerText.trim() === '') {
-    button.style.display = 'none'; 
-    const liElement = button.parentElement; 
-    if (liElement) {
-      liElement.style.display = 'none'; 
-    }
+  	if (button.innerText.trim() === '') {
+    	button.style.display = 'none'; 
+	    const liElement = button.parentElement; 
+	    if (liElement) {
+	      liElement.style.display = 'none'; 
+	    }
   }
 });
 
@@ -163,10 +158,10 @@ tagBtns.forEach((btn) => {
 // 	deleteCookie("selSeries");
 deleteAllCookies();
 	//외부 html 붙히기
-	$(function() {
-	  $("#series").load("/kdy/series.html");
-	  $("#introduce").load("/introduce/body.html");
-	});
+// 	$(function() {
+// 	  $("#series").load("/kdy/series.html");
+// 	  $("#introduce").load("/introduce/body.html");
+// 	});
 	const tabItem = document.querySelectorAll(".tab-container__item");
 	const tabContent = document.querySelectorAll(".content-container__content");
 	
@@ -191,23 +186,21 @@ deleteAllCookies();
 	var taglistBtn = document.getElementsByClassName("taglist");
 	for(var x=0;x<taglistBtn.length;x++){
 		taglistBtn[x].addEventListener("click", function() {
-// 			alert("클릭");
 		    var seltag = this.textContent;
-// 		    alert(seltag);
 		    var postAreas = document.getElementsByClassName("postArea");
 		    for (var i = 0; i < postAreas.length; i++) {
 		        var tagBtns = postAreas[i].querySelectorAll(".tags button");
-		        var isdis = true;
+		        var isdis = false;
 		        for (var j = 0; j < tagBtns.length; j++) {
 		            if (tagBtns[j].textContent === seltag) {
-		                isdis = false;
+		                isdis = true;
 		                break;
 		            }
 		        }
 		        if (isdis) {
-		            postAreas[i].style.display = "none";
-		        } else {
 		            postAreas[i].style.display = "block";
+		        } else {
+		            postAreas[i].style.display = "none";
 		        }
 		    }
 		});

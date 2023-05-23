@@ -102,6 +102,10 @@ saveHtml = function(){
 			alert("제목을 입력해주세요!!");
 			return;
 		}
+		if(editor.getMarkdown().trim()===''){
+			alert("내용을 입력해주세요!!");
+			return;
+		}
 		sessionStorage.setItem("tagList", tagList);
 		sessionStorage.setItem("tagNum", 0);
 		var inputElement = document.getElementById('boardTitle');
