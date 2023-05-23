@@ -3,15 +3,7 @@ package com.example.welshcoding.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -39,8 +31,11 @@ public class Member {
 	@Embedded
 	private Sns sns;
 	private String tagsString;
-	
-	@OneToMany(mappedBy = "member")
+
+	// 일대다 연결에서 Member 엔티티에 대한 모든 작업이 자식 엔티티에 적용되도록 옵션 추가)
+	// cascade = CascadeType.ALL, orphanRemoval = true
+
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Board> boards = new ArrayList<>();
 	
 	public void addBoard(Board board) {
@@ -48,7 +43,7 @@ public class Member {
 		this.boards.add(board);
 	}
 	
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Comments> comments = new ArrayList<>();
 	
 	public void addComments(Comments comment) {
@@ -56,7 +51,7 @@ public class Member {
 		this.comments.add(comment);
 	}
 	
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Temporary> temporaries = new ArrayList<>();
 	
 	public void addTemporary(Temporary temporary) {
@@ -64,11 +59,11 @@ public class Member {
 		this.temporaries.add(temporary);
 	}
 	
-	@OneToOne(mappedBy = "member")
+	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Introduce introduce;
 	
 	/*멤버가 가지고 있는 시리즈 출력을 위해 추가 - kdy*/
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Series> serieses = new ArrayList<>();
 	
 	public void addSeries(Series series) {
@@ -77,7 +72,7 @@ public class Member {
 	}
 	
 	
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Tags> tags = new ArrayList<>();
 	public void addTags(Tags tag) {
 		tag.setMember(this);
