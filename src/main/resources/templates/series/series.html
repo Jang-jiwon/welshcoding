@@ -5,7 +5,7 @@
 <body>
 <div th:if="${seriesSize}" class="listdiv" th:fragment="series">
 	<div class="serieslist" th:each="series : ${seriesList}">
-		<a class="seriesatag" href="/kdy/seriesDetail.html" th:href="@{|/kdy/series/${memberId}/${series.seriesId}|}">
+		<a class="seriesatag" href="/kdy/seriesDetail.html" th:href="@{|/series/${memberId}/${series.seriesId}|}">
 			<div class="serieslistdiv">
 				<img class="seriesimg" src="/kdy/imgs/test.jpg" 
 				onerror="this.src='/kdy/imgs/noImage.png'"
@@ -13,7 +13,7 @@
 			</div>
 		</a>
 		<h4 class="titleh4tag">
-			<a href="#" th:href="@{|/kdy/series/${memberId}/${series.seriesId}|}" th:text="${series.seriesName}">spring-boot 교육과정</a>
+			<a href="#" th:href="@{|/series/${memberId}/${series.seriesId}|}" th:text="${series.seriesName}">spring-boot 교육과정</a>
 		</h4>
 		<div>
 			<span th:text="|${series.boardCnt}개의 포스터|"></span>

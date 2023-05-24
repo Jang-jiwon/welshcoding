@@ -28,7 +28,7 @@ public class SeriesRepository {
 
 	public List<BoardDTO> findBoardsBySeries(Long seriesId) {
 
-		String query = "select new com.example.welshcoding.domain.BoardDTO(b.boardId, s.seriesId, s.seriesName, b.boardTitle, b.boardTag, b.boardDate, b.boardCont, b.boardLike, b.thumbnailPath)"
+		String query = "select new com.example.welshcoding.dto.BoardDTO(b.boardId, s.seriesId, s.seriesName, b.boardTitle, b.boardTag, b.boardDate, b.boardCont, b.boardLike, b.thumbnailPath)"
 				+ " from Board b INNER JOIN b.series s "
 				+ " where s.seriesId = :seriesid order by b.boardDate, b.boardId";
 		return em.createQuery(query, BoardDTO.class)

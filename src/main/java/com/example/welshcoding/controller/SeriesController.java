@@ -36,7 +36,7 @@ public class SeriesController {
 		return "series/series";
 	}
 	
-	@GetMapping("/kdy/series/{memberId}/{seriesId}")
+	@GetMapping("/series/{memberId}/{seriesId}")
 	public String boardListOfSeries(
 			@PathVariable(name = "memberId") Long memberId,
 			@PathVariable(name = "seriesId") Long seriesId,
@@ -46,7 +46,7 @@ public class SeriesController {
 		
 		if(!seriesName.equals("")) {
 			seriesService.updateSeriesTitle(seriesId, seriesName);
-			return "redirect:/kdy/series/"+memberId+"/"+seriesId;
+			return "redirect:/series/"+memberId+"/"+seriesId;
 		}
 		
 		List<BoardDTO> boardList = seriesService.findBoardsBySeries(seriesId);
@@ -59,7 +59,7 @@ public class SeriesController {
 		model.addAttribute("seriesName",seriesService.findSeriesById(seriesId).getSeriesName());
 		return "series/seriesDetail";
 	}
-	@GetMapping("/kdy/series/{memberId}/{seriesId}/edit")
+	@GetMapping("/series/{memberId}/{seriesId}/edit")
 	public String editBoardListOfSeries(
 			@PathVariable(name = "memberId") Long memberId,
 			@PathVariable(name = "seriesId") Long seriesId,
@@ -76,7 +76,7 @@ public class SeriesController {
 		model.addAttribute("seriesName",seriesService.findSeriesById(seriesId).getSeriesName());
 		return "series/seriesUpdate";
 	}
-	@GetMapping("/kdy/series/{memberId}/{seriesId}/delete")
+	@GetMapping("/series/{memberId}/{seriesId}/delete")
 	public String deleteSeries(
 			@PathVariable(name = "memberId") Long memberId,
 			@PathVariable(name = "seriesId") Long seriesId,
