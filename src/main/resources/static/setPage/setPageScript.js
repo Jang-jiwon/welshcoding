@@ -121,19 +121,19 @@ document.addEventListener('DOMContentLoaded', function () {
     snsFacebook_e.value = snsFacebookData;
     snsHome_e.value = snsHomeData;
 
-function savebtn(){
-	alert("저장");
-}
+    function savebtn() {
+        alert("저장");
+    }
 
     document.querySelector('#save-btn-sns').addEventListener('click', function (event) {
         event.preventDefault();
-console.log("개굴");
+        console.log("개굴");
         var updateEmailData = snsEmail_e.value;
         var updateGithubData = snsGithub_e.value;
         var updateTwitterData = snsTwitter_e.value;
         var updateFacebookData = snsFacebook_e.value;
         var updateHomeData = snsHome_e.value;
-		console.log("dmksald : "+updateEmailData);
+        console.log("dmksald : " + updateEmailData);
         if (updateEmailData === null || updateEmailData.trim() === '') {
             updateEmailData = ' ';
         }

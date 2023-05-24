@@ -7,8 +7,7 @@ import javax.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.welshcoding.domain.Board;
-import com.example.welshcoding.domain.BoardDTO;
+import com.example.welshcoding.dto.BoardDTO;
 import com.example.welshcoding.domain.Series;
 
 import lombok.RequiredArgsConstructor;

@@ -2,7 +2,7 @@ package com.example.welshcoding.controller;
 
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.Sns;
-import com.example.welshcoding.domain.MemberDTO;
+import com.example.welshcoding.dto.MemberDTO;
 import com.example.welshcoding.service.MemberService;
 import lombok.RequiredArgsConstructor;
 

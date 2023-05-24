@@ -1,4 +1,4 @@
-package com.example.welshcoding.domain;
+package com.example.welshcoding.dto;
 
 import org.springframework.stereotype.Component;
 

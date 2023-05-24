@@ -13,9 +13,9 @@ import com.example.welshcoding.repository.SeriesRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.welshcoding.domain.BoardDTO;
+import com.example.welshcoding.dto.BoardDTO;
 import com.example.welshcoding.domain.Series;
-import com.example.welshcoding.domain.SeriesListDTO;
+import com.example.welshcoding.dto.SeriesListDTO;
 
 import lombok.RequiredArgsConstructor;
 

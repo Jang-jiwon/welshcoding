@@ -1,5 +1,6 @@
-package com.example.welshcoding.domain;
+package com.example.welshcoding.dto;
 
+import com.example.welshcoding.domain.Temporary;
 import lombok.Getter;
 import lombok.Setter;
 

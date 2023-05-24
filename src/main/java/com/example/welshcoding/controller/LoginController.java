@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.welshcoding.domain.LoginDTO;
+import com.example.welshcoding.dto.LoginDTO;
 import com.example.welshcoding.domain.Member;
 
 import lombok.RequiredArgsConstructor;

@@ -21,7 +21,7 @@ import com.example.welshcoding.service.TagService;
 import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Introduce;
 import com.example.welshcoding.domain.Member;
-import com.example.welshcoding.domain.SeriesListDTO;
+import com.example.welshcoding.dto.SeriesListDTO;
 import com.example.welshcoding.domain.Tags;
 import com.example.welshcoding.service.TestMemberService;
 import com.example.welshcoding.service.IntroduceService;

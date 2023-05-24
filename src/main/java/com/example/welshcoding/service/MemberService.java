@@ -1,7 +1,7 @@
 package com.example.welshcoding.service;
 
 import com.example.welshcoding.domain.Member;
-import com.example.welshcoding.domain.MemberDTO;
+import com.example.welshcoding.dto.MemberDTO;
 import com.example.welshcoding.domain.Sns;
 import com.example.welshcoding.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
