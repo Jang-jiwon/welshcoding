@@ -9,12 +9,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
     <link rel="stylesheet" type="text/css" href = "/body1/style.css">
     <link rel="stylesheet" type="text/css" href = "/css/seriesStyle.css">
+    <link th:href="@{/css/headerStyle.css}" rel="stylesheet">
 
 
 </head>
 
 <body>
-   <div id="header"></div>
+   <div id="header" th:replace="fragments/header :: header" ></div>
    <br><br><br>
 	<div class="seriesdetail">
 		<div class="">
@@ -76,9 +77,9 @@
 
 <script>
 	//외부 html 붙히기
-	$(function() {
-	  $("#header").load("/header/header.html");
-	});
+// 	$(function() {
+// 	  $("#header").load("/header/header.html");
+// 	});
 	const tabItem = document.querySelectorAll(".tab-container__item");
 	const tabContent = document.querySelectorAll(".content-container__content");
 	
