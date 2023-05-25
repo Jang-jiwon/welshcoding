@@ -70,11 +70,12 @@
             }
             tagList.push(name);
             var tb1 = `<button id="tag${n}" value="${name}"
-								style="background-color: #00ff0000; border: none; outline: none;"
+                                style="background-color: #00ff0000; border: none; outline: none;"
 								onclick="del(${n})">${name} ×</button>`;
             $("#addedlist").append(tb1);
             n++; // n 값을 증가시킴
-            sessionStorage.setItem("tagNum", n); // 업데이트된 n 값을 sessionStorage에 저장
+            sessionStorage.setItem("tagNum", n);
+            // 업데이트된 n 값을 sessionStorage에 저장
         }
     }
 

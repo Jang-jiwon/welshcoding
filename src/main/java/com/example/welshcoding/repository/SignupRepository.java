@@ -15,22 +15,20 @@ import lombok.RequiredArgsConstructor;
 @Repository
 @RequiredArgsConstructor
 public class SignupRepository {
-	private final EntityManager em;
-	
-	public void save(Member member) {
-		em.persist(member);
-	}
+    private final EntityManager em;
+    public void save(Member member) {
+        em.persist(member);
+    }
 
-	
-	
-	public String findEmail(String email) {
-		try {
-			em.createQuery("select i from Member i where userEmail ='"+email+"'", Member.class).getSingleResult();
-			return "not";//있는아이디
-		}catch (Exception e) {
+    public String findEmail(String email) {
+        try {
+            em.createQuery("select i from Member i where userEmail ='"
+					+ email + "'", Member.class).getSingleResult();
+            return "not";//있는아이디
+        } catch (Exception e) {
 //			e.printStackTrace();
-			return "ok";//없는아이디
-		}
-		
-	}
+            return "ok";//없는아이디
+        }
+
+    }
 }

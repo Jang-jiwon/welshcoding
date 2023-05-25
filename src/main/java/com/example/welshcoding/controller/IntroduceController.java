@@ -20,10 +20,10 @@ public class IntroduceController {
         this.introduceService = introduceService;
     }
 
-//    @GetMapping("/introduce/{memberId}")
+    //    @GetMapping("/introduce/{memberId}")
     public String getIntroduce(@PathVariable Long memberId, Model model, HttpSession session) {
         // memberId를 얻어오는 코드를 추가
-        Member member = (Member)session.getAttribute("member");
+        Member member = (Member) session.getAttribute("member");
 //        Long memberId = (Long)session.getAttribute("memberId");
         System.out.println(memberId);
 
@@ -38,7 +38,7 @@ public class IntroduceController {
 
     @PostMapping("/introduce/{memberId}/save")
     public String saveIntroduce(@PathVariable(name = "memberId") Long memberId
-                        , @RequestParam(name = "content") String content) {
+            , @RequestParam(name = "content") String content) {
 
         introduceService.saveIntroduce(memberId, content);
         // System.out.println(memberId);

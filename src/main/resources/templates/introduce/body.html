@@ -15,13 +15,13 @@
 <body>
 <div class="introback" th:fragment="intro">
     <div class="text-center" style="text-align: center; width: 100%;">
-        <div id="form-container0" th:if="${introduce == null}" >
+        <div id="form-container0" th:if="${introduce == null}">
             <img id="anyimg" src="/kdy/imgs/noSeires.png" alt="anyimg" class="yeondu_img mx-auto"
                  style="width: 400px; height: 400px;"/>
-            <p id="anytext" class="my-paragraph" 
-              >소개가 작성되지 않았습니다.</p>
+            <p id="anytext" class="my-paragraph">소개가 작성되지 않았습니다.</p>
             <button id="btn-show-form" class="btn btn-primary "
-                    onclick="showForm()">글 작성하기</button>
+                    onclick="showForm()">글 작성하기
+            </button>
         </div>
         <div id="form-container1" th:if="${introduce != null}">
             <form id="introform1" method="POST" th:action="@{/introduce/{memberId}/editIntro(memberId=${memberId})}">
@@ -34,9 +34,9 @@
         </div>
         <div id="form-container2" style="display: none; justify-content: center; align-items: center;">
             <form id="introform2" method="POST" th:action="@{/introduce/{memberId}/save(memberId=${memberId})}">
-                    <textarea id="intro2" name="content" placeholder="소개를 해주세요" class="introduce autosize"></textarea>
+                <textarea id="intro2" name="content" placeholder="소개를 해주세요" class="introduce autosize"></textarea>
                 <div class="btnDiv">
-                <button id="introEditBtn2" class="btnSave" type="submit">저장하기</button>
+                    <button id="introEditBtn2" class="btnSave" type="submit">저장하기</button>
                 </div>
             </form>
         </div>

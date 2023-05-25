@@ -11,18 +11,20 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class SignupService {
-	private final SignupRepository signupRepository;
-	
-	@Transactional
-	public void join(Member member) {
-		signupRepository.save(member);
-	}
-	
-	public String dubcheck(String email) {
-		
-		String re = "impossible";
-		if(signupRepository.findEmail(email) == "ok") {re = "possible";}
-		System.out.println("결과 : "+re);
-		return re;
-	}
+    private final SignupRepository signupRepository;
+
+    @Transactional
+    public void join(Member member) {
+        signupRepository.save(member);
+    }
+
+    public String dubcheck(String email) {
+
+        String re = "impossible";
+        if (signupRepository.findEmail(email) == "ok") {
+            re = "possible";
+        }
+        System.out.println("결과 : " + re);
+        return re;
+    }
 }

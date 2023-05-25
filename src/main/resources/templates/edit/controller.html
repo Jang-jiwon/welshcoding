@@ -1,63 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 </head>
 <body>
-<form action="/save-data" method="POST" id="myForm"> 
-	<input type="hidden" name="gridtitle"  id="title"/>
-    <input type="hidden" name="gridData"  id="myInput"/>
-    <input type="hidden" name="tag"  id="tag"/>
-    <input type="hidden" name="selSeries"  id="selSeries"/>
-    <input type="hidden" name="thumPath"  id="thumPath"/>
-<!--     <input type="hidden" name="tempId"  id="tempId"/> -->
-<!--     <input type="hidden" name="postintro"  id="postintro"/> -->
+<form action="/save-data" method="POST" id="myForm">
+    <input type="hidden" name="gridtitle" id="title"/>
+    <input type="hidden" name="gridData" id="myInput"/>
+    <input type="hidden" name="tag" id="tag"/>
+    <input type="hidden" name="selSeries" id="selSeries"/>
+    <input type="hidden" name="thumPath" id="thumPath"/>
+    <!--     <input type="hidden" name="tempId"  id="tempId"/> -->
+    <!--     <input type="hidden" name="postintro"  id="postintro"/> -->
 </form>
 </body>
-<script >
-
-    
-var gridData = sessionStorage.getItem("editcont");
-var boardTitle = sessionStorage.getItem("boardTitle");
-var tagList = sessionStorage.getItem("tagList");
-var selSeries = sessionStorage.getItem("selSeries");
-var thumPath = sessionStorage.getItem("thumPath");
-// var tempId = sessionStorage.getItem("boardId");
-// var postintro = sessionStorage.getItem("postintro");
+<script>
 
 
+    var gridData = sessionStorage.getItem("editcont");
+    var boardTitle = sessionStorage.getItem("boardTitle");
+    var tagList = sessionStorage.getItem("tagList");
+    var selSeries = sessionStorage.getItem("selSeries");
+    var thumPath = sessionStorage.getItem("thumPath");
+    // var tempId = sessionStorage.getItem("boardId");
+    // var postintro = sessionStorage.getItem("postintro");
 
 
-sessionStorage.removeItem("editcont");
-sessionStorage.removeItem("boardTitle");
-sessionStorage.removeItem("tagList");
-sessionStorage.removeItem("selSeries");
-sessionStorage.removeItem("thumPath");
-// sessionStorage.removeItem("boardId");
-// sessionStorage.removeItem("postintro");
+    sessionStorage.removeItem("editcont");
+    sessionStorage.removeItem("boardTitle");
+    sessionStorage.removeItem("tagList");
+    sessionStorage.removeItem("selSeries");
+    sessionStorage.removeItem("thumPath");
+    // sessionStorage.removeItem("boardId");
+    // sessionStorage.removeItem("postintro");
 
 
-// alert(tagList);
+    // alert(tagList);
 
-var inputElement = document.getElementById('myInput');
-inputElement.value = gridData;
-var titleElement2 = document.getElementById('title');
-titleElement2.value = boardTitle;
-var titleElement3 = document.getElementById('tag');
-titleElement3.value = tagList;
-var titleElement4 = document.getElementById('selSeries');
-titleElement4.value = selSeries;
-var titleElement5 = document.getElementById('thumPath');
-titleElement5.value = thumPath;
-// var titleElement5 = document.getElementById('tempId');
-// titleElement5.value = tempId;
-// var titleElement5 = document.getElementById('postintro');
-// titleElement5.value = postintro;
-// alert(titleElement4.value );
-var form = document.getElementById('myForm');
-form.submit();
-
+    var inputElement = document.getElementById('myInput');
+    inputElement.value = gridData;
+    var titleElement2 = document.getElementById('title');
+    titleElement2.value = boardTitle;
+    var titleElement3 = document.getElementById('tag');
+    titleElement3.value = tagList;
+    var titleElement4 = document.getElementById('selSeries');
+    titleElement4.value = selSeries;
+    var titleElement5 = document.getElementById('thumPath');
+    titleElement5.value = thumPath;
+    // var titleElement5 = document.getElementById('tempId');
+    // titleElement5.value = tempId;
+    // var titleElement5 = document.getElementById('postintro');
+    // titleElement5.value = postintro;
+    // alert(titleElement4.value );
+    var form = document.getElementById('myForm');
+    form.submit();
 
 
 </script>
