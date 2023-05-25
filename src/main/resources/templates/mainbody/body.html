@@ -8,11 +8,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/4.0.2/autosize.min.js"></script>
 
-     <link th:href="@{/css/headerStyle.css}" rel="stylesheet">
-     <link th:href="@{/css/mainbody.css}" rel="stylesheet">
-	 <link rel="stylesheet" type="text/css" href="/css/seriesStyle.css">
-	<link th:href="@{/css/footerStyle.css}" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href = "/css/introduce.css">
+    <link th:href="@{/css/headerStyle.css}" rel="stylesheet">
+    <link th:href="@{/css/mainbody.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/seriesStyle.css">
+    <link th:href="@{/css/footerStyle.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/introduce.css">
 </head>
 
 <!-- 
@@ -21,285 +21,296 @@ https://developeryoung.tistory.com/39 -->
 
 
 <body style="width: 100% !important;">
-   <div id="header" th:replace="fragments/header :: header" ></div>
-   <br><br><br>
-   <div class="wholebody">
-        <div class="mainbody">
-            <div class="subbody">
-                <div class="mainbody_head">
-                    <img class="mainImg" onerror="this.src='/css/imgs/corgi.png'" th:src="@{${recentMember.profileImg}}">
-                    <div>
-                        <h3 th:text="${recentMember.userName}" >지원</h3>
-                        <p th:text="${recentMember.userBio}" >hello world..</p>
-                    </div>
+<div id="header" th:replace="fragments/header :: header"></div>
+<br><br><br>
+<div class="wholebody">
+    <div class="mainbody">
+        <div class="subbody">
+            <div class="mainbody_head">
+                <img class="mainImg" onerror="this.src='/css/imgs/corgi.png'" th:src="@{${recentMember.profileImg}}">
+                <div>
+                    <h3 th:text="${recentMember.userName}">지원</h3>
+                    <p th:text="${recentMember.userBio}">hello world..</p>
                 </div>
-                <hr class="hr1">
-                <div class="mainbody_social">
-                	<a href="#"  th:href="@{${recentMember.sns.userGithub}}"  id="github">
-                		<img class="socialIcon" src="/body1/imgs/githubIcon.png" >
-                	</a>
-                	<a href="#" th:href="@{${recentMember.sns.userTwitter}}" id="twitter">
-                		<img class="socialIcon" src="/body1/imgs/twiterIcon.png" >
-                	</a>
-                	<a href="#" th:href="@{${recentMember.sns.userFacebook}}" id="facebook">
-                		<img class="socialIcon" src="/body1/imgs/facebookIcon.png" >
-                	</a>
-                	<a href="#" th:href="@{${recentMember.sns.userHomepage}}" id="homepage">
-                		<img class="socialIcon" src="/body1/imgs/home-icon.png" >
-                	</a>
-<!--                <img class="socialIcon" src="/body1/imgs/emailIcon.png" > -->
-                </div>
+            </div>
+            <hr class="hr1">
+            <div class="mainbody_social">
+                <a href="#" th:href="@{${recentMember.sns.userGithub}}" id="github">
+                    <img class="socialIcon" src="/body1/imgs/githubIcon.png">
+                </a>
+                <a href="#" th:href="@{${recentMember.sns.userTwitter}}" id="twitter">
+                    <img class="socialIcon" src="/body1/imgs/twiterIcon.png">
+                </a>
+                <a href="#" th:href="@{${recentMember.sns.userFacebook}}" id="facebook">
+                    <img class="socialIcon" src="/body1/imgs/facebookIcon.png">
+                </a>
+                <a href="#" th:href="@{${recentMember.sns.userHomepage}}" id="homepage">
+                    <img class="socialIcon" src="/body1/imgs/home-icon.png">
+                </a>
+                <!--                <img class="socialIcon" src="/body1/imgs/emailIcon.png" > -->
             </div>
         </div>
     </div>
-    
-    
-    <div class="container">
-        <ul class="tab-container">
-          <li class="tab-container__item active" data-tab="tab1">
+</div>
+
+
+<div class="container">
+    <ul class="tab-container">
+        <li class="tab-container__item active" data-tab="tab1">
             <a class="tab-container__item--title" href="#">글</a>
-          </li>
-          <li class="tab-container__item" data-tab="tab2">
+        </li>
+        <li class="tab-container__item" data-tab="tab2">
             <a class="tab-container__item--title" href="#">시리즈</a>
-          </li>
-          <li class="tab-container__item" data-tab="tab3">
+        </li>
+        <li class="tab-container__item" data-tab="tab3">
             <a class="tab-container__item--title" href="#">소개</a>
-          </li>
-          
-        </ul>
-        <section class="content-container" >
-          <article id="tab1" class="content-container__content target">
-          	<div class="taglistdiv" >
-          	<!-- 태그목록 -->
-	          	<p style="padding: 3px; margin: 5px;">태그 목록</p>
-	          	<hr style="margin: 5px;">
-	          	<ul>
-	          		<li ><button id="tagall" class="tagall"   style="background-color: #00ff0000; border: none;" onclick="showall()">전체보기</button></li>
-	          		<li th:each="newtag : ${alltags}" class="tagPar">
-	          			<button id="taglist" class="taglist"  th:text="${newtag}" style="background-color: #00ff0000; border: none;" ></button> 
-	          		</li>
-	          	</ul>
-          	</div>
-            <div class="searchArea" >
-            	<!-- 검색창 -->
-	            <fieldset class="search">
-	                <img src="/header/imgs/search.png" style="width: 8%; margin: 3px; opacity: 0.5;">
-	                <input id="inputSearch" type="text" placeholder="검색어를 입력하세요."  onkeydown="search(event)"
-	                style="border: none; outline: none; width: 80%; text-align: center; margin: 1px;">
-	            </fieldset>
-	        </div>
-	        
-	        <!-- 게시물 목록 -->
-	        <div th:each="board: ${boards}" class="postArea" th:id="'boardId'+${board.boardId}" >
-	        <br><br>
-	        	<h1 th:text="${board.boardTitle}" class="postH1" th:onclick="|myFunction('${board.boardId}')|"></h1>
-	            <p class="postCont" th:text="${board.boardIntro}">
-	              
-	            </p>
-	            <div class="tags">
-	            	<div th:each="board: ${boards}"> </div>
-				    <button class="tagBtn" th:each="tag: ${board.tags}" th:text="${tag.tagsName}"></button>
-				</div>
-	            <p class="postDay" th:text="${board.boardDate}"></p>
-	        </div>
-	        
-          </article>
-          <article id="tab2" class="content-container__content">
-          	<div th:replace="series/series :: series"></div>
-            
-          </article>
-          <article id="tab3" class="content-container__content">
-              <div id="introduce" th:replace="introduce/body :: intro"></div>
-          </article>
-        </section>
-      </div>
-      <div id="footer" th:replace="fragments/footer :: footer" ></div>
+        </li>
+
+    </ul>
+    <section class="content-container">
+        <article id="tab1" class="content-container__content target">
+            <div class="taglistdiv">
+                <!-- 태그목록 -->
+                <p style="padding: 3px; margin: 5px;">태그 목록</p>
+                <hr style="margin: 5px;">
+                <ul>
+                    <li>
+                        <button id="tagall" class="tagall"
+                                style="background-color: #00ff0000; border: none;"
+                                onclick="showall()">전체보기
+                        </button>
+                    </li>
+                    <li th:each="newtag : ${alltags}" class="tagPar">
+                        <button id="taglist" class="taglist" th:text="${newtag}"
+                                style="background-color: #00ff0000; border: none;"></button>
+                    </li>
+                </ul>
+            </div>
+            <div class="searchArea">
+                <!-- 검색창 -->
+                <fieldset class="search">
+                    <img src="/header/imgs/search.png" style="width: 8%; margin: 3px; opacity: 0.5;">
+                    <input id="inputSearch" type="text" placeholder="검색어를 입력하세요." onkeydown="search(event)"
+                           style="border: none; outline: none; width: 80%; text-align: center; margin: 1px;">
+                </fieldset>
+            </div>
+
+            <!-- 게시물 목록 -->
+            <div th:each="board: ${boards}" class="postArea" th:id="'boardId'+${board.boardId}">
+                <br><br>
+                <h1 th:text="${board.boardTitle}" class="postH1" th:onclick="|myFunction('${board.boardId}')|"></h1>
+                <p class="postCont" th:text="${board.boardIntro}">
+
+                </p>
+                <div class="tags">
+                    <div th:each="board: ${boards}"></div>
+                    <button class="tagBtn" th:each="tag: ${board.tags}" th:text="${tag.tagsName}"></button>
+                </div>
+                <p class="postDay" th:text="${board.boardDate}"></p>
+            </div>
+
+        </article>
+        <article id="tab2" class="content-container__content">
+            <div th:replace="series/series :: series"></div>
+
+        </article>
+        <article id="tab3" class="content-container__content">
+            <div id="introduce" th:replace="introduce/body :: intro"></div>
+        </article>
+    </section>
+</div>
+<div id="footer" th:replace="fragments/footer :: footer"></div>
 </body>
 <script th:inline="javascript">
-	var github = document.getElementById("github");
-	var twitter = document.getElementById("twitter");
-	var facebook = document.getElementById("facebook");
-	var homepage = document.getElementById("homepage");
+    var github = document.getElementById("github");
+    var twitter = document.getElementById("twitter");
+    var facebook = document.getElementById("facebook");
+    var homepage = document.getElementById("homepage");
     var sns = /*[[${recentMember.sns}]]*/ '';
-	console.log(sns.userHomepage);
-	var link = document.getElementById("git");
-	if(sns.userGithub.trim()=="" || sns.userGithub == null || sns.userGithub =="입력된 Github 링크가 없습니다."){
-		github.style.display="none";
-	}
-	if(sns.userTwitter.trim()=="" || sns.userTwitter == null ||sns.userTwitter =="입력된 Twitter 링크가 없습니다."){
-		twitter.style.display="none";
-	}
-	if(sns.userFacebook.trim()=="" || sns.userFacebook == null || sns.userFacebook == "입력된 Facebook 링크가 없습니다." ){
-		facebook.style.display="none";
-	}
-	if(sns.userHomepage.trim()=="" || sns.userHomepage == null ||sns.userHomepage =="입력된 개인 홈페이지 링크가 없습니다."){
-		homepage.style.display="none";
-	}
+    console.log(sns.userHomepage);
+    var link = document.getElementById("git");
+    if (sns.userGithub.trim() == "" || sns.userGithub == null || sns.userGithub == "입력된 Github 링크가 없습니다.") {
+        github.style.display = "none";
+    }
+    if (sns.userTwitter.trim() == "" || sns.userTwitter == null || sns.userTwitter == "입력된 Twitter 링크가 없습니다.") {
+        twitter.style.display = "none";
+    }
+    if (sns.userFacebook.trim() == "" || sns.userFacebook == null || sns.userFacebook == "입력된 Facebook 링크가 없습니다.") {
+        facebook.style.display = "none";
+    }
+    if (sns.userHomepage.trim() == "" || sns.userHomepage == null || sns.userHomepage == "입력된 개인 홈페이지 링크가 없습니다.") {
+        homepage.style.display = "none";
+    }
 </script>
 <script>
-const tagListButtons = document.querySelectorAll('.taglist'); 
-tagListButtons.forEach((button) => {
-  	if (button.innerText.trim() === '') {
-    	button.style.display = 'none'; 
-	    const liElement = button.parentElement; 
-	    if (liElement) {
-	      liElement.style.display = 'none'; 
-	    }
-  }
-});
+    const tagListButtons = document.querySelectorAll('.taglist');
+    tagListButtons.forEach((button) => {
+        if (button.innerText.trim() === '') {
+            button.style.display = 'none';
+            const liElement = button.parentElement;
+            if (liElement) {
+                liElement.style.display = 'none';
+            }
+        }
+    });
 
-const tagBtns = document.querySelectorAll('.tagBtn'); 
-tagBtns.forEach((btn) => {
-  if (btn.innerText.trim() === '') {
-    btn.style.display = 'none'; 
-  }
-});
+    const tagBtns = document.querySelectorAll('.tagBtn');
+    tagBtns.forEach((btn) => {
+        if (btn.innerText.trim() === '') {
+            btn.style.display = 'none';
+        }
+    });
 
-// 	deleteCookie("selSeries");
-deleteAllCookies();
-	//외부 html 붙히기
-// 	$(function() {
-// 	  $("#series").load("/kdy/series.html");
-// 	  $("#introduce").load("/introduce/body.html");
-// 	});
-	const tabItem = document.querySelectorAll(".tab-container__item");
-	const tabContent = document.querySelectorAll(".content-container__content");
-	
-	tabItem.forEach((item) => {
-	item.addEventListener("click", tabHandler);
-	});
+    // 	deleteCookie("selSeries");
+    deleteAllCookies();
+    //외부 html 붙히기
+    // 	$(function() {
+    // 	  $("#series").load("/kdy/series.html");
+    // 	  $("#introduce").load("/introduce/body.html");
+    // 	});
+    const tabItem = document.querySelectorAll(".tab-container__item");
+    const tabContent = document.querySelectorAll(".content-container__content");
 
-  	//tab메뉴
-	function tabHandler(item) {
-	const tabTarget = item.currentTarget;
-	const target = tabTarget.dataset.tab;
-	tabItem.forEach((title) => {
-	    title.classList.remove("active");
-	});
-	tabContent.forEach((target) => {
-	    target.classList.remove("target");
-	});
-	document.querySelector("#" + target).classList.add("target");
-	tabTarget.classList.add("active");
-	}
-  	
-	var taglistBtn = document.getElementsByClassName("taglist");
-	for(var x=0;x<taglistBtn.length;x++){
-		taglistBtn[x].addEventListener("click", function() {
-		    var seltag = this.textContent;
-		    var postAreas = document.getElementsByClassName("postArea");
-		    for (var i = 0; i < postAreas.length; i++) {
-		        var tagBtns = postAreas[i].querySelectorAll(".tags button");
-		        var isdis = false;
-		        for (var j = 0; j < tagBtns.length; j++) {
-		            if (tagBtns[j].textContent === seltag) {
-		                isdis = true;
-		                break;
-		            }
-		        }
-		        if (isdis) {
-		            postAreas[i].style.display = "block";
-		        } else {
-		            postAreas[i].style.display = "none";
-		        }
-		    }
-		});
-	}
-	
-	function showall(){
-		var postAreas = document.getElementsByClassName("postArea");
-		for (var i = 0; i < postAreas.length; i++) {
-			postAreas[i].style.display = "block";
-		}
-	}
-	
-	function myFunction(id){		//게시물 상세 페이지로 게시물 아이디 넘기기
-// 		alert("개굴게시물 : "+id); 
-		location.href = '/goPost/'+id;///login
-	}
-	function deleteAllCookies() {
-		  var cookies = document.cookie.split(";");
+    tabItem.forEach((item) => {
+        item.addEventListener("click", tabHandler);
+    });
 
-		  for (var i = 0; i < cookies.length; i++) {
-		    var cookie = cookies[i];
-		    var eqPos = cookie.indexOf("=");
-		    var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-		    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-		  }
-		}
-	function search(event) {
-		  if (event.keyCode === 13) {
-		    // 엔터 키를 눌렀을 때 처리할 코드
-		    var inputSearch = document.getElementById("inputSearch").value;
-		    ajaxSearch(inputSearch);
-		    
-		  }
-		}
-	function ajaxSearch(inputSearch){
-		if(inputSearch.trim() === ''){
-			alert("검색어를 입력해주세요!!");
-			return;
-		}
-		
-		//ajax통신
-		//검색해서 검색어를 포함한 게시물들의 아이디를 긴 스트링으로 받기
-		//스트링으로 받은 후 div아이디로 받은 아이디만 보이게 display설정하기
-		let xhr = new XMLHttpRequest();
-		xhr.open("POST","search?inputSearch="+inputSearch,true);
-		xhr.send();
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState == 4){
-				var searchString = xhr.responseText.trim();
-				var searchArr = searchString.split(",");
-				var divs = document.getElementsByClassName("postArea");
-				for (var i = 0; i < divs.length; i++) {
-					var id=divs[i].id;
-					id = id.substring(7);//뒤의 숫자아이디만 가져오기
-					if(searchArr.includes(id)){
-						var newdiv = document.getElementById("boardId"+id);//boardId1
-						newdiv.style.display = "block";
-					}else{
-						var newdiv = document.getElementById("boardId"+id);
-						newdiv.style.display = "none";
-					}
-				}
-				
-			}
-		}
-	}
-function showForm() {
-    // const btnShowForm = document.getElementById("btn-show-form");
-    // const formContainer1 = document.getElementById("form-container1"); //글작성하기 폼
-    // const anyimg = document.getElementById("anyimg");
-    // const anytext = document.getElementById("anytext");
-    // btnShowForm.style.display = "none";
-    // anyimg.style.display = "none";
-    // anytext.style.display = "none";
-    // formContainer1.style.display="flex";
-
-    const formContainer0 = document.getElementById("form-container0");
-    const formContainer2 = document.getElementById("form-container2");
-    formContainer0.style.display = "none";
-    formContainer2.style.display = "flex";
-
-
-
-}
-
-function createSaveForm() {
-    const introform1 = document.getElementById("introform1");
-    const introText = document.getElementById("intro1");
-    const introBtn = document.getElementById("introEditBtn1");
-
-    if (introBtn.innerText === "수정하기") {
-        introText.removeAttribute("readonly");
-        introBtn.innerText = "저장하기";
-    } else {
-        introText.setAttribute("readonly", "readonly");
-        introBtn.innerText = "수정하기";
-        introform1.submit();
+    //tab메뉴
+    function tabHandler(item) {
+        const tabTarget = item.currentTarget;
+        const target = tabTarget.dataset.tab;
+        tabItem.forEach((title) => {
+            title.classList.remove("active");
+        });
+        tabContent.forEach((target) => {
+            target.classList.remove("target");
+        });
+        document.querySelector("#" + target).classList.add("target");
+        tabTarget.classList.add("active");
     }
-}
+
+    var taglistBtn = document.getElementsByClassName("taglist");
+    for (var x = 0; x < taglistBtn.length; x++) {
+        taglistBtn[x].addEventListener("click", function () {
+            var seltag = this.textContent;
+            var postAreas = document.getElementsByClassName("postArea");
+            for (var i = 0; i < postAreas.length; i++) {
+                var tagBtns = postAreas[i].querySelectorAll(".tags button");
+                var isdis = false;
+                for (var j = 0; j < tagBtns.length; j++) {
+                    if (tagBtns[j].textContent === seltag) {
+                        isdis = true;
+                        break;
+                    }
+                }
+                if (isdis) {
+                    postAreas[i].style.display = "block";
+                } else {
+                    postAreas[i].style.display = "none";
+                }
+            }
+        });
+    }
+
+    function showall() {
+        var postAreas = document.getElementsByClassName("postArea");
+        for (var i = 0; i < postAreas.length; i++) {
+            postAreas[i].style.display = "block";
+        }
+    }
+
+    function myFunction(id) {		//게시물 상세 페이지로 게시물 아이디 넘기기
+// 		alert("개굴게시물 : "+id); 
+        location.href = '/goPost/' + id;///login
+    }
+
+    function deleteAllCookies() {
+        var cookies = document.cookie.split(";");
+
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+        }
+    }
+
+    function search(event) {
+        if (event.keyCode === 13) {
+            // 엔터 키를 눌렀을 때 처리할 코드
+            var inputSearch = document.getElementById("inputSearch").value;
+            ajaxSearch(inputSearch);
+
+        }
+    }
+
+    function ajaxSearch(inputSearch) {
+        if (inputSearch.trim() === '') {
+            alert("검색어를 입력해주세요!!");
+            return;
+        }
+
+        // ajax통신
+        // 검색해서 검색어를 포함한 게시물들의 아이디를 긴 스트링으로 받기
+        // 스트링으로 받은 후 div아이디로 받은 아이디만 보이게 display설정하기
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "search?inputSearch=" + inputSearch, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                var searchString = xhr.responseText.trim();
+                var searchArr = searchString.split(",");
+                var divs = document.getElementsByClassName("postArea");
+                for (var i = 0; i < divs.length; i++) {
+                    var id = divs[i].id;
+                    id = id.substring(7); //뒤의 숫자아이디만 가져오기
+                    if (searchArr.includes(id)) {
+                        var newdiv = document.getElementById("boardId" + id); //boardId1
+                        newdiv.style.display = "block";
+                    } else {
+                        var newdiv = document.getElementById("boardId" + id);
+                        newdiv.style.display = "none";
+                    }
+                }
+
+            }
+        }
+    }
+
+    function showForm() {
+        // const btnShowForm = document.getElementById("btn-show-form");
+        // const formContainer1 = document.getElementById("form-container1"); //글작성하기 폼
+        // const anyimg = document.getElementById("anyimg");
+        // const anytext = document.getElementById("anytext");
+        // btnShowForm.style.display = "none";
+        // anyimg.style.display = "none";
+        // anytext.style.display = "none";
+        // formContainer1.style.display="flex";
+
+        const formContainer0 = document.getElementById("form-container0");
+        const formContainer2 = document.getElementById("form-container2");
+        formContainer0.style.display = "none";
+        formContainer2.style.display = "flex";
+
+
+    }
+
+    function createSaveForm() {
+        const introform1 = document.getElementById("introform1");
+        const introText = document.getElementById("intro1");
+        const introBtn = document.getElementById("introEditBtn1");
+
+        if (introBtn.innerText === "수정하기") {
+            introText.removeAttribute("readonly");
+            introBtn.innerText = "저장하기";
+        } else {
+            introText.setAttribute("readonly", "readonly");
+            introBtn.innerText = "수정하기";
+            introform1.submit();
+        }
+    }
+
     autosize(document.getElementById('intro1'));
     autosize(document.getElementById('intro2'));
 </script>

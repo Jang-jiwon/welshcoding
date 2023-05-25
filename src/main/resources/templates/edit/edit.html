@@ -1,155 +1,157 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-<link th:href="@{/css/edit_style.css}" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<style >
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"/>
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <link th:href="@{/css/edit_style.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300&display=swap');
 
-*{
-font-family: 'IBM Plex Sans KR';
-}
+        * {
+            font-family: 'IBM Plex Sans KR';
+        }
 
-</style>
+    </style>
 
 
-<!-- ======================= 참고 링크 =======================
-https://shanepark.tistory.com/126
-https://github.com/nhn/tui.editor/blob/master/docs/v3.0-migration-guide-ko.md
+    <!-- ======================= 참고 링크 =======================
+    https://shanepark.tistory.com/126
+    https://github.com/nhn/tui.editor/blob/master/docs/v3.0-migration-guide-ko.md
 
-- 게시물 viewer
-https://docs.sysout.co.kr/etc/naver-toastui-editor/viewer-quick-start
+    - 게시물 viewer
+    https://docs.sysout.co.kr/etc/naver-toastui-editor/viewer-quick-start
 
--게시물 수정
-https://curryyou.tistory.com/475
- -->
+    -게시물 수정
+    https://curryyou.tistory.com/475
+     -->
 
 
 </head>
 <body>
-	
-	<div style="position:relative; width: 100%;" >
-		<input class="title" type="text"  placeholder="제목 입력" id="boardTitle">
-		<button class="addTagBtn" id="addTagBtn" onclick="add()" 
-		style="align-items: center; justify-content: space-around; text-align:center; display:flex; width: 90px; height:30px; font-size: 12px; margin:10px; margin-left: 20px; padding-left : 3px; padding-right: 3px; border: none; border-radius: 5px; background-color: #12b886; color: white;">
-		<strong>태그 추가하기</strong></button>
-		<div id="addedlist" class="addedlist" style="margin: 10px;"></div>
-		<div id="editor" ></div>
-		<div class="bottomArea" >
-			<div class="buttonArea" >
-				<div class="backArea" style="width: 30%;">
-					<button class="backBtn"  onclick="location.href='/mainBoard'" ><strong>← 나가기</strong></button>
-				</div>
-				<div class="saveArea" >
-					<button class="tmprysaveBtn" onclick="temporary()"><strong>임시저장</strong></button>
-					<button class="saveBtn" onclick="saveHtml()"><strong>출간하기</strong></button>
-				</div>
-			</div>
-		</div>
-		
-	</div>
-	
-	
+
+<div style="position:relative; width: 100%;">
+    <input class="title" type="text" placeholder="제목 입력" id="boardTitle">
+    <button class="addTagBtn" id="addTagBtn" onclick="add()"
+            style="align-items: center; justify-content: space-around; text-align:center; display:flex; width: 90px; height:30px; font-size: 12px; margin:10px; margin-left: 20px; padding-left : 3px; padding-right: 3px; border: none; border-radius: 5px; background-color: #12b886; color: white;">
+        <strong>태그 추가하기</strong></button>
+    <div id="addedlist" class="addedlist" style="margin: 10px;"></div>
+    <div id="editor"></div>
+    <div class="bottomArea">
+        <div class="buttonArea">
+            <div class="backArea" style="width: 30%;">
+                <button class="backBtn" onclick="location.href='/mainBoard'"><strong>← 나가기</strong></button>
+            </div>
+            <div class="saveArea">
+                <button class="tmprysaveBtn" onclick="temporary()"><strong>임시저장</strong></button>
+                <button class="saveBtn" onclick="saveHtml()"><strong>출간하기</strong></button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 </body>
-<script >
+<script>
 
-var n = sessionStorage.getItem("tagNum") || 0;
-var tagList = [];
+    var n = sessionStorage.getItem("tagNum") || 0;
+    var tagList = [];
 
-function add() {
-	  var name = prompt("추가할 태그를 입력해주세요");
-	  if (name == null || name.trim() === "") {
-	    return;
-	  } else {
-		  if(tagList.includes(name)){return;}
-	    tagList.push(name);
-	    var tb1 = `<button id="tag${n}" value="${name}" style="background-color: #00ff0000; border: none; outline: none;" onclick="del(${n})">${name} ×</button>`;
-	    $("#addedlist").append(tb1);
-	    n++; // n 값을 증가시킴
-	    sessionStorage.setItem("tagNum", n); // 업데이트된 n 값을 sessionStorage에 저장
-	  }
-	}
+    function add() {
+        var name = prompt("추가할 태그를 입력해주세요");
+        if (name == null || name.trim() === "") {
+            return;
+        } else {
+            if (tagList.includes(name)) {
+                return;
+            }
+            tagList.push(name);
+            var tb1 = `<button id="tag${n}" value="${name}"
+								style="background-color: #00ff0000; border: none; outline: none;"
+								onclick="del(${n})">${name} ×</button>`;
+            $("#addedlist").append(tb1);
+            n++; // n 값을 증가시킴
+            sessionStorage.setItem("tagNum", n); // 업데이트된 n 값을 sessionStorage에 저장
+        }
+    }
 
 
-function del(btnid) {
-  var tagname = $("#tag" + btnid).val();
-  $("#tag" + btnid).remove();
-  var index = tagList.indexOf(tagname);
-  if (index !== -1) {
-    tagList.splice(index, 1);
-  }
-}
-	
-	
-const Editor = toastui.Editor;
+    function del(btnid) {
+        var tagname = $("#tag" + btnid).val();
+        $("#tag" + btnid).remove();
+        var index = tagList.indexOf(tagname);
+        if (index !== -1) {
+            tagList.splice(index, 1);
+        }
+    }
 
-const editor = new Editor({
-	  el: document.querySelector('#editor'),
-	  height: '500px',
-	  initialEditType: 'markdown',
-	  previewStyle: 'vertical'
-	});
-	//previewStyle: 'tab' //편집중인 컨텐츠의 모습을 미리 볼 수 있는 프리뷰 형태 변환
-// 	editor.setMarkdown("sd");
-	
-saveHtml = function(){
-		var titleInput = document.getElementById('boardTitle').value;
-		if(titleInput.trim() === ''){
-			alert("제목을 입력해주세요!!");
-			return;
-		}
-		if(editor.getMarkdown().trim()===''){
-			alert("내용을 입력해주세요!!");
-			return;
-		}
-		sessionStorage.setItem("tagList", tagList);
-		sessionStorage.setItem("tagNum", 0);
-		var inputElement = document.getElementById('boardTitle');
+
+    const Editor = toastui.Editor;
+
+    const editor = new Editor({
+        el: document.querySelector('#editor'),
+        height: '500px',
+        initialEditType: 'markdown',
+        previewStyle: 'vertical'
+    });
+    //previewStyle: 'tab' //편집중인 컨텐츠의 모습을 미리 볼 수 있는 프리뷰 형태 변환
+    // 	editor.setMarkdown("sd");
+
+    saveHtml = function () {
+        var titleInput = document.getElementById('boardTitle').value;
+        if (titleInput.trim() === '') {
+            alert("제목을 입력해주세요!!");
+            return;
+        }
+        if (editor.getMarkdown().trim() === '') {
+            alert("내용을 입력해주세요!!");
+            return;
+        }
+        sessionStorage.setItem("tagList", tagList);
+        sessionStorage.setItem("tagNum", 0);
+        var inputElement = document.getElementById('boardTitle');
 // 		sessionStorage.setItem("editcont", editor.getHTML());
-		sessionStorage.setItem("editcont", editor.getMarkdown());
-		sessionStorage.setItem("boardTitle", inputElement.value);
-		location.href='/save';
-	}
+        sessionStorage.setItem("editcont", editor.getMarkdown());
+        sessionStorage.setItem("boardTitle", inputElement.value);
+        location.href = '/save';
+    }
 
-function temporary(){	//태그는 임시저장 안함
-	var cont = editor.getMarkdown();
-	var titleInput = document.getElementById('boardTitle').value;
-	if(titleInput.trim() === ''){
-		alert("제목을 입력해주세요!!");
-		return;
-	}
+    function temporary() {	//태그는 임시저장 안함
+        var cont = editor.getMarkdown();
+        var titleInput = document.getElementById('boardTitle').value;
+        if (titleInput.trim() === '') {
+            alert("제목을 입력해주세요!!");
+            return;
+        }
 // 	location.href="goTempForm";
-	
+
 // 	sessionStorage.setItem("gridtitle",titleInput);
 // 	sessionStorage.setItem("gridData",cont);
-	
-// 	//ajax통신
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "temporary", true);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-	var formData = "temporaryTitle=" + encodeURIComponent(titleInput) + "&temporaryDetail=" + encodeURIComponent(cont);
-	xhr.send(formData);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4){
-			if(xhr.responseText.trim() == "ok"){
-				alert("임시저장되었습니다.");
-			}else{
-				alert("저장실패 ");
-			}
-			
-		}
-	}
-	
-	
-	
-	
-}
-	
+// 	//ajax통신
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "temporary", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        var formData = "temporaryTitle=" + encodeURIComponent(titleInput) + "&temporaryDetail=" + encodeURIComponent(cont);
+        xhr.send(formData);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.responseText.trim() == "ok") {
+                    alert("임시저장되었습니다.");
+                } else {
+                    alert("저장실패 ");
+                }
+
+            }
+        }
+
+
+    }
+
 </script>
 
 </html>
