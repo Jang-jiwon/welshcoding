@@ -5,6 +5,7 @@ import com.example.welshcoding.domain.Sns;
 import com.example.welshcoding.dto.MemberDTO;
 import com.example.welshcoding.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/members")
@@ -95,14 +97,13 @@ public class MemberController {
     }
 
     @GetMapping("/delete")
-    @Transactional
     public String deleteUser() {
         Member member = (Member) session.getAttribute("member");
         if (member == null) {
             // 만약 세션에 "member"가 없다면, 적절한 조치를 취하세요 (예: 로그인 페이지로 리다이렉트)
             return "redirect:/login";
         }
-
+        log.info("abcd18");
         Long memberId = member.getMemberId();
         memberService.deleteById(memberId);
         session.invalidate();

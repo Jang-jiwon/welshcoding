@@ -24,8 +24,7 @@ public class MemberRepository{
     }
 
     @Transactional
-    public void deleteById(Long memberId) {
-        Member member = findById(memberId);
+    public void delete(Member member ) {
         em.remove(member);
     }
 

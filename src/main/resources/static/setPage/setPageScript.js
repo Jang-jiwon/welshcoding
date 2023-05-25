@@ -198,8 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('회원 탈퇴 승인');
             // const memberId = '[[${memberId}]]';
             // location.href = "/members/delete/" + memberId;
-            location.href = "/members/delete/"
-            location.href = "/gologin";
+            location.href = "/members/delete/";
         });
 
         // confirmBtn.addEventListener('click', () => {

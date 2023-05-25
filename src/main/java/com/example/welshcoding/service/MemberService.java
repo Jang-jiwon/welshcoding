@@ -1,13 +1,17 @@
 package com.example.welshcoding.service;
 
+import com.example.welshcoding.controller.BoardController;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.dto.MemberDTO;
 import com.example.welshcoding.domain.Sns;
 import com.example.welshcoding.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -157,6 +161,8 @@ public class MemberService {
 
     @Transactional
     public void deleteById(Long memberId) {
-        memberRepository.deleteById(memberId);
+//        memberRepository.deleteById(memberId);
+    	Member member = memberRepository.findOne(memberId);
+    	memberRepository.delete(member);
     }
 }
