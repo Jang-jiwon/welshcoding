@@ -193,9 +193,13 @@ public class BoardController {
     public String imgsrc(@RequestParam("imgsrc") String imgsrc, HttpSession session) {
         String re = "";
         Member member = (Member) session.getAttribute("member");
-//		log.info("내용 : "+imgsrc);
         Member recentMember = memberService.findOne(member.getMemberId());
-        testMemberService.updateSrc(imgsrc, recentMember.getMemberId());
+        try {
+        	testMemberService.updateSrc(imgsrc, recentMember.getMemberId());
+        	re="ok";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         return re;
     }
 

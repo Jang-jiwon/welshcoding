@@ -318,12 +318,8 @@ function previewImage() {
 	  // 파일이 선택되었을 때만 실행
 	  if (input.files && input.files[0]) {
 	    const reader = new FileReader();
-// 		alert();
-// console.log(preview.src);
 	    reader.onload = function (e) {
 	      preview.src = e.target.result;
-// 	      alert(preview.src);
-		console.log(preview.src);
 	      	
 	        //ajax
 			var xhr = new XMLHttpRequest();
@@ -336,9 +332,10 @@ function previewImage() {
 				if(xhr.readyState == 4){
 					if(xhr.responseText.trim() == "ok"){
 						//저장성공 
-						//지금은 저장 성공해도 else로 빠짐
+						console.log("성공");
 					}else{
 						//저장실패
+						console.log("실패");
 					}
 					location.reload()
 					
