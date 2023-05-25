@@ -3,6 +3,7 @@ package com.example.welshcoding.controller;
 import java.text.ParseException;
 import java.util.List;
 
+import com.example.welshcoding.service.MemberService;
 import com.example.welshcoding.service.SeriesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.dto.BoardDTO;
 import com.example.welshcoding.dto.SeriesListDTO;
 
@@ -20,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class SeriesController {
 
 	private final SeriesService seriesService;
+	private final MemberService memberService;
 	
 //	@GetMapping("/kdy/series/{memberId}")
 	public String seriesList(@PathVariable Long memberId, Model model) throws ParseException {
@@ -55,6 +58,9 @@ public class SeriesController {
 		} else {
 			model.addAttribute("boardsOfSeriesSize", true);
 		}
+		
+		Member recentMember = memberService.findOne(memberId);
+		model.addAttribute("recentMember", recentMember);
 		model.addAttribute("boardList",boardList);
 		model.addAttribute("seriesName",seriesService.findSeriesById(seriesId).getSeriesName());
 		return "series/seriesDetail";
