@@ -65,38 +65,38 @@
     <section class="Profile-detail">
 
         <!-- 벨로그 제목 영역 시작 -->
-        <div class="pd p_dt">
-            <div class="wrapper">
-                <div class="title-wrapper">
-                    <h3>벨로그 제목</h3>
-                </div>
-                <div class="block-set">
+<!--         <div class="pd p_dt"> -->
+<!--             <div class="wrapper"> -->
+<!--                 <div class="title-wrapper"> -->
+<!--                     <h3>벨로그 제목</h3> -->
+<!--                 </div> -->
+<!--                 <div class="block-set"> -->
 
-                    <!-- default 값 -->
-                    <div class="block-set" id="vPageName">
-                        <div class="contents" id="vPageNameT"
-                             th:text="${member.velogPageName}"></div>
-                        <div class="edit-wrapper">
-                            <button class="edit-button" id="editButton_vN">수정</button>
-                        </div>
-                    </div>
+<!--                     default 값 -->
+<!--                     <div class="block-set" id="vPageName"> -->
+<!--                         <div class="contents" id="vPageNameT" -->
+<!--                              th:text="${member.velogPageName}"></div> -->
+<!--                         <div class="edit-wrapper"> -->
+<!--                             <button class="edit-button" id="editButton_vN">수정</button> -->
+<!--                         </div> -->
+<!--                     </div> -->
 
 
-                    <!-- 숨겨진 항목 (수정 버튼 클릭시 나오는 영역) -->
-                    <div class="contents" id="vPageName_editForm" style="display: none;">
-                        <form class="vName_editForm" id="editForm2" method="post"
-                              th:action="@{/members/setPage/edit2(memberId=__${session.memberId}__)}">
-                            <!--                  th:action="@{/members/setPage/{memberId}/edit2(memberId=${member.memberId})}">-->
-                            <input placeholder="벨로그 제목" id="vPageNameT_e" name="velogPageName"
-                                   th:value="${member.velogPageName}">
-                            <button color="teal" class="save-button" id="save-btn-PageName">저장</button>
-                        </form>
-                    </div>
+<!--                     숨겨진 항목 (수정 버튼 클릭시 나오는 영역) -->
+<!--                     <div class="contents" id="vPageName_editForm" style="display: none;"> -->
+<!--                         <form class="vName_editForm" id="editForm2" method="post" -->
+<!--                               th:action="@{/members/setPage/edit2(memberId=__${session.memberId}__)}"> -->
+<!--                                              th:action="@{/members/setPage/{memberId}/edit2(memberId=${member.memberId})}"> -->
+<!--                             <input placeholder="벨로그 제목" id="vPageNameT_e" name="velogPageName" -->
+<!--                                    th:value="${member.velogPageName}"> -->
+<!--                             <button color="teal" class="save-button" id="save-btn-PageName">저장</button> -->
+<!--                         </form> -->
+<!--                     </div> -->
 
-                </div>
-            </div>
-            <div class="description">개인 페이지의 좌측 상단에 나타나는 페이지 제목입니다.</div>
-        </div>
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="description">개인 페이지의 좌측 상단에 나타나는 페이지 제목입니다.</div> -->
+<!--         </div> -->
 
         <!-- 소셜 정보 영역 시작 -->
         <div class="pd p_dt" id="social-infoset">
