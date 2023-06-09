@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // DOM 로딩이 완료된 후 실행할 자바스크립트 코드 작성
     // ===================== 프로필 이미지 업로드, 삭제 기능 =====================
     window.addEventListener('DOMContentLoaded', (event) => {
-        const uploadButton = document.getElementById('UPB');
-        const removeButton = document.getElementById('RMB');
-        const profileImage = document.getElementById('profile-image');
+//        const uploadButton = document.getElementById('UPB');
+//        const removeButton = document.getElementById('RMB');
+//        const profileImage = document.getElementById('profile-image');
 
 //        uploadButton.addEventListener('click', () => {
 //            // 이미지 업로드 버튼 클릭 시, 파일을 선택 창 띄우기
