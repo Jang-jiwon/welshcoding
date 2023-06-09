@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
 //            input.click();
 //        });
 
-        removeButton.addEventListener('click', () => {
-            // 이미지 제거 버튼 클릭 시, 업로드 된 소스 삭제 (디폴트 이미지 설정해둠)
-            profileImage.src = 'img/defaultImage.png';
-        });
+//        removeButton.addEventListener('click', () => {
+//            // 이미지 제거 버튼 클릭 시, 업로드 된 소스 삭제 (디폴트 이미지 설정해둠)
+//            profileImage.src = 'img/defaultImage.png';
+//        });
     });
 
 
@@ -69,27 +69,27 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ===================== 벨로그 정보 수정 기능 (위와 같은 기능이니 주석 패스할게요~) =====================
-    document.getElementById('editButton_vN').addEventListener('click', function () {
-        document.querySelector('#vPageName').style.display = 'none';
-        document.querySelector('#vPageName_editForm').style.display = 'block';
-    });
+//    document.getElementById('editButton_vN').addEventListener('click', function () {
+//        document.querySelector('#vPageName').style.display = 'none';
+//        document.querySelector('#vPageName_editForm').style.display = 'block';
+//    });
 
-    var vPageNameT = document.querySelector('#vPageNameT');
-    var vPageNameT_e = document.querySelector('#vPageNameT_e');
-    var vPageNameData = vPageNameT.innerText;
-    vPageNameT_e.value = vPageNameData;
+//    var vPageNameT = document.querySelector('#vPageNameT');
+//    var vPageNameT_e = document.querySelector('#vPageNameT_e');
+//    var vPageNameData = vPageNameT.innerText;
+//    vPageNameT_e.value = vPageNameData;
 
-    document.querySelector('#save-btn-PageName').addEventListener('click', function (event) {
-        event.preventDefault();
-
-        var updatePageData = vPageNameT_e.value;
-        vPageNameT.innerText = updatePageData;
-
-        document.querySelector('#vPageName').style.display = 'flex';
-        document.querySelector('#vPageName_editForm').style.display = 'none';
-
-        document.querySelector('#editForm2').submit();
-    });
+//    document.querySelector('#save-btn-PageName').addEventListener('click', function (event) {
+//        event.preventDefault();
+//
+//        var updatePageData = vPageNameT_e.value;
+//        vPageNameT.innerText = updatePageData;
+//
+//        document.querySelector('#vPageName').style.display = 'flex';
+//        document.querySelector('#vPageName_editForm').style.display = 'none';
+//
+//        document.querySelector('#editForm2').submit();
+//    });
 
     // ===================== 소셜 정보 수정 기능 =====================
     document.getElementById('editButton_sns').addEventListener('click', function () {
