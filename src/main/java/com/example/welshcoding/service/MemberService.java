@@ -28,6 +28,13 @@ public class MemberService {
 //        return memberDTO;
 //    }
 
+    
+    @Transactional
+	public void updateSrc(String imgsrc,long memberId) {
+		Member member = memberRepository.findOne(memberId);
+		member.setProfileImg(imgsrc);
+	}
+    
     public Member getMemberById(Long memberId) {
         Member member = memberRepository.findById(memberId);
         MemberDTO memberDTO = new MemberDTO();

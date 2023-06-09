@@ -311,42 +311,73 @@ function del(){
 	}
 }
 
+
+
 function previewImage() {
 	  const input = document.getElementById('UPB2');
 	  const preview = document.getElementById('profile-image');
-		
+	  const old = preview.src;
+	  var imageURL;
 	  // 파일이 선택되었을 때만 실행
 	  if (input.files && input.files[0]) {
 	    const reader = new FileReader();
-	    reader.onload = function (e) {
-	      preview.src = e.target.result;
-	      	
-	        //ajax
-			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "/profile", true);
-			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-			
-			var formData = "imgsrc=" + encodeURIComponent(preview.src) ;
-			xhr.send(formData);
-			xhr.onreadystatechange = function(){
-				if(xhr.readyState == 4){
-					if(xhr.responseText.trim() == "ok"){
-						//저장성공 
-						console.log("성공");
-					}else{
-						//저장실패
-						console.log("실패");
-					}
-					location.reload()
-					
-				}
-			}
-	      
+	    reader.onload = async function (e) {
+	      if (input.files && input.files[0].size > (1.5 * 1024 * 1024)) {
+	        const file = input.files[0];
+	        const blobUrl = URL.createObjectURL(file);
+	        var img = new Image();
+	        img.src = blobUrl;
+	        img.onload = function () {
+	          var canvas = document.createElement('canvas');
+	          var ctx = canvas.getContext('2d');
+
+	          var maxSize = 1.4 * 1024 * 1024; // 1.4MB
+	          var width = img.width;
+	          var height = img.height;
+	          var ratio = Math.sqrt(maxSize / (width * height));
+	          canvas.width = width * ratio;
+	          canvas.height = height * ratio;
+	          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+	          var dataURL = canvas.toDataURL('image/jpeg', 0.9);
+
+	          preview.src = dataURL;
+	          sendDataToServer(preview.src);
+	        };
+	      } else {
+	        preview.src = e.target.result;
+	        sendDataToServer(preview.src);
+	      }
 	    };
 
 	    reader.readAsDataURL(input.files[0]);
 	  }
 	}
+
+	function sendDataToServer(imgsrc) {
+	  // http://localhost:9090/css/imgs/corgi.png - 기본 이미지 주소
+	  //ajax
+	  var xhr = new XMLHttpRequest();
+	  xhr.open("POST", "/members/profile", true);
+	  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	  var imgpath = "imgsrc=" + encodeURIComponent(imgsrc);
+// 	  alert("세번째 : " + imgsrc);
+	  xhr.send(imgpath);
+
+	  xhr.onreadystatechange = function () {
+	    if (xhr.readyState == 4) {
+	      if (xhr.responseText.trim() == "ok") {
+	        //저장성공 
+	        alert("프로필 이미지가 변경되었습니다.");
+	      } else {
+	        //저장실패
+	        alert("실패");
+	      }
+	      location.reload()
+	    }
+	  }
+	}
+
 </script>
 <script>
 

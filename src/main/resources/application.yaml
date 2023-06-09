@@ -2,6 +2,7 @@
 server:
   port: 9090
 
+
 #DB Connection
 spring:
   datasource:
@@ -22,10 +23,16 @@ spring:
   thymeleaf:
     cache: false
     
+
+    
+    
+    
 logging.level:
   org:
     hibernate:
       SQL: debug
-      type: trace  
+      type: debug  
     
+    
+
     

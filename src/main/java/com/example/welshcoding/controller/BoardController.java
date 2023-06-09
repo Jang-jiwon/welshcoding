@@ -188,20 +188,7 @@ public class BoardController {
     }
 
 
-    @PostMapping("profile")
-    @ResponseBody
-    public String imgsrc(@RequestParam("imgsrc") String imgsrc, HttpSession session) {
-        String re = "";
-        Member member = (Member) session.getAttribute("member");
-        Member recentMember = memberService.findOne(member.getMemberId());
-        try {
-        	testMemberService.updateSrc(imgsrc, recentMember.getMemberId());
-        	re="ok";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-        return re;
-    }
+    
 
     @PostMapping("delProfile")
     @ResponseBody

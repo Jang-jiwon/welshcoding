@@ -4,9 +4,19 @@ import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.Sns;
 import com.example.welshcoding.dto.MemberDTO;
 import com.example.welshcoding.service.MemberService;
+import com.example.welshcoding.service.TestMemberService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +25,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Slf4j
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/members")
 public class MemberController {
+	
 
     private final MemberService memberService;
+    private final TestMemberService testMemberService;
     @Autowired
     private HttpSession session;
 
@@ -37,6 +49,25 @@ public class MemberController {
 //
 //        return "setPage/setPage";
 //    }
+    
+  
+
+    
+    
+    @PostMapping("/profile")
+    @ResponseBody
+    public String imgsrc(@RequestParam("imgsrc") String imgsrc, HttpSession session) {
+        String re = "";
+        Member member = (Member) session.getAttribute("member");
+        Member recentMember = memberService.findOne(member.getMemberId());
+        try {
+        	memberService.updateSrc(imgsrc, recentMember.getMemberId());
+        	re="ok";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return re;
+    }
 
     @GetMapping("/setPage")
     public String setPage(Model model) {
@@ -103,7 +134,6 @@ public class MemberController {
             // 만약 세션에 "member"가 없다면, 적절한 조치를 취하세요 (예: 로그인 페이지로 리다이렉트)
             return "redirect:/login";
         }
-        log.info("abcd18");
         Long memberId = member.getMemberId();
         memberService.deleteById(memberId);
         session.invalidate();
