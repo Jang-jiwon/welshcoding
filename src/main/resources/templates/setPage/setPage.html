@@ -99,7 +99,6 @@
 <!--         </div> -->
 
         <!-- 소셜 정보 영역 시작 -->
-        <th:block th:if="${sns != null}">
         <div class="pd p_dt" id="social-infoset">
             <div class="wrapper">
                 <div class="title-wrapper">
@@ -121,7 +120,7 @@
                                     <img class="icons" src="/setPage/img/github-icon.svg"
                                          onerror="this.src='/kdy/imgs/noImage.png'" alt="github">
                                     <div id="snsGithub"
-                                         th:text="${sns.userGithub != null && sns.userGithub != ' ' && sns.userGithub != ''? sns.userGithub : '입력된 Github 링크가 없습니다.'}"></div>
+                                         th:text="${sns.userGithub != null && sns.userGithub != ' ' ? sns.userGithub : '입력된 Github 링크가 없습니다.'}"></div>
                                 </li>
                                 <li>
                                     <img class="icons" src="/setPage/img/twitter-icon.svg"
@@ -193,11 +192,11 @@
                                     <input name="userHomepage" class="snsButton sns_editBox"
                                            id="snsHome_e"
                                            placeholder="홈페이지 주소를 입력하세요."
-                                           value="" th:value="${sns.userHomepage}" th:placeholder="${'홈페이지 주소를 입력하세요.'}">
+                                           value="" th:value="${sns.userHomepage}">
                                 </li>
                             </ul>
                             <div class="button-wrapper">
-                                <button color="teal" class="save-button" id="save-btn-sns" > 저장</button>
+                                <button color="teal" class="save-button" id="save-btn-sns" onclick="savebtn()"> 저장</button>
                             </div>
                         </form>
                     </div>
@@ -206,7 +205,6 @@
             </div>
             <div class="description">포스트 및 블로그에서 보여지는 프로필에 공개되는 소셜 정보입니다.</div>
         </div>
-        </th:block>
 
         <!-- 이메일 주소 영역 시작 -->
         <div class="pd p_dt" id="email-area">
@@ -396,28 +394,28 @@ function previewImage() {
 </script>
 <script>
 
-// var snsGithub_e = document.getElementById("snsGithub_e");
-// var userTwitter = document.getElementById("userTwitter");
-// var userFacebook = document.getElementById("userFacebook");
-// var userHomepage = document.getElementById("userHomepage");
-// var editForm3 = document.getElementById("editForm3");
-// function savebtn(){
-// // 	alert("dsads : "+snsGithub_e.value);
-// // 	console.log("dsads : "+snsGithub_e.value);
-// 	if(snsGithub_e.value==null || snsGithub_e.value.trim()==""){
-// // 		alert("dsads : "+snsGithub_e.value);
-// 		snsGithub_e.value=" ";
-// 	}
-// 	if(userTwitter.value==null || userTwitter.value.trim()==""){
-// 		userTwitter.value=" ";
-// 	}
-// 	if(userFacebook.value==null || userFacebook.value.trim()==""){
-// 		userFacebook.value=" ";
-// 	}
-// 	if(userHomepage.value==null || userHomepage.value.trim()==""){
-// 		userHomepage.value=" ";
-// 	}
-// 	editForm3.submit();
-// }
+var snsGithub_e = document.getElementById("snsGithub_e");
+var userTwitter = document.getElementById("userTwitter");
+var userFacebook = document.getElementById("userFacebook");
+var userHomepage = document.getElementById("userHomepage");
+var editForm3 = document.getElementById("editForm3");
+function savebtn(){
+// 	alert("dsads : "+snsGithub_e.value);
+// 	console.log("dsads : "+snsGithub_e.value);
+	if(snsGithub_e.value==null || snsGithub_e.value.trim()==""){
+// 		alert("dsads : "+snsGithub_e.value);
+		snsGithub_e.value=" ";
+	}
+	if(userTwitter.value==null || userTwitter.value.trim()==""){
+		userTwitter.value=" ";
+	}
+	if(userFacebook.value==null || userFacebook.value.trim()==""){
+		userFacebook.value=" ";
+	}
+	if(userHomepage.value==null || userHomepage.value.trim()==""){
+		userHomepage.value=" ";
+	}
+	editForm3.submit();
+}
 </script>
 </html>

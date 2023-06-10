@@ -38,10 +38,10 @@ public class SignupController {
         Sns sns = new Sns();
 
 
-        sns.setUserFacebook("");
-        sns.setUserGithub("");
-        sns.setUserHomepage("");
-        sns.setUserTwitter("");
+        sns.setUserFacebook(" ");
+        sns.setUserGithub(" ");
+        sns.setUserHomepage(" ");
+        sns.setUserTwitter(" ");
         member.setSns(sns);
 
         member.setVelogPageName(userName);

@@ -75,10 +75,6 @@ public class MemberController {
         long memberId = member.getMemberId();
         member = memberService.getMemberById(memberId);
         Sns sns = memberService.getMemberById(memberId).getSns();
-        if(sns==null) {
-        	 System.out.println("snsInfo : null");
-        	 sns = new Sns();
-        }
         model.addAttribute("recentMember", member);
         model.addAttribute("member", member);
         model.addAttribute("sns", sns);
