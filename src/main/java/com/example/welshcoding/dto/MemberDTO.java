@@ -2,9 +2,14 @@ package com.example.welshcoding.dto;
 
 import com.example.welshcoding.domain.Sns;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Optional;
 
+
+@Getter 
+@Setter
 @Data
 public class MemberDTO {
     private Long memberId;
@@ -25,6 +30,7 @@ public class MemberDTO {
     private String userHomepage;
 
     // null 일때 "" 를 리턴, 아닐때 userEmail 을 리턴하는 Getter를 GPT 에게 최적화 맡김ㅎㅎ.
+    /*
     public Long getMemberId() {
         return Optional.ofNullable(memberId).orElse(null);
     }
@@ -83,7 +89,7 @@ public class MemberDTO {
 
     public String getUserHomepage() {
         return Optional.ofNullable(userHomepage).orElse("");
-    }
+    }*/
 }
 
 

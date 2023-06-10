@@ -35,19 +35,26 @@ https://developeryoung.tistory.com/39 -->
             </div>
             <hr class="hr1">
             <div class="mainbody_social">
-                <a href="#" th:href="@{${recentMember.sns.userGithub}}" id="github">
-                    <img class="socialIcon" src="/body1/imgs/githubIcon.png">
-                </a>
-                <a href="#" th:href="@{${recentMember.sns.userTwitter}}" id="twitter">
-                    <img class="socialIcon" src="/body1/imgs/twiterIcon.png">
-                </a>
-                <a href="#" th:href="@{${recentMember.sns.userFacebook}}" id="facebook">
-                    <img class="socialIcon" src="/body1/imgs/facebookIcon.png">
-                </a>
-                <a href="#" th:href="@{${recentMember.sns.userHomepage}}" id="homepage">
-                    <img class="socialIcon" src="/body1/imgs/home-icon.png">
-                </a>
-                <!--                <img class="socialIcon" src="/body1/imgs/emailIcon.png" > -->
+	            <th:block th:if="${recentMember != null and recentMember.sns != null and recentMember.sns.userGithub != null and recentMember.sns.userGithub != ''}">
+				    <a href="#" th:href="@{${recentMember.sns.userGithub}}" id="github">
+				    	<img class="socialIcon" src="/body1/imgs/githubIcon.png">
+				    </a>
+				</th:block>
+				<th:block th:if="${recentMember != null and recentMember.sns != null and recentMember.sns.userTwitter != null and recentMember.sns.userTwitter != ''}">
+				    <a href="#" th:href="@{${recentMember.sns.userTwitter}}" id="twitter">
+				    	<img class="socialIcon" src="/body1/imgs/twiterIcon.png">
+				    </a>
+				</th:block>
+				<th:block th:if="${recentMember != null and recentMember.sns != null and recentMember.sns.userFacebook != null and recentMember.sns.userFacebook != ''}">
+				    <a href="#" th:href="@{${recentMember.sns.userFacebook}}" id="facebook">
+				    	<img class="socialIcon" src="/body1/imgs/facebookIcon.png">
+				    </a>
+				</th:block>
+				<th:block th:if="${recentMember != null and recentMember.sns != null and recentMember.sns.userHomepage != null and recentMember.sns.userHomepage != ''}">
+				    <a href="#" th:href="@{${recentMember.sns.userHomepage}}" id="homepage">
+				    	<img class="socialIcon" src="/body1/imgs/home-icon.png">
+				    </a>
+				</th:block>
             </div>
         </div>
     </div>

@@ -97,29 +97,29 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('#snsInfo_e').style.display = 'block';
     });
 
-    var snsEmail = document.querySelector('#snsEmail');
-    var snsGithub = document.querySelector('#snsGithub');
-    var snsTwitter = document.querySelector('#snsTwitter');
-    var snsFacebook = document.querySelector('#snsFacebook');
-    var snsHome = document.querySelector('#snsHome');
-
-    var snsEmail_e = document.querySelector('#snsEmail_e');
-    var snsGithub_e = document.querySelector('#snsGithub_e');
-    var snsTwitter_e = document.querySelector('#snsTwitter_e');
-    var snsFacebook_e = document.querySelector('#snsFacebook_e');
-    var snsHome_e = document.querySelector('#snsHome_e');
-
-    var snsEmailData = snsEmail.innerText;
-    var snsGithubData = snsGithub.innerText;
-    var snsTwitterData = snsTwitter.innerText;
-    var snsFacebookData = snsFacebook.innerText;
-    var snsHomeData = snsHome.innerText;
-
-    snsEmail_e.value = snsEmailData;
-    snsGithub_e.value = snsGithubData;
-    snsTwitter_e.value = snsTwitterData;
-    snsFacebook_e.value = snsFacebookData;
-    snsHome_e.value = snsHomeData;
+//    var snsEmail = document.querySelector('#snsEmail');
+//    var snsGithub = document.querySelector('#snsGithub');
+//    var snsTwitter = document.querySelector('#snsTwitter');
+//    var snsFacebook = document.querySelector('#snsFacebook');
+//    var snsHome = document.querySelector('#snsHome');
+//
+//    var snsEmail_e = document.querySelector('#snsEmail_e');
+//    var snsGithub_e = document.querySelector('#snsGithub_e');
+//    var snsTwitter_e = document.querySelector('#snsTwitter_e');
+//    var snsFacebook_e = document.querySelector('#snsFacebook_e');
+//    var snsHome_e = document.querySelector('#snsHome_e');
+//
+//    var snsEmailData = snsEmail.innerText;
+//    var snsGithubData = snsGithub.innerText;
+//    var snsTwitterData = snsTwitter.innerText;
+//    var snsFacebookData = snsFacebook.innerText;
+//    var snsHomeData = snsHome.innerText;
+//
+//    snsEmail_e.value = snsEmailData;
+//    snsGithub_e.value = snsGithubData;
+//    snsTwitter_e.value = snsTwitterData;
+//    snsFacebook_e.value = snsFacebookData;
+//    snsHome_e.value = snsHomeData;
 
     function savebtn() {
         alert("저장");
@@ -127,34 +127,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelector('#save-btn-sns').addEventListener('click', function (event) {
         event.preventDefault();
-        console.log("개굴");
-        var updateEmailData = snsEmail_e.value;
-        var updateGithubData = snsGithub_e.value;
-        var updateTwitterData = snsTwitter_e.value;
-        var updateFacebookData = snsFacebook_e.value;
-        var updateHomeData = snsHome_e.value;
-        console.log("dmksald : " + updateEmailData);
-        if (updateEmailData === null || updateEmailData.trim() === '') {
-            updateEmailData = ' ';
+        
+        if (snsEmail_e.value === null || snsEmail_e.value.trim() === '') {
+            alert("이메일은 필수 입력사항입니다.");
+            document.querySelector('#snsInfo').style.display = 'flex';
+        	document.querySelector('#snsInfo_e').style.display = 'none';
+            return;
         }
-        if (updateGithubData === null || updateGithubData.trim() === '') {
-            updateGithubData = ' ';
+        if (snsGithub_e.value.trim() === '') {
+            snsGithub_e.value = null;
         }
-        if (updateTwitterData === null || updateTwitterData.trim() === '') {
-            updateTwitterData = ' ';
+        if (snsTwitter_e.value.trim() === '') {
+            snsTwitter_e.value = null;
         }
-        if (updateFacebookData === null || updateFacebookData.trim() === '') {
-            updateFacebookData = ' ';
+        if (snsFacebook_e.value.trim() === '') {
+            updateFacebookData = null;
         }
-        if (updateHomeData === null || updateHomeData.trim() === '') {
-            updateHomeData = ' ';
+        if (snsHome_e.value.trim() === '') {
+            snsHome_e.value = null;
         }
 
-        snsEmail.innerText = updateEmailData;
-        snsGithub.innerText = updateGithubData;
-        snsTwitter.innerText = updateTwitterData;
-        snsFacebook.innerText = updateFacebookData;
-        snsHome.innerText = updateHomeData;
+        snsEmail.innerText = snsEmail_e.value;
+        snsGithub.innerText = snsGithub_e.value;
+        snsTwitter.innerText = snsTwitter_e.value;
+        snsFacebook.innerText = snsFacebook_e.value;
+        snsHome.innerText = snsHome_e.value;
 
         document.querySelector('#snsInfo').style.display = 'flex';
         document.querySelector('#snsInfo_e').style.display = 'none';
