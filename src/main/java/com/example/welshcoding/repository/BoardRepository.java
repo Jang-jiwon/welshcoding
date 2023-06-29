@@ -31,8 +31,6 @@ public class BoardRepository {
     }
 
     public Board findOne(long boardId, long memberId) {
-        System.out.println("개굴개굴개구리");
-
         Query query = em.createQuery("SELECT b FROM Board b WHERE b.boardId = :boardId AND b.member.memberId = :memberId  ", Board.class);
         query.setParameter("boardId", boardId);
         query.setParameter("memberId", memberId);

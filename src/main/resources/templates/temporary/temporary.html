@@ -32,8 +32,8 @@ font-family: 'IBM Plex Sans KR';
 			        <div class="postArea" th:each="temp : ${temps}" >
 			        	<h1 class="postH1" th:text="${temp.temporaryTitle}"
 			        	th:onclick="|myFunction('${temp.temporaryId}')|"></h1>
-			            <p class="postCont" th:text="${temp.temporaryDetail}">
-			            </p>
+			            <p class="postCont" th:if="${temp.temporaryDetail}" th:text="${temp.temporaryDetail}"></p>
+
 			            <section>
 			            	<div class="time" th:text="${temp.temporaryDate}"></div>
 			            	<button class="remove" th:onclick="|del('${temp.temporaryId}')|">삭제</button>
@@ -55,7 +55,7 @@ font-family: 'IBM Plex Sans KR';
 </body>
 </html>
 <script>
-
+// location.reload();
 	//외부 html 붙히기
 // 	$(function() {
 // 	  $("#header").load("/header/header.html");

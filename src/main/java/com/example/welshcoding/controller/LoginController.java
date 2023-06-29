@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.welshcoding.dto.LoginDTO;
 import com.example.welshcoding.domain.Member;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/login_out")
 public class LoginController {
 	
 	private final LoginService loginService;
@@ -24,6 +26,7 @@ public class LoginController {
 	/*로그인 테스트를 위한 URL */
 	@GetMapping("gologin")
 	public String home() {
+		
 		return "login/login";
 	}
 	

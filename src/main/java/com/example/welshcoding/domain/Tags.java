@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.example.welshcoding.exception.TagNullException;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,15 +37,12 @@ public class Tags {
 	@JoinColumn(name = "MEMBERID")
 	private Member member;
 
-    @Getter @Setter
-    public static class Form {
-        private long userEmail;
-        private String userPwd;
-        private String userName;
-        private String userBirthyy;
-        private String userBirthmm;
-        private String userBirthdd;
-        private String userGender;
-        private String userPhone;
+    
+    public void setTagsName(String tagname) {
+    	if(tagname.trim()=="" || tagname == null) {
+    		throw new TagNullException("TagValue is null");
+    	}
+    	this.tagsName = tagname;
     }
+
 }

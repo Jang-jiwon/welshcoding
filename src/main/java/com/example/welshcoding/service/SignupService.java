@@ -19,12 +19,6 @@ public class SignupService {
     }
 
     public String dubcheck(String email) {
-
-        String re = "impossible";
-        if (signupRepository.findEmail(email) == "ok") {
-            re = "possible";
-        }
-        System.out.println("결과 : " + re);
-        return re;
+        return signupRepository.findEmail(email);
     }
 }

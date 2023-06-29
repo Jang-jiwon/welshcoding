@@ -1,7 +1,9 @@
 package com.example.welshcoding.controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,53 +44,53 @@ public class BoardController {
     private final IntroduceService introduceService;
     private final MemberService memberService;
 
-    @GetMapping("/mainBoard/{memberId}")
-    public String list(@PathVariable Long memberId, Model model, HttpSession session) throws ParseException {
-        log.info("1818memberId : " + memberId);
-        try {
-            List<Board> boards = boardService.findBoards(memberId);
-            model.addAttribute("boards", boards);
-        } catch (Exception e) {
-            log.info("18181818818");
-        }
-
-
-        /********* kdy - series 부분 *********/
-        List<SeriesListDTO> seriesList = seriesService.findSeriesAll(memberId);
-
-        if (seriesList.size() == 0) {
-            model.addAttribute("seriesSize", false);
-        } else {
-            model.addAttribute("seriesSize", true);
-        }
-
-        model.addAttribute("seriesList", seriesList);
-        /********* ------------------- *********/
-
-        Member member = (Member) session.getAttribute("member");
-        List<Tags> newtags = tagServices.findTags(member);
-        String[] newtagsList = new String[newtags.size()];
-        for (int j = 0; j < newtags.size(); j++) {
-            newtagsList[j] = newtags.get(j).getTagsName();
-        }
-        Set<String> set = new HashSet<>(Arrays.asList(newtagsList));
-        String[] result = set.toArray(new String[set.size()]);
-        for (int j = 0; j < result.length; j++) {
-            log.info("NewTagService : " + result[j]);
-        }
-
-        System.out.println(memberId);
-
-        Introduce introduce = introduceService.findById(memberId);
-
-        model.addAttribute("introduce", introduce);
-
-        model.addAttribute("alltags", result);
-        model.addAttribute("memberId", memberId);
-
-
-        return "mainbody/body";
-    }
+//    @GetMapping("/mainBoard/{memberId}")
+//    public String list(@PathVariable Long memberId, Model model, HttpSession session) throws ParseException {
+//        log.info("1818memberId : " + memberId);
+//        try {
+//            List<Board> boards = boardService.findBoards(memberId);
+//            model.addAttribute("boards", boards);
+//        } catch (Exception e) {
+//            log.info("18181818818");
+//        }
+//
+//
+//        /********* kdy - series 부분 *********/
+//        List<SeriesListDTO> seriesList = seriesService.findSeriesAll(memberId);
+//
+//        if (seriesList.size() == 0) {
+//            model.addAttribute("seriesSize", false);
+//        } else {
+//            model.addAttribute("seriesSize", true);
+//        }
+//
+//        model.addAttribute("seriesList", seriesList);
+//        /********* ------------------- *********/
+//
+//        Member member = (Member) session.getAttribute("member");
+//        List<Tags> newtags = tagServices.findTags(member);
+//        String[] newtagsList = new String[newtags.size()];
+//        for (int j = 0; j < newtags.size(); j++) {
+//            newtagsList[j] = newtags.get(j).getTagsName();
+//        }
+//        Set<String> set = new HashSet<>(Arrays.asList(newtagsList));
+//        String[] result = set.toArray(new String[set.size()]);
+//        for (int j = 0; j < result.length; j++) {
+//            log.info("NewTagService : " + result[j]);
+//        }
+//
+//        System.out.println(memberId);
+//
+//        Introduce introduce = introduceService.findById(memberId);
+//
+//        model.addAttribute("introduce", introduce);
+//
+//        model.addAttribute("alltags", result);
+//        model.addAttribute("memberId", memberId);
+//
+//
+//        return "mainbody/body";
+//    }
 
     @GetMapping("/mainBoard")
     public String list2(Model model, HttpSession session) throws ParseException {
@@ -96,7 +98,7 @@ public class BoardController {
         Member member = (Member) session.getAttribute("member");
         long testmemberid = member.getMemberId();
         List<Board> boards = boardService.findBoards(testmemberid);
-
+        
         log.info("Board Controller");
         System.out.println("================sdadadsadsdadad");//boards.get(0).getBoardTitle()+
 
@@ -129,9 +131,8 @@ public class BoardController {
             cont = removeSpecialCharacters(cont);
             boards.get(i).setBoardIntro(cont + "....");
         }
-
         /*-----------------------------------------------------------*/
-
+        
         Member recentMember = memberService.findOne(member.getMemberId());
 
         Introduce introduce = introduceService.findById(testmemberid);

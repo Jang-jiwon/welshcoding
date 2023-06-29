@@ -159,8 +159,7 @@
                                          onerror="this.src='/kdy/imgs/noImage.png'" alt="email">
                                     <input name="userEmail" class="snsButton sns_editBox" id="snsEmail_e"
                                            placeholder="이메일을 입력하세요."
-                                           value="" th:value="${member.userEmail}">
-
+                                           value="" th:value="${member.userEmail}" readonly>
                                 </li>
                                 <li class="snsBox">
                                     <img class="icons" src="/setPage/img/github-icon.svg"
@@ -169,6 +168,7 @@
                                            id="snsGithub_e"
                                            placeholder="Github 계정을 입력하세요."
                                            value="" th:value="${sns.userGithub}">
+                                     <input type="button" value="삭제" onclick="delSns('snsGithub_e')" style="border: none;margin: 0px 5px 0px 5px;border-radius: 4px;color: #000000ad;">
                                 </li>
                                 <li class="snsBox">
                                     <img class="icons" src="/setPage/img/twitter-icon.svg"
@@ -177,6 +177,7 @@
                                            id="snsTwitter_e"
                                            placeholder="Twitter 계정을 입력하세요."
                                            value="" th:value="${sns.userTwitter}">
+                                    <input type="button" value="삭제" onclick="delSns('snsTwitter_e')" style="border: none;margin: 0px 5px 0px 5px;border-radius: 4px;color: #000000ad;">      
                                 </li>
                                 <li class="snsBox">
                                     <img class="icons" src="/setPage/img/facebook-icon.svg"
@@ -186,6 +187,7 @@
                                         <input name="userFacebook" value="" id="snsFacebook_e"
                                                th:value="${sns.userFacebook}">
                                     </div>
+                                    <input type="button" value="삭제" onclick="delSns('snsFacebook_e')" style="border: none;margin: 0px 5px 0px 5px;border-radius: 4px;color: #000000ad;"> 
                                 </li>
                                 <li class="snsBox">
                                     <img class="icons" src="/setPage/img/home-icon.svg"
@@ -194,6 +196,7 @@
                                            id="snsHome_e"
                                            placeholder="홈페이지 주소를 입력하세요."
                                            value="" th:value="${sns.userHomepage}" th:placeholder="${'홈페이지 주소를 입력하세요.'}">
+                                    <input type="button" value="삭제" onclick="delSns('snsHome_e')" style="border: none;margin: 0px 5px 0px 5px;border-radius: 4px;color: #000000ad;">        
                                 </li>
                             </ul>
                             <div class="button-wrapper">
@@ -287,6 +290,12 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
 <script>
+function delSns(snsId){
+    var selsns=document.getElementById(snsId);
+    selsns.value="";
+}
+
+
 function del(){
 	const preview = document.getElementById('profile-image');
 	preview.src = "/css/img/corgi.png";
@@ -307,7 +316,7 @@ function del(){
 				//저장실패
 				alert("삭제실패.");
 			}
-			location.reload()
+			location.reload();
 			
 		}
 	}
@@ -371,11 +380,11 @@ function previewImage() {
 	      if (xhr.responseText.trim() == "ok") {
 	        //저장성공 
 	        alert("프로필 이미지가 변경되었습니다.");
+	        location.reload();
 	      } else {
 	        //저장실패
 	        alert("실패");
 	      }
-	      location.reload()
 	    }
 	  }
 	}

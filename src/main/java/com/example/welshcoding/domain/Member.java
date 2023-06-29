@@ -30,7 +30,7 @@ public class Member {
 	private String userPhone;
 	@Embedded
 	private Sns sns;
-	private String tagsString;
+//	private String tagsString;
 
 	// 일대다 연결에서 Member 엔티티에 대한 모든 작업이 자식 엔티티에 적용되도록 옵션 추가)
 	// cascade = CascadeType.ALL, orphanRemoval = true
@@ -42,14 +42,7 @@ public class Member {
 		board.setMember(this);
 		this.boards.add(board);
 	}
-	
-	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Comments> comments = new ArrayList<>();
-	
-	public void addComments(Comments comment) {
-		comment.setMember(this);
-		this.comments.add(comment);
-	}
+
 	
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Temporary> temporaries = new ArrayList<>();

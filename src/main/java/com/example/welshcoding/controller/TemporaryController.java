@@ -47,9 +47,14 @@ public class TemporaryController {
 		List<Temporary> temps = testTemporaryService.findAll(member.getMemberId());
 		for(int i=0;i<temps.size();i++) {
 			String cont = temps.get(i).getTemporaryDetail();
-			cont  = cont.replaceAll("<.*?>", "");
-			cont = cont.substring(0, Math.min(cont.length(), 300));
-			cont =removeSpecialCharacters(cont);
+			if(cont==null || cont.trim()=="") {
+				cont="";
+				
+			}else {
+				cont  = cont.replaceAll("<.*?>", "");
+				cont = cont.substring(0, Math.min(cont.length(), 300));
+				cont =removeSpecialCharacters(cont);
+			}
 			temps.get(i).setTemporaryDetail(cont);
 		}
 		member = memberService.getMemberById(member.getMemberId());

@@ -42,7 +42,8 @@
     <div class="bottomArea">
         <div class="buttonArea">
             <div class="backArea" style="width: 30%;">
-                <button class="backBtn" onclick="location.href='/mainBoard'"><strong>← 나가기</strong></button>
+            <!-- 뒤로가기 후 새로고침 onclick="location.href = document.referrer;"-->
+                <button class="backBtn" onclick="location.href = document.referrer;"><strong>← 나가기</strong></button>
             </div>
             <div class="saveArea">
                 <button class="tmprysaveBtn" onclick="temporary()"><strong>임시저장</strong></button>

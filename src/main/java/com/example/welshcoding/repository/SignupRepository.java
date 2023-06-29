@@ -2,6 +2,7 @@ package com.example.welshcoding.repository;
 
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -21,14 +22,12 @@ public class SignupRepository {
     }
 
     public String findEmail(String email) {
-        try {
+        try { 							//있는아이디
             em.createQuery("select i from Member i where userEmail ='"
 					+ email + "'", Member.class).getSingleResult();
-            return "not";//있는아이디
-        } catch (Exception e) {
-//			e.printStackTrace();
-            return "ok";//없는아이디
+            return "impossible";
+        } catch (NoResultException e) {	//호출 시 결과가 하나도 없을 때 발생 - 없는아이디라는뜻
+            return "possible";
         }
-
     }
 }

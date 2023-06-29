@@ -3,6 +3,7 @@
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.service.TestMemberService;
@@ -18,14 +19,9 @@ public class HomeController {
 
 	private final TestMemberService testMemberService;
 	
-//	@RequestMapping("login")
+	@RequestMapping("/")
 	public String home( HttpSession session) throws IllegalAccessException {
-		Member member = new Member();
-		member.setUserEmail("test");
 		
-		Long id = testMemberService.join(member);
-		
-		session.setAttribute("member", member);
-		return "redirect:/mainBoard/"+id;	
+		return "redirect:/login_out/gologin";	
 	}
 }

@@ -54,7 +54,6 @@ public class BoardService {
         oldboard.setBoardTitle(board.getBoardTitle());
         oldboard.setBoardCont(board.getBoardCont());
         oldboard.setBoardDate(board.getBoardDate());
-//		oldboard.setTags(board.getTags());
     }
 
 }

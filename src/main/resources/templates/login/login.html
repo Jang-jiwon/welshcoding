@@ -29,7 +29,7 @@
     </div>
     <div class="loginbody">
     	<div class="loginArea">
-    		<form id="myForm" action="#" method="post" th:action="@{/login}">
+    		<form id="myForm" action="#" method="post" th:action="@{/login_out/login}">
     			<div style="height: 100%;">
     				<div style="height: 25%;display: flex; align-items: flex-end; justify-content: center;">
     				<p style="margin: 0px; font-weight: bold; font-size: 50px; font-family: 'Dosis' !important;">WelshCoding</p>
@@ -45,7 +45,7 @@
 			    			<hr style="opacity: 0.5;">
 			    			<div style="display: flex;    justify-content: center; margin-top: 25px;">
 				    			<button class="loginBtn" onclick="login()" type="button" >로그인</button>
-				    			<button class="joinBtn" type="button" onclick="location.href='/signup'">회원가입</button>
+				    			<button class="joinBtn" type="button" onclick="location.href='/login_out/signup'">회원가입</button>
 			    			</div>
 	    				</div>
     				</div>
@@ -63,6 +63,13 @@
  </body>
 
 <script>
+// window.onpageshow = function(event){
+//     if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
+// // 		location.href="/mainBoard";
+// 		location.reload();
+//     }
+// }
+
 
 let message = "[[${msg}]]";
 if( message != "" && message != null){

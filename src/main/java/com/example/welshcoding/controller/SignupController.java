@@ -3,6 +3,7 @@ package com.example.welshcoding.controller;
 import com.example.welshcoding.service.SignupService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,11 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/signup")
 public class SignupController {
 
     private final SignupService signupService;
 
-    @PostMapping("/goSignup")
+    @PostMapping("goSignup")
     public String signup(@RequestParam("userEmail") String userEmail,
                          @RequestParam("userPw") String userPw,
                          @RequestParam("userName") String userName
@@ -50,25 +52,19 @@ public class SignupController {
         member.setUserBirth(" ");
         member.setUserGender(" ");
         member.setUserPhone(" ");
-        member.setTagsString(" ");
+//        member.setTagsString(" ");
 
 
         signupService.join(member);
 
-        return "redirect:/gologin";
+        return "redirect:/login_out/gologin";
     }
 
 
     @PostMapping("dubcheck")
     @ResponseBody
     public String dubcheck(@RequestParam("email") String email) {
-        String result = "not";
-
-        if (signupService.dubcheck(email) == "possible") {
-            result = "ok";
-        }
-
-        return result;
+        return signupService.dubcheck(email);
     }
 
 

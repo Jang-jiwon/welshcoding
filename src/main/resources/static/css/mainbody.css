@@ -148,22 +148,22 @@ opacity: 0.5;
 
 
 
-a.taglist{
-	text-decoration: none;
-	margin-top: 10px;
-}
-a:link {
-  color : #212529;
-}
-a:visited {
-  color : #212529;
-}
-a:hover {
-  color : #212529;
-}
-a:active {
-  color : #212529
-}
+/* a.taglist{ */
+/* 	text-decoration: none; */
+/* 	margin-top: 10px; */
+/* } */
+/* a:link { */
+/*   color : #212529; */
+/* } */
+/* a:visited { */
+/*   color : #212529; */
+/* } */
+/* a:hover { */
+/*   color : #212529; */
+/* } */
+/* a:active { */
+/*   color : #212529 */
+/* } */
 
 img.mainImg{
 	width:100px; 
@@ -181,6 +181,8 @@ div.taglistdiv{
 	position: relative; 
 	left: -30%;
 }
+
+
 
 div.searchArea{
 	width: 100%; 

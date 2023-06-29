@@ -141,13 +141,13 @@ document.addEventListener('DOMContentLoaded', function () {
             snsTwitter_e.value = null;
         }
         if (snsFacebook_e.value.trim() === '') {
-            updateFacebookData = null;
+            snsFacebook_e.value = null;
         }
         if (snsHome_e.value.trim() === '') {
             snsHome_e.value = null;
         }
 
-        snsEmail.innerText = snsEmail_e.value;
+//        snsEmail.innerText = snsEmail_e.value;
         snsGithub.innerText = snsGithub_e.value;
         snsTwitter.innerText = snsTwitter_e.value;
         snsFacebook.innerText = snsFacebook_e.value;
@@ -155,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.querySelector('#snsInfo').style.display = 'flex';
         document.querySelector('#snsInfo_e').style.display = 'none';
-
         document.querySelector('#editForm3').submit();
     });
 

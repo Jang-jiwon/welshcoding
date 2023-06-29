@@ -19,6 +19,7 @@ import com.example.welshcoding.domain.Board;
 import com.example.welshcoding.domain.Member;
 import com.example.welshcoding.domain.Series;
 import com.example.welshcoding.domain.Tags;
+import com.example.welshcoding.exception.TagNullException;
 import com.example.welshcoding.testjiwon.TestSService;
 import com.example.welshcoding.testjiwon.TestTemporaryService;
 
@@ -82,18 +83,34 @@ public class SaveController {
 
         boardService.updateBoard(board, boardId, member.getMemberId());
         Board newBoard = boardService.findOne(boardId, member.getMemberId());
+        
+        //태그
         List<Tags> tags = new ArrayList<>();
-        if (tagList != null) {
-            String[] tagsArray = tagList.split(",");
+        try {
+        	String[] tagsArray = tagList.split(",");
             for (int i = 0; i < tagsArray.length; i++) {
-//				tags.get(i).setBoard(board);
                 tags.add(new Tags());
                 tags.get(i).setMember(member);
                 tags.get(i).setTagsName(tagsArray[i]);
                 tags.get(i).setBoard(newBoard);
             }
-        }
-        tagService.updateTags(tags, boardId, member.getMemberId());
+            tagService.updateTags(tags, boardId, member.getMemberId());
+		} catch (TagNullException e) {
+			System.out.println("****updateData_TagNullException : "+e.getMessage()+"****");
+			tagService.deleteById(boardId, member.getMemberId());
+		}
+//        
+//        if (tagList != null) {
+//            String[] tagsArray = tagList.split(",");
+//            for (int i = 0; i < tagsArray.length; i++) {
+////				tags.get(i).setBoard(board);
+//                tags.add(new Tags());
+//                tags.get(i).setMember(member);
+//                tags.get(i).setTagsName(tagsArray[i]);
+//                tags.get(i).setBoard(newBoard);
+//            }
+//        }
+//        tagService.updateTags(tags, boardId, member.getMemberId());
         return "redirect:/goPost/" + boardId;
 
     }
@@ -114,12 +131,6 @@ public class SaveController {
         System.out.println("로컬 시간: " + formattedDateTime);
 
 
-        /* ... */
-        log.info("save-data Controller");
-//		Member member = new Member();
-//		member.setUserEmail("test");
-
-
         Member member = (Member) session.getAttribute("member");
 
         Board board = new Board();
@@ -127,7 +138,6 @@ public class SaveController {
         board.setBoardCont(gridData);
         board.setBoardDate(formattedDateTime);
         board.setBoardLike("3");
-        board.setBoardTag(tagList);
         board.setSeries(new Series());
         board.setThumbnailPath(thumPath);
         board.setMember(member);
@@ -150,27 +160,23 @@ public class SaveController {
             series.addBoard(board);
             testSService.save(series);
         }
-
-        System.out.println("===========saveData==============");
-
-        System.out.println("=========================저장완료=============================");
-
+        
 
         boardService.insertData(board);
-
-        if (tagList != null) {
-            member = testMemberService.addTags(member.getMemberId(), tagList);
-            board.setBoardTag(tagList);
-            String[] tagsArray = tagList.split(",");
-            for (int i = 0; i < tagsArray.length; i++) {
-                Tags tags = new Tags();
-                tags.setBoard(board);
-                tags.setMember(member);
-                tags.setTagsName(tagsArray[i]);
-                tagService.save(tags);
-            }
-        }
-
+        
+        //태그 부분
+        try {
+        	String[] tagsArray = tagList.split(",");
+			for (int i = 0; i < tagsArray.length; i++) {
+			    Tags tags = new Tags();
+			    tags.setBoard(board);
+			    tags.setMember(member);
+			    tags.setTagsName(tagsArray[i]);
+			    tagService.save(tags);
+			}
+		} catch (TagNullException e) {
+			System.out.println("****TagNullException : "+e.getMessage()+"****");
+		}
 
         return "redirect:/mainBoard";
     }
@@ -197,7 +203,7 @@ public class SaveController {
         board.setBoardCont(gridData);
         board.setBoardDate(formattedDateTime);
         board.setBoardLike("3");
-        board.setBoardTag(tagList);
+//        board.setBoardTag(tagList);
         board.setSeries(new Series());
         board.setThumbnailPath("test");
         board.setMember(member);
@@ -229,8 +235,8 @@ public class SaveController {
 
 
         if (tagList != null) {
-            member = testMemberService.addTags(member.getMemberId(), tagList);
-            board.setBoardTag(tagList);
+//            member = testMemberService.addTags(member.getMemberId(), tagList);
+//            board.setBoardTag(tagList);
             String[] tagsArray = tagList.split(",");
             for (int i = 0; i < tagsArray.length; i++) {
                 Tags tags = new Tags();
