@@ -40,18 +40,18 @@ public class SignupController {
         Sns sns = new Sns();
 
 
-        sns.setUserFacebook("");
-        sns.setUserGithub("");
-        sns.setUserHomepage("");
-        sns.setUserTwitter("");
-        member.setSns(sns);
+//        sns.setUserFacebook(" ");
+//        sns.setUserGithub(" ");
+//        sns.setUserHomepage(" ");
+//        sns.setUserTwitter(" ");
+//        member.setSns(sns);
 
         member.setVelogPageName(userName);
-        member.setUserBio(" ");
-        member.setProfileImg(" ");
-        member.setUserBirth(" ");
-        member.setUserGender(" ");
-        member.setUserPhone(" ");
+//        member.setUserBio(" ");
+//        member.setProfileImg(" ");
+//        member.setUserBirth(" ");
+//        member.setUserGender(" ");
+//        member.setUserPhone(" ");
 //        member.setTagsString(" ");
 
 

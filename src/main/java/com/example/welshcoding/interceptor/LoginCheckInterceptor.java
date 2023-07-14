@@ -8,10 +8,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 
 public class LoginCheckInterceptor implements HandlerInterceptor {
-	
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception {
 		String requestURI = request.getRequestURI();
 		System.out.println("[interceptor]  : " + requestURI);
 		HttpSession session = request.getSession(false);
@@ -30,6 +28,5 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 			}
 		}
 		return true;
-
 	}
 }

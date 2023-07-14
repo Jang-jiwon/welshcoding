@@ -18,17 +18,6 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-//    private MemberDTO convertToDTO(Member member) {
-//        MemberDTO memberDTO = new MemberDTO();
-//        memberDTO.setUserName(member.getUserName());
-//        memberDTO.setUserBio(member.getUserBio());
-//        memberDTO.setSns(member.getSns()); // Set SNS data
-//        memberDTO.setVelogPageName(member.getVelogPageName()); // Set Velog_page_name data
-//        // Set other properties as needed
-//        return memberDTO;
-//    }
-
-    
     @Transactional
 	public void updateSrc(String imgsrc,long memberId) {
 		Member member = memberRepository.findOne(memberId);
@@ -47,9 +36,9 @@ public class MemberService {
         // NULL인 컬럼들에 대한 기본값 설정
         memberDTO.setUserBio(member.getUserBio() != null ? member.getUserBio() : "");
         memberDTO.setProfileImg(member.getProfileImg() != null ? member.getProfileImg() : "");
-        memberDTO.setUserBirth(member.getUserBirth() != null ? member.getUserBirth() : "");
-        memberDTO.setUserGender(member.getUserGender() != null ? member.getUserGender() : "");
-        memberDTO.setUserPhone(member.getUserPhone() != null ? member.getUserPhone() : "");
+//        memberDTO.setUserBirth(member.getUserBirth() != null ? member.getUserBirth() : "");
+//        memberDTO.setUserGender(member.getUserGender() != null ? member.getUserGender() : "");
+//        memberDTO.setUserPhone(member.getUserPhone() != null ? member.getUserPhone() : "");
 
         // Sns 정보가 null인 경우에 대한 예외 처리
         if (member.getSns() != null) {
@@ -69,37 +58,6 @@ public class MemberService {
 
 
 
-//    public MemberDTO getMemberById(Long memberId) {
-//        Member member = memberRepository.findById(memberId);
-//        MemberDTO memberDTO = new MemberDTO();
-//
-//        memberDTO.setMemberId(member.getMemberId());
-//        memberDTO.setUserEmail(member.getUserEmail());
-//        memberDTO.setUserPwd(member.getUserPwd());
-//        memberDTO.setUserName(member.getUserName());
-//
-//        // NULL인 컬럼들에 대한 기본값 설정
-//        memberDTO.setUserBio(member.getUserBio() != null ? member.getUserBio() : "");
-//        memberDTO.setProfileImg(member.getProfileImg() != null ? member.getProfileImg() : "");
-//        memberDTO.setUserBirth(member.getUserBirth() != null ? member.getUserBirth() : "");
-//        memberDTO.setUserGender(member.getUserGender() != null ? member.getUserGender() : "");
-//        memberDTO.setUserPhone(member.getUserPhone() != null ? member.getUserPhone() : "");
-//        memberDTO.setUserGithub(memberDTO.getUserGithub() != null ? memberDTO.getUserGithub() : "");
-//        memberDTO.setUserTwitter(memberDTO.getUserTwitter() != null ? memberDTO.getUserTwitter() : "");
-//        memberDTO.setUserGithub(memberDTO.getUserGithub() != null ? memberDTO.getUserGithub() : "");
-//        memberDTO.setUserGithub(memberDTO.getUserGithub() != null ? memberDTO.getUserGithub() : "");
-//
-//        // 나머지 NULL인 컬럼들에 대한 처리
-//
-//        return memberDTO;
-//    }
-
-    // 예외처리 전 원본
-//    public Member getMemberById(Long memberId) {
-//       return memberRepository.findById(memberId);
-//    }
-
-
     @Transactional
     public void editMemberById(Long memberId, MemberDTO form) {
         Member member = memberRepository.findById(memberId);
@@ -112,20 +70,6 @@ public class MemberService {
         Member member = memberRepository.findById(memberId);
         member.setVelogPageName(velogPageName);
     }
-
-//    @Transactional
-//    public void edit3MemberById(Long memberId, String email, String Github, String Twitter,
-//                                String Facebook, String UserHomepage) {
-//        Member member = memberRepository.findById(memberId);
-//        Sns sns = memberRepository.findById(memberId).getSns();
-//
-//        member.setUserEmail(email);
-//
-//        sns.setUserGithub(Github);
-//        sns.setUserTwitter(Twitter);
-//        sns.setUserFacebook(Facebook);
-//        sns.setUserHomepage(UserHomepage);
-//    }
 
 
     // SNS 정보가 Null 일 경우 예외처리

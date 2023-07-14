@@ -25,9 +25,9 @@ public class Member {
 	private String userBio;
 	@Lob
 	private String profileImg;
-	private String userBirth;
-	private String userGender;
-	private String userPhone;
+//	private String userBirth;
+//	private String userGender;
+//	private String userPhone;
 	@Embedded
 	private Sns sns;
 //	private String tagsString;

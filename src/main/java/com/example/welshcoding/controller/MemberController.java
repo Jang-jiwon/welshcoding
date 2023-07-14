@@ -33,27 +33,10 @@ public class MemberController {
 	
 
     private final MemberService memberService;
-    private final TestMemberService testMemberService;
+    
     @Autowired
     private HttpSession session;
 
-//    @GetMapping("/setPage")
-//    public String setPage(Model model,HttpSession session) {
-//        // memberId를 사용하여 회원 정보를 조회하고 모델에 추가하는 로직을 작성하세요.
-//    	Member member = (Member)session.getAttribute("member");
-//    	long memberId = member.getMemberId();
-//        member = memberService.getMemberById(memberId);
-//        Sns sns = memberService.getMemberById(memberId).getSns();
-//        model.addAttribute("member", member);
-//        model.addAttribute("sns", sns);
-//
-//        return "setPage/setPage";
-//    }
-    
-  
-
-    
-    
     @PostMapping("/profile")
     @ResponseBody
     public String imgsrc(@RequestParam("imgsrc") String imgsrc, HttpSession session) {
