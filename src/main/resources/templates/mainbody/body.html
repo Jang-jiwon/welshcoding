@@ -83,12 +83,12 @@ https://developeryoung.tistory.com/39 -->
                 <ul>
                     <li>
                         <button id="tagall" class="tagall"
-                                style="background-color: #00ff0000; border: none;"
+                                style="background-color: #00ff0000; border: none; color:#20c997; "
                                 onclick="showall()">전체보기
                         </button>
                     </li>
                     <li th:each="newtag : ${alltags}" class="tagPar">
-                        <button id="taglist" class="taglist" th:text="${newtag}" th:onclick="tagClick([[${newtag}]])"
+                        <button th:id="'tagsId'+${newtag.tagsId}" class="taglist" th:text="${newtag.tagsName}" 
                                 style="background-color: #00ff0000; border: none;"></button>
                     </li>
                 </ul>
@@ -148,22 +148,40 @@ function tabHandler(item) {
     tabTarget.classList.add("active");
 }
 
+const buttons = document.querySelectorAll('.taglist');
+const tagall = document.querySelector('.tagall'); // 첫 번째 .tagall 요소 선택
 
-function tagClick(tagname){
-	var seltag = tagname;
-	var postAreas = document.getElementsByClassName("postArea");
-    for (var i = 0; i < postAreas.length; i++) {
-        var tagBtns = postAreas[i].querySelectorAll(".tags button");
-        postAreas[i].style.display = "none";
-        for (var j = 0; j < tagBtns.length; j++) {
-            if (tagBtns[j].textContent === seltag) {
-                postAreas[i].style.display = "block";
-                break;
+tagall.addEventListener('click', function() {
+    buttons.forEach(btn => {
+        btn.style.color = '#000000';
+    });
+    tagall.style.color = '#20c997';
+});
+
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        // 모든 버튼의 배경색을 회색으로 변경
+        buttons.forEach(btn => {
+            btn.style.color = '#000000';
+            tagall.style.color = '#000000';
+        });
+        // 클릭한 버튼의 배경색을 초록색으로 변경
+        button.style.color = '#20c997';
+        
+        var seltag = button.textContent;
+        var postAreas = document.getElementsByClassName("postArea");
+        for (var i = 0; i < postAreas.length; i++) {
+            var tagBtns = postAreas[i].querySelectorAll(".tags button");
+            postAreas[i].style.display = "none";
+            for (var j = 0; j < tagBtns.length; j++) {
+                if (tagBtns[j].textContent === seltag) {
+                    postAreas[i].style.display = "block";
+                    break;
+                }
             }
         }
-    }
-}
-
+    });
+});
 </script>
 
 <script th:inline="javascript">
