@@ -99,16 +99,23 @@ public class BoardController {
         long testmemberid = member.getMemberId();
         List<Board> boards = boardService.findBoards(testmemberid);
         
-        log.info("Board Controller");
-        System.out.println("================sdadadsadsdadad");//boards.get(0).getBoardTitle()+
-
         List<Tags> newtags = tagServices.findTags(member);
-        String[] newtagsList = new String[newtags.size()];
-        for (int j = 0; j < newtags.size(); j++) {
-            newtagsList[j] = newtags.get(j).getTagsName();
+        
+        HashSet<String> uniqueTagsName = new HashSet<>();
+        List<Tags> uniqueTags = new ArrayList<>();
+        
+        for (Tags tag : newtags) {
+            if (uniqueTagsName.add(tag.getTagsName())) {
+                uniqueTags.add(tag);
+            }
         }
-        Set<String> set = new HashSet<>(Arrays.asList(newtagsList));
-        String[] result = set.toArray(new String[set.size()]);
+        
+//        String[] newtagsList = new String[newtags.size()];
+//        for (int j = 0; j < newtags.size(); j++) {
+//            newtagsList[j] = newtags.get(j).getTagsName();
+//        }
+//        Set<String> set = new HashSet<>(Arrays.asList(newtagsList));
+//        String[] result = set.toArray(new String[set.size()]);
 
         /********* kdy - series 부분 *********/
         List<SeriesListDTO> seriesList = seriesService.findSeriesAll(testmemberid);
@@ -140,7 +147,7 @@ public class BoardController {
         model.addAttribute("introduce", introduce);
         model.addAttribute("recentMember", recentMember);
         model.addAttribute("boards", boards);
-        model.addAttribute("alltags", result);
+        model.addAttribute("alltags", uniqueTags);
 
 
         return "mainbody/body";
