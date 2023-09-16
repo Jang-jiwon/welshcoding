@@ -28,11 +28,6 @@ public class SignupController {
     ) {
 
 
-        log.info("userEmail : " + userEmail);
-        log.info("userPw : " + userPw);
-        log.info("userName : " + userName);
-
-
         Member member = new Member();
         member.setUserEmail(userEmail);
         member.setUserPwd(userPw);
@@ -54,7 +49,11 @@ public class SignupController {
 //        member.setUserPhone(" ");
 //        member.setTagsString(" ");
 
-
+        
+        log.info("userEmail : " + member.getUserEmail());
+        log.info("userPw : " + member.getUserPwd());
+        log.info("userName : " + member.getUserName());
+        
         signupService.join(member);
 
         return "redirect:/login_out/gologin";
