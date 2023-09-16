@@ -1,9 +1,6 @@
 #port 수정
 server:
   port: 9090
-  servlet:
-    session:
-      tracking-modes: cookie
 
 
 #DB Connection

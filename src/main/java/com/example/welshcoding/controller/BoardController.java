@@ -192,7 +192,7 @@ public class BoardController {
         Board board = boardService.findOne((Long) boardId, member.getMemberId());
 //		log.info("tagCont : "+board.getTags().get(0).getTagsName());
         model.addAttribute("changePost", board);
-        return "/boardPost/changePost";
+        return "boardPost/changePost";
     }
 
 
